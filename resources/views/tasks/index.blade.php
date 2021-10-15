@@ -14,7 +14,7 @@
         <div class="col-md-12">
                
    <h2 class="mb-2">Tasks</h2>
-   <a href="/add/1"><button class="btn" style="    height: 30px;
+   <a href="{{route('add/1')}}"><button class="btn" style="    height: 30px;
    border: 1px solid #ddd;
    padding: 0 30px;
    color: white;
