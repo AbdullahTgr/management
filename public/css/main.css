@@ -24,8 +24,7 @@
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #BA68C8
-}
+ }
 
 .profile-button {
     background: rgb(99, 39, 120);
@@ -52,9 +51,7 @@
     cursor: pointer
 }
 
-.labels {
-    font-size: 11px
-}
+ 
 
 .add-experience:hover {
     background: #BA68C8;
@@ -81,6 +78,7 @@ label.select-photo {
 {
     position: relative;
     overflow: hidden;
+    border-radius: 30%!important;
 }
 
 .image-section:hover .select-photo
@@ -105,10 +103,7 @@ label.select-photo {
 .profile-button:hover {
     background: #000000d1;
 }
-.form-control:focus {
-    box-shadow: none;
-    border-color: #000000d4;
-}
+ 
 
 .img-icon
 {
@@ -137,7 +132,7 @@ label.select-photo {
 
 
 *::-webkit-scrollbar ,body::-webkit-scrollbar {
-    width: 2px;
+    width: 4px;
 }
  
 body::-webkit-scrollbar-track , *::-webkit-scrollbar-track {
@@ -146,6 +141,6 @@ body::-webkit-scrollbar-track , *::-webkit-scrollbar-track {
  
 body::-webkit-scrollbar-thumb , *::-webkit-scrollbar-thumb  {
     background-color: #7c7583;
-    outline: 1px solid #000000;
+    outline: 1px solid #ccc;
     border-radius: 5px;
 }

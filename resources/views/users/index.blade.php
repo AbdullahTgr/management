@@ -12,7 +12,7 @@
         <div class="col-12">
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
-              <h3 class="mb-0">Employees List</h3>
+              <h4 class="mb-0">Employees List</h4>
               <br>
               <a data-bs-toggle="modal" data-bs-target="#send" class="btn btn-primary btn-sm ml-0 text-white">Send Notification for all <i class="bi bi-bell-fill"></i></a>
 
@@ -117,7 +117,7 @@
         <div class="col-12">
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
-              <h3 class="mb-0">Employees Attending and leaving</h3>
+              <h4 class="mb-0">Employees Attending and leaving</h4>
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
