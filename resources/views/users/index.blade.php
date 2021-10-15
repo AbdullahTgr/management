@@ -17,7 +17,7 @@
               <a data-bs-toggle="modal" data-bs-target="#send" class="btn btn-primary btn-sm ml-0 text-white">Send Notification for all <i class="bi bi-bell-fill"></i></a>
 
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
@@ -35,11 +35,11 @@
                       
                       <tr>
                         <th scope="row">
-                          <div class="media align-items-center">
+                          <div class="d-flex px-2 py-1">
                             <a href="{{route('profile',$user->id)}}" class="avatar rounded-circle mr-3">
                               <img class="img-icon" alt="Image placeholder" src="{{$user->photo ? asset('storage/' . $user->photo) : 'https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png'}}">
                             </a>
-                            <div class="media-body">
+                            <div class="d-flex flex-column justify-content-center">
                               <a href="{{route('profile',$user->id)}}" class="mb-0 text-sm">{{$user->name}}</a>
                             </div>
                           </div>
@@ -54,39 +54,49 @@
                           </div>
                         </td>
                         <td>
-                            <span class="badge text-warning badge-dot mr-4">
-                              <i class="bg-{{$user->status == null ? 'warning' : 'success'}}"></i> {{$user->status == null ? 'pendding' : 'approved'}}
+                            <span class="badge bg-{{$user->status == 1 ? 'success' : 'warning'}} mr-4">
+                              <i class="bi bi-"></i> {{$user->status == null ? 'pendding' : 'approved'}}
                             </span>
                           </td>
                         <td>
                           <div class="d-flex align-items-center">
-                            <span class="mr-2">%{{floatval($user->task_rate())}}</span>
-                            <div>
-                              <div class="progress">
-                                <div class="progress-bar bg-{{$user->task_rate() < 30 ? 'danger' : ($user->task_rate() <= 65 ? 'warning' : 'success')}}" role="progressbar" aria-valuenow="{{floatval($user->task_rate())}}" aria-valuemin="0" aria-valuemax="100" style="width: {{floatval($user->task_rate())}}%;"></div>
+                             <div>
+                              <div class="progress-wrapper w-75 mx-auto">
+                                <div class="progress-info">
+                                  <div class="progress-percentage">
+                                    <span class="text-xs font-weight-bold">{{floatval($user->task_rate())}}%</span>
+                                  </div>
+                                </div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-{{$user->task_rate() < 30 ? 'danger' : ($user->task_rate() <= 65 ? 'warning' : 'success')}} w-{{floatval($user->task_rate())}}" role="progressbar" aria-valuenow="{{floatval($user->task_rate())}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                               </div>
+                              
                             </div>
                           </div>
                         </td>
                         <td class="text-right">
-                           <form action="{{route('attend_user')}}" method="POST">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <button type="submit" class="btn btn-primary btn-sm">Attending <i class="bi bi-calendar-check-fill"></i></button>
-                           </form>
                           <div class="dropdown">
-                            <a style="color: #000!important;" class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-three-dots-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                              <a class="dropdown-item" href="{{route('profile', $user->id)}}">Profile</a>
-                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#withdraw{{$user->id}}" href="#">Withdraw</a>
-                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#discount{{$user->id}}" href="#">Discount</a>
+                            <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Options
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li>
+                                <form action="{{route('attend_user')}}" method="POST">
+                                  @csrf
+                                  <input type="hidden" name="user_id" value="{{$user->id}}">
+                                  <a type="submit" class="dropdown-item" href="#" >Attending <i class="bi bi-calendar-check-fill" style=" float: right; "></i></a>
+                                 </form>
+                              </li>
+                              <li><a class="dropdown-item" href="{{route('profile', $user->id)}}">Profile</a></li>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#withdraw{{$user->id}}" href="#">Withdraw</a></li>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#discount{{$user->id}}" href="#">Discount</a></li>
                               @if (Auth::user()->role == 1)
-                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$user->id}}" href="#">Delete</a>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$user->id}}" href="#">Delete</a></li>
                               @endif
-                            </div>
+                             </ul>
                           </div>
+ 
                         </td>
                       </tr>
                       @endforeach
@@ -109,7 +119,7 @@
             <div class="card-header border-0">
               <h3 class="mb-0">Employees Attending and leaving</h3>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
@@ -124,12 +134,12 @@
                       @foreach ($user_attendings as $user)
                       <tr>
                         <th scope="row">
-                          <div class="media align-items-center">
-                            <a href="#" class="avatar rounded-circle mr-3">
+                          <div class="d-flex px-2 py-1">
+                            <a href="{{route('profile',$user->user->id)}}" class="avatar rounded-circle mr-3">
                               <img class="img-icon" alt="Image placeholder" src="{{$user->user->photo ? asset('storage/' . $user->user->photo) : 'https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png'}}">
                             </a>
-                            <div class="media-body">
-                              <span class="mb-0 text-sm">{{$user->user->name}}</span>
+                            <div class="d-flex flex-column justify-content-center">
+                              <a href="{{route('profile',$user->user->id)}}" class="mb-0 text-sm">{{$user->user->name}}</a>
                             </div>
                           </div>
                         </th>
@@ -144,7 +154,7 @@
                         </td>
  
                         <td class="text-right">
-                            <div data-bs-toggle="modal" data-bs-target="#edit{{$user->id}}" class="btn btn-dark btn-sm">change <i class="bi bi-pen"></i></div>
+                            <div data-bs-toggle="modal" data-bs-target="#edit{{$user->id}}" class="btn btn-primary btn-sm">change <i class="bi bi-pen"></i></div>
                         </td>
                       </tr>
                       @endforeach

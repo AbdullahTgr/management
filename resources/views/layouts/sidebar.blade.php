@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link  active" href="{{route('home')}}">
+        <a class="nav-link  {{in_array(Route::currentRouteName(), ['home']) ? 'active' : ''}}" href="{{route('home')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>shop </title>
@@ -30,7 +30,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('users')}}">
+        <a class="nav-link {{in_array(Route::currentRouteName(), ['users','profile']) ? 'active' : ''}}" href="{{route('users')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>office</title>
@@ -50,7 +50,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('tasks')}}">
+        <a class="nav-link {{in_array(Route::currentRouteName(), ['tasks','add']) ? 'active' : ''}}" href="{{route('tasks')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>credit-card</title>
@@ -70,7 +70,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="#">
+        <a class="nav-link {{in_array(Route::currentRouteName(), ['notifications','notification']) ? 'active' : ''}}" href="#">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>box-3d-50</title>
@@ -91,7 +91,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('settings')}}">
+        <a class="nav-link {{in_array(Route::currentRouteName(), ['settings','setting']) ? 'active' : ''}}" href="{{route('settings')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>settings</title>
@@ -115,7 +115,7 @@
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('useractions')}}">
+        <a class="nav-link {{in_array(Route::currentRouteName(), ['useractions','notification']) ? 'active' : ''}}" href="{{route('useractions')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>customer-support</title>
@@ -136,7 +136,11 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{ route('logout') }}">
+        <a class="nav-link" href="#" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>    
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>document</title>

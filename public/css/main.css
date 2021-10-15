@@ -134,3 +134,18 @@ label.select-photo {
     --bs-text-opacity: 1;
     color: #98a6ad!important
 }
+
+
+*::-webkit-scrollbar ,body::-webkit-scrollbar {
+    width: 2px;
+}
+ 
+body::-webkit-scrollbar-track , *::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb , *::-webkit-scrollbar-thumb  {
+    background-color: #7c7583;
+    outline: 1px solid #000000;
+    border-radius: 5px;
+}

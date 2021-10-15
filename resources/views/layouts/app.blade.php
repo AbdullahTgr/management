@@ -13,16 +13,18 @@
   
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
 <!-- CSS only -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
 
 {{-- <link rel="stylesheet" href="{{asset('css/argon-tables.css')}}">
  --}}
+ <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="{{asset('css/nucleo-icons.css')}}">
 <link rel="stylesheet" href="{{asset('css/nucleo-svg.css')}}">
@@ -40,15 +42,18 @@
     <div id="app">
          @if (!isset($nav) && Auth::check())
          @include('layouts.sidebar')
-         
          @endif 
 
          <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+            @if (!isset($nav) && Auth::check())
             @include('layouts.navbar')
+            @endif
             @yield('content')
         </main>
     </div>
 
     @yield('scripts')  
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="{{asset('js/soft-ui-dashboard.js')}}"></script>
 </body>
 </html>
