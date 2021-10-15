@@ -1,7 +1,7 @@
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-    <a class="navbar-brand m-0" href="/" target="_blank">
+    <a class="navbar-brand m-0" href="{{route('home')}}" target="_blank">
       <img src="{{asset('imgs/brand.png')}}" class="navbar-brand-img h-100" alt="main_logo">
       <span class="ms-1 font-weight-bold">{{Auth::user()->name}}</span>
     </a>
@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link  active" href="{{route('home')}}">
+        <a class="nav-link  {{Route::currentRouteName() == 'home' ? 'active' : ''}}" href="{{route('home')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>shop </title>
@@ -30,7 +30,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('users')}}">
+        <a class="nav-link  {{Route::currentRouteName() == 'users' ? 'active' : ''}}" href="{{route('users')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>office</title>
@@ -50,7 +50,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('tasks')}}">
+        <a class="nav-link  {{Route::currentRouteName() == 'tasks' ? 'active' : ''}}" href="{{route('tasks')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>credit-card</title>
@@ -70,7 +70,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="#">
+        <a class="nav-link  {{Route::currentRouteName() == 'notification' ? 'active' : ''}}" href="#">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>box-3d-50</title>
@@ -91,7 +91,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('settings')}}">
+        <a class="nav-link  {{Route::currentRouteName() == 'settings' ? 'active' : ''}}" href="{{route('settings')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>settings</title>
@@ -115,7 +115,7 @@
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="{{route('useractions')}}">
+        <a class="nav-link  {{Route::currentRouteName() == 'useractions' ? 'active' : ''}}" href="{{route('useractions')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>customer-support</title>
@@ -180,8 +180,34 @@
 
 
 
+@section('scripts')
+    
 
+  <!--   Core JS Files   -->
 
+  <script type="text/javascript" src="{{asset('js/core/popper.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/core/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/plugins/smooth-scrollbar.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/plugins/chartjs.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/js.js')}}"></script>
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+
+@endsection
 
 
 

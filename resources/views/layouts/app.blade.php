@@ -33,8 +33,9 @@
 <link rel="stylesheet" href="{{asset('css/tasks.css')}}">
 
 @if (!Auth::check())
-{{-- <link rel="stylesheet" href="{{asset('css/login.css')}}"> --}}
+<link rel="stylesheet" href="{{asset('css/login.css')}}">
 @endif
+
 </head> 
 <body>
     <div id="app">
