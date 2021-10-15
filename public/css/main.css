@@ -1,0 +1,142 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #000000;
+}
+
+.sidebar
+{
+    width: 280px;
+    height: 100%;
+    z-index: 888;
+    position: fixed;
+}
+
+.main-con
+{
+    margin-left: 280px;
+}
+
+
+
+
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    border-color: #000000;
+    background-color: #000000;
+}
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+label.select-photo {
+    cursor: pointer;
+    background-color: #00000091;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 6px;
+    color: #fff;
+    opacity: 0;
+    transition: all 1s ease;
+    font-size: 20px;
+}
+
+.image-section
+{
+    position: relative;
+    overflow: hidden;
+}
+
+.image-section:hover .select-photo
+{
+    cursor: pointer;
+    opacity: 1;
+}
+
+#userphoto
+{
+    height: 185px;
+    width: 185px;
+    object-fit: contain;
+    background-color: #0000006e;
+}
+
+.profile-button {
+    background: rgb(0 0 0);
+    box-shadow: none;
+    border: none;
+}
+.profile-button:hover {
+    background: #000000d1;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #000000d4;
+}
+
+.img-icon
+{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+
+.widget-icon {
+    color: #000000;
+    font-size: 20px;
+    background-color: rgb(68 68 72 / 25%);
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #98a6ad!important
+}
