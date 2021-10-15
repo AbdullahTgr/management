@@ -31,7 +31,7 @@ Route::post('/attend_user', [App\Http\Controllers\AdminController::class, 'atten
 
 
 
-Route::get('/add/{id}', [App\Http\Controllers\AdminController::class, 'add'])->name('add');
+Route::get('/add', [App\Http\Controllers\AdminController::class, 'add'])->name('add');
 Route::get('/tasks', [App\Http\Controllers\AdminController::class, 'tasks'])->name('tasks');
 Route::post('/add_task', [App\Http\Controllers\AdminController::class, 'add_task'])->name('add_task');
 Route::post('/accept_task', [App\Http\Controllers\AdminController::class, 'accept_task'])->name('accept_task');
