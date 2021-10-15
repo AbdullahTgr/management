@@ -340,7 +340,7 @@ a:focus{
 }
 .tab .nav-tabs li a:before{
     content: "";
-    background: linear-gradient(#646464 50%, #000000 50%);
+    background: linear-gradient(rgb(109, 7, 95) 50%,  rgb(209, 3, 182) 50%);
     height: 100%;
     width: 100%;
     opacity: 0;
@@ -413,9 +413,9 @@ a:focus{
 }
 
 .btn3d.btn-default {
-	color: #666666;
-	box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255, 255, 255, 0.10) inset, 0 8px 0 0 #BEBEBE, 0 8px 8px 1px rgba(0, 0, 0, .2);
-	background-color: #f9f9f9;
+	color: #ffffff;
+    background-color: #cb0c9f;
+    padding: 10px;
 }
 
 .btn3d.btn-default:active,

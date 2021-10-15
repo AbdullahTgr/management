@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
                
-   <h2 class="mb-2">Tasks</h2>
+   <h5 class="mb-2">Tasks</h5>
 
 
 
@@ -20,15 +20,15 @@
     <div class="card card-white">
         <div class="card-body">
 
-          <h2 class="mb-2">Task Name</h2>
+          <h5 class="mb-2">Task Name</h5>
           <input required="true" type="hidden"  class="validate"  >
                 <input  required type="text" class="form-control add-task " name="taskname" placeholder="Task Name">
-                <h2 class="mb-2">Task Description</h2>
+                <h5 class="mb-2">Task Description</h5>
                 <textarea required  class="form-control add-task " name="taskdesc" placeholder="New Description"></textarea>
-                <h2 class="mb-2">Task End At</h2>
+                <h5 class="mb-2">Task End At</h5>
                 <input required  class="form-control" type="datetime-local"  name="endtime">
                 
-                <h2 class="mb-2">Task Points</h2>
+                <h5 class="mb-2">Task Points</h5>
                 <input required type="number" class="form-control add-task " name="taskpoints" placeholder="Task Points">
        
             <div class="todo-list">
@@ -52,7 +52,7 @@
 
 
 
-        <h2 class="mb-2">Employees</h2>
+        <h5 class="mb-2">Employees</h5>
         <!-- Table -->
          <div class="row">
   

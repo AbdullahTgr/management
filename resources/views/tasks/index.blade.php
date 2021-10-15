@@ -19,6 +19,12 @@
    padding: 0 30px;
    color: white;
    background: #000000;
+
+   background-image: linear-gradient(
+310deg
+,#cb0c9f,#cb0c9f);
+
+
    margin-left: 23px;
    border-radius: 1px;">+</button></a>
       <!-- Table -->
