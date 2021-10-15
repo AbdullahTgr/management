@@ -51,7 +51,7 @@
                  </div>
                  <div class="col-md-12">
             {{-- Start User Attending --}}
-                <h3 class="mb-1"> Attending and leaving</h3>
+                <h4 class="mb-1"> Attending and leaving</h4>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush dataTable">
                     <thead class="thead-light">
@@ -130,25 +130,15 @@
                         <label class="labels">Salary</label>
                         <input type="number" name="salary" step="0.1" class="form-control" placeholder="enter salary" value="{{$user->salary}}">
                     </div>
-                    <div class="col-md-12">
-                        <label class="labels">Address</label>
-                        <input type="text" class="form-control" name="address" placeholder="enter address" value="">
-                    </div>
+                  
                     <div class="col-md-12">
                         <label class="labels">Email ID</label>
                         <input type="text" class="form-control" name="email" placeholder="enter email id" value="{{$user->email}}">
                     </div>
 
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                 
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                </div>
+               
                 <div class="mt-5 text-center"><button type="submit" class="btn btn-primary " id="update_user">Save Profile</button></div>
             </div>
         </div>
