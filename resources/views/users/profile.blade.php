@@ -27,11 +27,11 @@
                <a href="#"  data-bs-toggle="modal" data-bs-target="#salaryHistory" class="text-success fw-bold">${{$user->salary()}}</a>
                <hr>
                <div class="row">
-                   <div class="col-md-6" style=" padding: 0; ">
+                   <div class="col-md-12" style=" padding: 0; ">
                        <a class="btn btn-primary btn-sm ml-0 text-white" href="{{route('add',$user->id)}}">New Task <i class="bi bi-list-check"></i></a>
                    </div>
-                   <div class="col-md-6" style=" padding: 0; ">
-                       <a data-bs-toggle="modal" data-bs-target="#send" class="btn btn-primary btn-sm ml-0 text-white">Notification <i class="bi bi-bell-fill"></i></a>
+                   <div class="col-md-12" style=" padding: 0; ">
+                       <a data-bs-toggle="modal" data-bs-target="#send" class="btn btn-primary btn-sm ml-0 text-white">Notify <i class="bi bi-bell-fill"></i></a>
                    </div>
                </div>
              </div>
@@ -149,7 +149,7 @@
                     <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
                     <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
-                <div class="mt-5 text-center"><button type="submit" class="btn btn-dark profile-button" id="update_user">Save Profile</button></div>
+                <div class="mt-5 text-center"><button type="submit" class="btn btn-primary " id="update_user">Save Profile</button></div>
             </div>
         </div>
         {{-- End Profile Info --}}

@@ -22,15 +22,15 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
 
 {{-- <link rel="stylesheet" href="{{asset('css/argon-tables.css')}}">
-<link rel="stylesheet" href="{{asset('css/main.css')}}">
-<link rel="stylesheet" href="{{asset('css/tasks.css')}}"> --}}
+ --}}
 
 <link rel="stylesheet" href="{{asset('css/nucleo-icons.css')}}">
 <link rel="stylesheet" href="{{asset('css/nucleo-svg.css')}}">
 <link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.css')}}">
 <link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.css.map')}}">
 <link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.min.css')}}">
-
+<link rel="stylesheet" href="{{asset('css/main.css')}}">
+<link rel="stylesheet" href="{{asset('css/tasks.css')}}">
 
 @if (!Auth::check())
 {{-- <link rel="stylesheet" href="{{asset('css/login.css')}}"> --}}

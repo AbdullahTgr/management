@@ -20,13 +20,7 @@
 
 
 
-.page-item.active .page-link {
-    z-index: 1;
-    color: #fff;
-    border-color: #000000;
-    background-color: #000000;
-}
-
+ 
 
 .form-control:focus {
     box-shadow: none;
@@ -71,7 +65,7 @@
 
 label.select-photo {
     cursor: pointer;
-    background-color: #00000091;
+    background-color: #BA68C891;
     width: 100%;
     position: absolute;
     bottom: 0;

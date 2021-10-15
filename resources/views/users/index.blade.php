@@ -9,7 +9,7 @@
       <!-- Table -->
        <div class="row">
 
-        <div class="col">
+        <div class="col-12">
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
               <h3 class="mb-0">Employees List</h3>
@@ -104,7 +104,7 @@
 
 
 
-        <div class="col">
+        <div class="col-12">
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
               <h3 class="mb-0">Employees Attending and leaving</h3>
