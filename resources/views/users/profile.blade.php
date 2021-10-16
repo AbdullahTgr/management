@@ -12,7 +12,7 @@
         <form class="row" enctype="multipart/form-data" id="userForm">
         @csrf
         <input type="hidden" value="{{$user->id}}" name="user_id">
-         <div class="col-md-4 border-right">
+         <div class="col-md-6 border-right">
              <div class="row">
                  <div class="col-md-12">
              {{-- Start Image Upload --}}
@@ -84,11 +84,59 @@
             </div>
             {{-- End User Attending --}}
                  </div>
+                 <div class="col-md-12">
+                    <div class="p-3 py-5">
+        
+                       
+        
+                        <div class="d-flex justify-content-between align-items-center mt-3 text-warning fw-bold"><span>Incomplete Tasks</span> </div>
+                        <hr>
+                         <div class="col-md-12">
+                            <ol class="list-group list-group-numbered">
+                             @forelse ($user->incomplete_tasks() as $task)
+                             <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class=" w-100 justify-content-between">
+                                    <small style="font-size: 11px;padding: 5px;font-weight: bold;color: #878080;"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($task->end_at)->format('y/m/d')}} <i class="bi bi-clock-fill"></i> {{\Carbon\Carbon::parse($task->end_at)->format('g:i A')}}</small>
+                                    <h6 class="mb-1 mt-1 fw-bold">{{$task->name}}</h6>
+                                </div>
+                                  {{mb_substr($task->description,0,100)}}...
+                                </div>
+                                <span class="badge bg-warning rounded-pill">{{0}}</span>
+                              </li>
+                             @empty
+                                 {{'No Tasks Incomplete.'}}
+                             @endforelse 
+                            </ol>
+                         </div>
+        
+                        <div class="d-flex justify-content-between align-items-center mt-3 text-success fw-bold"><span>Completed Tasks</span> </div>
+                        <hr>
+                         <div class="col-md-12">
+                            <ol class="list-group list-group-numbered">
+                                @forelse ($user->tasks() as $task)
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class=" w-100 justify-content-between">
+                                    <small style="font-size: 11px;padding: 5px;font-weight: bold;color: #878080;"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($task->finished_at)->format('y/m/d')}} <i class="bi bi-clock-fill"></i> {{\Carbon\Carbon::parse($task->finished_at)->format('g:i A')}}</small>
+                                    <h6 class="mb-1 mt-1 fw-bold">{{$task->name}}</h6>
+                                </div>
+                                  {{mb_substr($task->description,0,100)}}...
+                                </div>
+                                <span class="badge bg-success rounded-pill">{{$task->points}} Point</span>
+                              </li>
+                              @empty
+                              {{'No Tasks Completed.'}}
+                          @endforelse                     
+                        </ol>
+                         </div>
+                    </div>
+                </div>
              </div>
         </div>
         
         {{-- Start Profile Info --}}
-        <div class="col-md-4 border-right">
+        <div class="col-md-6 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
@@ -136,7 +184,12 @@
                         <label class="labels">Email ID</label>
                         <input type="text" class="form-control" name="email" placeholder="enter email id" value="{{$user->email}}">
                     </div>
-
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Documents</span> </div>
+                    <br>
+                 <div class="col-md-12">
+                    <label class="labels">ID Card</label>
+                    <img src="{{$user->id_photo ? asset('storage/' . $user->id_photo) : 'https://mswordidcards.com/wp-content/uploads/2017/12/Employee-id-50-CRC.jpg'}}" alt="" class="img-fluid">
+                 </div> 
                  
                 </div>
                
@@ -144,62 +197,7 @@
             </div>
         </div>
         {{-- End Profile Info --}}
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Documents</span> </div>
-                    <br>
-                <div class="col-md-12">
-                    <label class="labels">ID Card</label>
-                    <img src="{{$user->id_photo ? asset('storage/' . $user->id_photo) : 'https://mswordidcards.com/wp-content/uploads/2017/09/Employee-id-28.jpg'}}" alt="" class="img-fluid">
-                 </div> 
-                <div class="col-md-12">
-                    <label class="labels">ID Number</label>
-                    <input type="text" name="id_card" class="form-control" placeholder="additional details" value="">
-                </div>
 
-                <div class="d-flex justify-content-between align-items-center mt-3 text-warning fw-bold"><span>Incomplete Tasks</span> </div>
-                <hr>
-                 <div class="col-md-12">
-                    <ol class="list-group list-group-numbered">
-                     @forelse ($user->incomplete_tasks() as $task)
-                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                        <div class=" w-100 justify-content-between">
-                            <small style="font-size: 11px;padding: 5px;font-weight: bold;color: #878080;"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($task->end_at)->format('y/m/d')}} <i class="bi bi-clock-fill"></i> {{\Carbon\Carbon::parse($task->end_at)->format('g:i A')}}</small>
-                            <h6 class="mb-1 mt-1 fw-bold">{{$task->name}}</h6>
-                        </div>
-                          {{mb_substr($task->description,0,100)}}...
-                        </div>
-                        <span class="badge bg-warning rounded-pill">{{0}}</span>
-                      </li>
-                     @empty
-                         {{'No Tasks Incomplete.'}}
-                     @endforelse 
-                    </ol>
-                 </div>
-
-                <div class="d-flex justify-content-between align-items-center mt-3 text-success fw-bold"><span>Completed Tasks</span> </div>
-                <hr>
-                 <div class="col-md-12">
-                    <ol class="list-group list-group-numbered">
-                        @forelse ($user->tasks() as $task)
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                        <div class=" w-100 justify-content-between">
-                            <small style="font-size: 11px;padding: 5px;font-weight: bold;color: #878080;"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($task->finished_at)->format('y/m/d')}} <i class="bi bi-clock-fill"></i> {{\Carbon\Carbon::parse($task->finished_at)->format('g:i A')}}</small>
-                            <h6 class="mb-1 mt-1 fw-bold">{{$task->name}}</h6>
-                        </div>
-                          {{mb_substr($task->description,0,100)}}...
-                        </div>
-                        <span class="badge bg-success rounded-pill">{{$task->points}} Point</span>
-                      </li>
-                      @empty
-                      {{'No Tasks Completed.'}}
-                  @endforelse                     
-                </ol>
-                 </div>
-            </div>
-        </div>
     </form>
     </div>
 </div>

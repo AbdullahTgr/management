@@ -85,7 +85,7 @@
                                 <form action="{{route('attend_user')}}" method="POST">
                                   @csrf
                                   <input type="hidden" name="user_id" value="{{$user->id}}">
-                                  <a type="submit" class="dropdown-item" href="#" >Attending <i class="bi bi-calendar-check-fill" style=" float: right; "></i></a>
+                                  <button type="submit" class="dropdown-item" href="#" >Attending <i class="bi bi-calendar-check-fill" style=" float: right; "></i></button>
                                  </form>
                               </li>
                               <li><a class="dropdown-item" href="{{route('profile', $user->id)}}">Profile</a></li>
@@ -126,6 +126,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Attending</th>
                         <th scope="col">leaving</th>
+                        <th scope="col">Hours</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -150,6 +151,16 @@
                         <td>
                           <div class="avatar-group">
                             <span style=" font-size: 12px; " class="badge bg-{{$user->leave ? 'danger' : 'secondary'}}"><i class="bi bi-clock-fill"></i> {{$user->leave ? \Carbon\Carbon::parse($user->leave)->format('g:i A') : 'Not leaving yet'}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="avatar-group">
+                            @php
+                                $time1 = new DateTime(\Carbon\Carbon::parse($user->come)->format('g:i'));
+                                $time2 = new DateTime(\Carbon\Carbon::parse($user->leave)->format('g:i'));
+                                $interval = $time1->diff($time2);
+                            @endphp
+                            <span style=" font-size: 12px; " class="badge bg-success"><i class="bi bi-clock-fill"></i> {{ $interval->format('%h:%i');}}</span>
                           </div>
                         </td>
  
