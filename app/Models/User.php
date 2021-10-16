@@ -49,6 +49,13 @@ class User extends Authenticatable
         return UserAttending::where('user_id',$this->id)->get();
     }
 
+    public function hourly_rate()
+    {
+        $rate = ($this->salary / 30 ) / 24;
+
+        return $rate ? round($rate,2) : 0;
+    }
+
     public function task_rate()
     {
          $setting = Setting::first();

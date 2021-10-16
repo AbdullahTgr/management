@@ -25,6 +25,7 @@
                <span class="font-weight-bold">{{$user->name}}</span>
                <span class="text-black-50">{{$user->job_title}}</span>
                <a href="#"  data-bs-toggle="modal" data-bs-target="#salaryHistory" class="text-success fw-bold">${{$user->salary()}}</a>
+               <p>${{$user->hourly_rate()}}/Hour</p>
                <hr>
                <div class="row">
                    <div class="col-md-12" style=" padding: 0; ">
