@@ -50,5 +50,8 @@ Route::get('/register', function(){
  
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/deleteuserlog{id}', [App\Http\Controllers\AdminController::class, 'deleteuserlog'])->name('deleteuserlog');
