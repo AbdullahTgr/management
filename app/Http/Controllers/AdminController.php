@@ -69,7 +69,7 @@ class AdminController extends Controller
 
 
         $httpClient = new \GuzzleHttp\Client(); // guzzle 6.3
-        $httpClient->request('POST', 'https://us-central1-chatinstance-c388b.cloudfunctions.net/sendNotificationForUser', [
+        $httpClient->request('POST', 'https://us-central1-newchat-9d522.cloudfunctions.net/sendNotificationForUser', [
             'headers' => [
                  'X-Authorization' => 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q',
                  'Content-Type' => 'application/json'
@@ -107,7 +107,7 @@ class AdminController extends Controller
 
 
         $httpClient = new \GuzzleHttp\Client(); // guzzle 6.3
-        $httpClient->request('POST', 'https://us-central1-chatinstance-c388b.cloudfunctions.net/sendNotifications', [
+        $httpClient->request('POST', 'https://us-central1-newchat-9d522.cloudfunctions.net/sendNotifications', [
             'headers' => [
                  'X-Authorization' => 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q',
                  'Content-Type' => 'application/json'
@@ -125,6 +125,43 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    
+
+    public function send($user_id, $message,$title) {
+        $user = User::where('id', $user_id)->first();
+  
+        $data = [
+            'title' => $title,
+            'message' => $message,
+            'type' => 2,
+            'user_id' => $user->id
+        ];
+  
+        Notification::send($user, new MessageNotification($data));
+   
+
+        $httpClient = new \GuzzleHttp\Client(); // guzzle 6.3  
+        $httpClient->request('POST', 'https://us-central1-newchat-9d522.cloudfunctions.net/sendNotificationForUser', [
+            'headers' => [
+                 'X-Authorization' => 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q',
+                 'Content-Type' => 'application/json'
+             ],
+         
+                 "json" =>
+                 [
+                    'user_id' => strval($user->id),
+                    'title' => $title,
+                    'type' =>  "2",
+                    'message' => strval($message)
+                 ]
+             
+         ]);
+
+         
+    }
+
+
+    
 
     public function add_task(Request $request)
     {
@@ -142,8 +179,9 @@ class AdminController extends Controller
         $task->user_id = $request->userid;
         $task->admin_comment = "";
         $task->save();
+        $this->send($request->userid, " New ","New Task For You");
 
-        return redirect('add/1')->with('status',"Insert successfully");
+        return redirect('add')->with('status',"Insert successfully");
 
     }
 
