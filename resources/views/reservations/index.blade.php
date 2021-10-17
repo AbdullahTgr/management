@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-12">
                
-   <h2 class="mb-2">Sales Agent</h2>
+   <h2 class="mb-2">Reservations</h2>
       <!-- Table -->
        <div class="row">
 
         <div class="col-12">
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
-              <h4 class="mb-0">Sales List</h4>
+              <h4 class="mb-0">Reservations List</h4>
   
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                
-                      @foreach ($sales as $sale)
+                      @foreach ($reservations as $sale)
                       
                       <tr>
                         <th scope="row">
@@ -101,7 +101,7 @@
                               Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#approve{{$sale->id}}" href="#">Approve</a></li>
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#approve{{$sale->id}}" href="#">Edit</a></li>
 
                                 @if (Auth::user()->role == 1)
                                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
@@ -134,11 +134,11 @@
 </div>
 
  
-@forelse ($sales as $sale)
-@include('sales.delete')
-@include('sales.approve')
+{{-- @forelse ($reservations as $sale)
+@include('reservations.delete')
+@include('reservations.edit')
  @empty
-@endforelse
+@endforelse --}}
   
 @endsection
 
