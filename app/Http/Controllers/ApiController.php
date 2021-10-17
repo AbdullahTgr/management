@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserAction;
 use App\Models\UserTask;
+use App\Models\Hotel;
+use App\Models\Triptype;
+use App\Models\Destnation;
+use App\Models\View;
+use App\Models\Included;
+use App\Models\Reservation;
 use Response;
 use App\Models\UserAttending;
 use DB; 
@@ -96,7 +102,7 @@ class ApiController extends Controller
             $user = User::find($user);
             $notifications = $user->notifications;
             $notifications->markAsRead();
-      
+
             return Response::json(array(
                 'notifications' => $notifications,
                 "success" => 1,
@@ -105,15 +111,52 @@ class ApiController extends Controller
     }
     
 
-    // public function taskss(Request $request)
-    // {
-             
-    //         $user = UserTask::find($request->id);
-      
-    //         return Response::json(array(
-    //             'name' =>  $user->name,
-    //         ));
-    // }
+
+    
+
+    public function get_reservation_data()
+    {
+        $hotel = Hotel::get();
+        $triptype = Triptype::get();
+        $destnation = Destnation::get();
+        $view = View::get();
+        $included = Included::get(); 
+
+        return Response::json(array(
+            "hotels" => $hotel,
+            "triptype" => $triptype,
+            "destnations" => $destnation,
+            "views" => $view ,
+            "included" => $included,
+        ));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function userlog(Request $request)
@@ -188,7 +231,9 @@ class ApiController extends Controller
                 "state" => 7 , // Check the inputs
             ));
         }
+
         $user = User::create([
+
             'name' => $request['first_name'] . ' ' . $request['last_name'],
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
@@ -198,6 +243,7 @@ class ApiController extends Controller
             'id_photo' =>$request->id_photo ? $request->id_photo->store('users_id') : null,
             'photo' =>  $request->photo ? $request->photo->store('users') : null,
             'password' => Hash::make($request['password']),
+
         ]);
         
 
@@ -207,6 +253,108 @@ class ApiController extends Controller
             "state" => 1,
         ));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function request_hotel (Request $request) {
+
+        $reservation = new Reservation();
+
+        $reservation->hotel_id = $request->hotel_id;
+        $reservation->triptype_id = $request->triptype_id;
+        $reservation->destination_id = $request->destination_id;
+        $reservation->view_id = $request->view_id;
+        $reservation->included_id = $request->included_id;
+        $reservation->sales_agent_id = $request->sales_agent_id;
+        $reservation->res_agent_id = $request->res_agent_id;
+        $reservation->clint_name = $request->clint_name;
+        $reservation->phone_number = $request->phone_number;
+        $reservation->adults = $request->adults;
+        $reservation->kids = $request->kids;
+        $reservation->kids_age = $request->kids_age;
+        $reservation->days_night = $request->days_night;
+        $reservation->month = $request->month;
+        $reservation->checkin = $request->checkin;
+        $reservation->checkout = $request->checkout;
+        $reservation->transportations = $request->transportations;
+        $reservation->excursion = $request->excursion;
+        $reservation->gateway = $request->gateway;
+        $reservation->salescomments = $request->salescomments;
+        $reservation->received_time = $request->received_time;
+        $reservation->response_time = $request->response_time;
+        $reservation->avaliability = $request->avaliability;
+        $reservation->confirmation = $request->confirmation;
+        $reservation->res_comment = $request->res_comment;
+        $reservation->chalet = $request->chalet;
+        $reservation->single = $request->single;
+        $reservation->double = $request->double;
+        $reservation->triple = $request->triple;
+        $reservation->transportation = $request->transportation;
+        $reservation->kidscharge = $request->kidscharge;
+        $reservation->save();
+ 
+        
+        return Response::json(array(
+            'request' => $request,
+            "success" => 1,
+            "state" => 1,
+        ));
+
+    }
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
 
 
 

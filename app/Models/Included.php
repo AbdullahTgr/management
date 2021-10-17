@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Included extends Model
 {
     use HasFactory;
+    protected $table = 'included';
 }

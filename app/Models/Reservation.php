@@ -14,7 +14,7 @@ class Reservation extends Model
         return $this->belongsTo(User::class, 'sales_agent_id');
     }
 
-    public function hotel()
+    public function hotel() 
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
     }
@@ -33,5 +33,6 @@ class Reservation extends Model
         return $this->belongsTo(View::class, 'view_id');
     }
 
-
 }
+
+
