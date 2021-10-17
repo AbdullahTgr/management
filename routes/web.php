@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/employees', [App\Http\Controllers\AdminController::class, 'users'])->name('users');
 Route::get('/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('settings')->middleware('roles:1');
 Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1');
+Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations')->middleware('roles:1');
 
 Route::get('/employee/{id}', [App\Http\Controllers\AdminController::class, 'profile'])->name('profile')->middleware('roles:1,2');
 Route::post('/send_notification', [App\Http\Controllers\AdminController::class, 'send_notification'])->name('send_notification');
@@ -29,7 +30,8 @@ Route::post('/update_user_time', [App\Http\Controllers\AdminController::class, '
 Route::post('/update_user_discount', [App\Http\Controllers\AdminController::class, 'update_user_discount'])->name('update_user_discount');
 Route::post('/withdraw_salary', [App\Http\Controllers\AdminController::class, 'withdraw_salary'])->name('withdraw_salary');
 Route::post('/attend_user', [App\Http\Controllers\AdminController::class, 'attend_user'])->name('attend_user');
-
+Route::post('/approve_reservation', [App\Http\Controllers\AdminController::class, 'approve_reservation'])->name('approve_reservation');
+Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
 
 
 Route::get('/add', [App\Http\Controllers\AdminController::class, 'add'])->name('add');

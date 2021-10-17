@@ -39,9 +39,17 @@ class AdminController extends Controller
     }
     public function sales()
     {
-        $sales = Reservation::get();
+        $sales = Reservation::whereNull('avaliability')->get();
  
         return view('sales.index', compact('sales'));
+    }
+
+
+    public function reservations()
+    {
+        $reservations = Reservation::whereNotNull('avaliability')->get();
+
+        return view('reservations.index', compact('reservations'));
     }
 
     public function settings()
@@ -167,8 +175,17 @@ class AdminController extends Controller
          
     }
 
+    public function approve_reservation(Request $request) {
 
-    
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->avaliability  = $request->avalability;
+        $res->from  = $request->from;
+        $res->to    = $request->to;
+        $res->save();
+
+        return redirect()->back();
+    }
+
 
     public function add_task(Request $request)
     {
