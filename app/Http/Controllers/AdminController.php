@@ -186,7 +186,7 @@ class AdminController extends Controller
         $res->res_agent_id  = Auth::user()->id;
         $res->save();
 
-        return redirect()->back();
+        return redirect()->route('reservations');
     }
 
     public function update_reservation(Request $request) {
