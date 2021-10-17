@@ -14,6 +14,7 @@ use App\Models\UserTask;
 use App\Models\Setting;
 use Notification;
 use App\Models\UserAction;
+use App\Models\Reservation;
 use App\Notifications\MessageNotification;
 
 class AdminController extends Controller
@@ -35,6 +36,12 @@ class AdminController extends Controller
         $user_attendings = UserAttending::whereDate('come',Carbon::today())->get();
 
         return view('users.index', compact('users','user_attendings'));
+    }
+    public function sales()
+    {
+        $sales = Reservation::get();
+ 
+        return view('sales.index', compact('sales'));
     }
 
     public function settings()

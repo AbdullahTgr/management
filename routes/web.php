@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
  
 Route::get('/employees', [App\Http\Controllers\AdminController::class, 'users'])->name('users');
 Route::get('/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('settings')->middleware('roles:1');
+Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1');
 
 Route::get('/employee/{id}', [App\Http\Controllers\AdminController::class, 'profile'])->name('profile')->middleware('roles:1,2');
 Route::post('/send_notification', [App\Http\Controllers\AdminController::class, 'send_notification'])->name('send_notification');
