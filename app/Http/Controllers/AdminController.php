@@ -180,7 +180,7 @@ class AdminController extends Controller
         $res = Reservation::findOrFail($request->sale_id);
         $res->avaliability  = $request->avalability;
         $res->from  = $request->from;
-        $res->from  = $request->from;
+        $res->to  = $request->to;
         $res->received_time  = \Carbon\Carbon::now();
         
         $res->res_agent_id  = Auth::user()->id;
