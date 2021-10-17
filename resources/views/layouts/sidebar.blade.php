@@ -26,7 +26,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
+          <span class="nav-link-text ms-1" style="color: #82d616;">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
