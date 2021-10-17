@@ -43,37 +43,42 @@
                             <a class="text-capitalize" href="{{route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
                         </th>
                         <th scope="row">
-                          <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
+                          <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} </span>
                          </th>
                         <th scope="row">
-                          {{$sale->clint_name}}
+                            <div class="badge bg-dark"><i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->received_time )->format('g:i A')}}</div>
                         </th>
                         <th scope="row">
-                          {{$sale->phone_number}}
+                            <div class="badge bg-dark"><i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->response_time )->format('g:i A')}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->adults}}
+                            <div class="badge bg-{{$sale->avaliability == 1 ? 'success' : 'warning'}}">{{$sale->avaliability == 1 ? 'Avaliabale' : 'Not Avaliabale'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->hotel->type}}
+                            <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->from}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <div class="badge bg-info">{{$sale->days_night}}</div>
+                          <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->to}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <div class="badge bg-dark">{{$sale->month}}</div>
+                          <div class="badge bg-info">
+                            {{$sale->chalet ? 'Chalet' : ''}}
+                            {{$sale->single ? 'Single' : ''}}
+                            {{$sale->double ? 'Double' : ''}}
+                            {{$sale->triple ? 'Triple' : ''}}
+                        </div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <div class="badge bg-dark">{{$sale->checkin}}</div>
+                          <div class="">{{$sale->include_id ? $sale->included->include : 'No thing included.'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <div class="badge bg-dark">{{$sale->checkout}}</div>
+                            <div class="badge bg-{{$sale->confirmation == 1 ? 'success' : 'danger'}}">{{$sale->confirmation == 1 ? 'Confirmed' : 'Not Confirmed'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->trip->type}}
+                            <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->payment_option_date}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->destination->destination}}
+                          {{$sale->res_comment}}
                         </th>
  
  
@@ -83,7 +88,7 @@
                               Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#approve{{$sale->id}}" href="#">Edit</a></li>
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Edit</a></li>
 
                                 @if (Auth::user()->role == 1)
                                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
@@ -116,11 +121,11 @@
 </div>
 
  
-{{-- @forelse ($reservations as $sale)
-@include('reservations.delete')
+@forelse ($reservations as $sale)
+{{-- @include('reservations.delete') --}}
 @include('reservations.edit')
  @empty
-@endforelse --}}
+@endforelse
   
 @endsection
 

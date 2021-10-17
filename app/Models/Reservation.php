@@ -17,6 +17,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class, 'res_agent_id');
     }
+    public function included()
+    {
+        return $this->belongsTo(Included::class, 'included_id');
+    }
 
     public function hotel() 
     {
