@@ -15,7 +15,7 @@ class CreateTriptypeTable extends Migration
     {
         Schema::create('triptype', function (Blueprint $table) {
             $table->id();
-            $table->integer('type')->nullable();
+            $table->string('type')->nullable();
         });
     }
 
