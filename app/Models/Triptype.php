@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Triptype extends Model
 {
     use HasFactory;
+    protected $table = 'triptype';
 }

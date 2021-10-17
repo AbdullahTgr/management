@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style=" max-width: 1465px; ">
     <div class="row">
         <div class="col-md-12">
                
@@ -45,7 +45,7 @@
                       
                       <tr>
                         <th scope="row">
-                            {{$sale->sales_agent_id}}
+                            {{$sale->agent_sales->name}}
                         </th>
                         <th scope="row">
                           {{$sale->created_at}}
@@ -60,7 +60,7 @@
                           {{$sale->adults}}
                         </th>
                         <th scope="row">
-                          {{$sale->hotel_id}}
+                          {{$sale->hotel->type}}
                         </th>
                         <th scope="row">
                           {{$sale->days_night}}
@@ -75,13 +75,13 @@
                           {{$sale->checkout}}
                         </th>
                         <th scope="row">
-                          {{$sale->triptype_id}}
+                          {{$sale->trip->type}}
                         </th>
                         <th scope="row">
-                          {{$sale->destination_id}}
+                          {{$sale->destination->destination}}
                         </th>
                         <th scope="row">
-                          {{$sale->view_id}}
+                          {{$sale->view->view}}
                         </th>
                         <th scope="row">
                           {{$sale->transportations}}
