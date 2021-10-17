@@ -45,54 +45,54 @@
                       
                       <tr>
                         <th scope="row">
-                            {{$sale->agent_sales->name}}
+                            <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                         </th>
                         <th scope="row">
-                          {{$sale->created_at}}
-                        </th>
+                          <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
+                         </th>
                         <th scope="row">
                           {{$sale->clint_name}}
                         </th>
                         <th scope="row">
                           {{$sale->phone_number}}
                         </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->adults}}
                         </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->hotel->type}}
                         </th>
-                        <th scope="row">
-                          {{$sale->days_night}}
+                        <th scope="row" style=" text-align: center; ">
+                          <div class="badge bg-info">{{$sale->days_night}}</div>
                         </th>
-                        <th scope="row">
-                          {{$sale->month}}
+                        <th scope="row" style=" text-align: center; ">
+                          <div class="badge bg-dark">{{$sale->month}}</div>
                         </th>
-                        <th scope="row">
-                          {{$sale->checkin}}
+                        <th scope="row" style=" text-align: center; ">
+                          <div class="badge bg-dark">{{$sale->checkin}}</div>
                         </th>
-                        <th scope="row">
-                          {{$sale->checkout}}
+                        <th scope="row" style=" text-align: center; ">
+                          <div class="badge bg-dark">{{$sale->checkout}}</div>
                         </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->trip->type}}
                         </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->destination->destination}}
                         </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->view->view}}
                         </th>
-                        <th scope="row">
-                          {{$sale->transportations}}
+                        <th scope="row" style=" text-align: center; ">
+                           <i class="bi bi-{{$sale->transportations ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
                         </th>
-                        <th scope="row">
-                          {{$sale->excursion}}
+                        <th scope="row" style=" text-align: center; ">
+                          <i class="bi bi-{{$sale->excursion ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
+                         </th>
+                         <th scope="row" style=" text-align: center; ">
+                          <div class="badge bg-info">{{$sale->gateway}}</div>
                         </th>
-                        <th scope="row">
-                          {{$sale->gateway}}
-                        </th>
-                        <th scope="row">
+                        <th scope="row" style=" text-align: center; ">
                           {{$sale->salescomments}}
                         </th>
                         <td class="text-right">
@@ -101,10 +101,11 @@
                               Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
- 
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#approve{{$sale->id}}" href="#">Approve</a></li>
+
                                 @if (Auth::user()->role == 1)
-                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
-                              @endif
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
+                                @endif
                              </ul>
                           </div>
  
