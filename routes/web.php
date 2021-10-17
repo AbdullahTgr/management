@@ -31,6 +31,7 @@ Route::post('/update_user_discount', [App\Http\Controllers\AdminController::clas
 Route::post('/withdraw_salary', [App\Http\Controllers\AdminController::class, 'withdraw_salary'])->name('withdraw_salary');
 Route::post('/attend_user', [App\Http\Controllers\AdminController::class, 'attend_user'])->name('attend_user');
 Route::post('/approve_reservation', [App\Http\Controllers\AdminController::class, 'approve_reservation'])->name('approve_reservation');
+Route::post('/update_reservation', [App\Http\Controllers\AdminController::class, 'update_reservation'])->name('update_reservation');
 Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
 
 

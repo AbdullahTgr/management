@@ -181,7 +181,19 @@ class AdminController extends Controller
         $res->avaliability  = $request->avalability;
         $res->from  = $request->from;
         $res->from  = $request->from;
+        $res->received_time  = \Carbon\Carbon::now();
+        
         $res->res_agent_id  = Auth::user()->id;
+        $res->save();
+
+        return redirect()->back();
+    }
+
+    public function update_reservation(Request $request) {
+
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->confirmation  = $request->confirmation;
+        $res->res_comment  = $request->res_comment;
         $res->save();
 
         return redirect()->back();
