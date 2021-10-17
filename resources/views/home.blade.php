@@ -190,9 +190,7 @@
                   © <script>
                     document.write(new Date().getFullYear())
                   </script>,
-                  made with <i class="fa fa-heart"></i> by
-                  <a href="#" class="font-weight-bold" target="_blank">Creative Tim</a>
-                  for a better web.
+                  <i class="fa fa-heart"></i>
                 </div>
               </div>
               <div class="col-lg-6">
@@ -214,7 +212,7 @@
             </div>
           </div>
         </footer>
-        
+
       </div>
 
 
