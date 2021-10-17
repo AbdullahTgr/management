@@ -65,10 +65,10 @@
 
 
 @if ($endday>=$finishedday)
-<div style="color: rgb(6, 240, 41)"> task is completed on time </div>
+<div style="color: #cb0c9f"> task is completed on time </div>
 
 @else
-<div style="color: rgb(240, 224, 6)"> task is late </div>
+<div style="color: #cb0c9f"> task is late </div>
 @endif
 @else
 <div style="color: rgb(204, 99, 13)"> task is late </div>
