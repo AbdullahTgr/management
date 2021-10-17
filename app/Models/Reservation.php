@@ -13,6 +13,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class, 'sales_agent_id');
     }
+    public function agent_res()
+    {
+        return $this->belongsTo(User::class, 'res_agent_id');
+    }
 
     public function hotel()
     {

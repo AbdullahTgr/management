@@ -180,7 +180,8 @@ class AdminController extends Controller
         $res = Reservation::findOrFail($request->sale_id);
         $res->avaliability  = $request->avalability;
         $res->from  = $request->from;
-        $res->to    = $request->to;
+        $res->from  = $request->from;
+        $res->res_agent_id  = Auth::user()->id;
         $res->save();
 
         return redirect()->back();

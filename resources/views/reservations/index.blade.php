@@ -19,23 +19,18 @@
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Agent</th>
-                        <th scope="col">Date & Time </th>
-                        <th scope="col">Client Name</th>
-                        <th scope="col">Phone</th> 
-                        <th scope="col">Persons</th> 
-                        <th scope="col">Hotel</th> 
-                        <th scope="col">Days/Night</th> 
-                        <th scope="col">Month</th> 
-                        <th scope="col">Check In</th> 
-                        <th scope="col">Check Out</th> 
-                        <th scope="col">Trip Type</th> 
-                        <th scope="col">Destenation</th> 
-                        <th scope="col">View</th> 
-                        <th scope="col">Transportation</th> 
-                        <th scope="col">Excursion</th> 
-                        <th scope="col">Gateway</th> 
-                        <th scope="col">Sales Comment</th> 
+                        <th scope="col">RES.Agent</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Received Time</th>
+                        <th scope="col">Response Time</th> 
+                        <th scope="col">Availbility</th> 
+                        <th scope="col">FROM</th> 
+                        <th scope="col">TO</th> 
+                        <th scope="col">Price (per room)</th> 
+                        <th scope="col">Included</th> 
+                        <th scope="col">Confirmation</th> 
+                        <th scope="col">Payment Option Date</th> 
+                        <th scope="col">Comment</th> 
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -45,7 +40,7 @@
                       
                       <tr>
                         <th scope="row">
-                            <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
+                            <a class="text-capitalize" href="{{route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
                         </th>
                         <th scope="row">
                           <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
@@ -80,21 +75,8 @@
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->destination->destination}}
                         </th>
-                        <th scope="row" style=" text-align: center; ">
-                          {{$sale->view->view}}
-                        </th>
-                        <th scope="row" style=" text-align: center; ">
-                           <i class="bi bi-{{$sale->transportations ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
-                        </th>
-                        <th scope="row" style=" text-align: center; ">
-                          <i class="bi bi-{{$sale->excursion ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
-                         </th>
-                         <th scope="row" style=" text-align: center; ">
-                          <div class="badge bg-info">{{$sale->gateway}}</div>
-                        </th>
-                        <th scope="row" style=" text-align: center; ">
-                          {{$sale->salescomments}}
-                        </th>
+ 
+ 
                         <td class="text-right">
                           <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
