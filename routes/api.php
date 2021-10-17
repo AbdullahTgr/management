@@ -33,6 +33,10 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     Route::post('/register_api', [App\Http\Controllers\ApiController::class, 'register'])->name('register.api')->middleware('auth.apikey');
     Route::post('/tass', [App\Http\Controllers\ApiController::class, 'taskss'])->middleware('auth.apikey');
+
+    
     Route::post('/userlog', [App\Http\Controllers\ApiController::class, 'userlog'])->middleware('auth.apikey');
-  
+    Route::post('/get_reservation_data', [App\Http\Controllers\ApiController::class, 'get_reservation_data'])->middleware('auth.apikey');
+    Route::post('/request_hotel', [App\Http\Controllers\ApiController::class, 'request_hotel'])->middleware('auth.apikey');
+    
 });
