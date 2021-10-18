@@ -16,10 +16,14 @@ class NewRequest implements ShouldBroadcast
 
 
     public $message;
+    public $data;
+   // public $user;
 
-    public function __construct($message)
+    public function __construct($message,$data)
     {
         $this->message = $message;
+        $this->data = $data;
+        //$this->user = $user;
     }
 
     /**

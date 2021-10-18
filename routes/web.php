@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,11 @@ Route::post('/withdraw_salary', [App\Http\Controllers\AdminController::class, 'w
 Route::post('/attend_user', [App\Http\Controllers\AdminController::class, 'attend_user'])->name('attend_user');
 Route::post('/approve_reservation', [App\Http\Controllers\AdminController::class, 'approve_reservation'])->name('approve_reservation');
 Route::post('/update_reservation', [App\Http\Controllers\AdminController::class, 'update_reservation'])->name('update_reservation');
+Route::post('/update_rooms', [App\Http\Controllers\AdminController::class, 'update_rooms'])->name('update_rooms');
+Route::post('/update_include', [App\Http\Controllers\AdminController::class, 'update_include'])->name('update_include');
+Route::post('/update_payment', [App\Http\Controllers\AdminController::class, 'update_payment'])->name('update_payment');
+Route::post('/update_cashin', [App\Http\Controllers\AdminController::class, 'update_cashin'])->name('update_cashin');
+Route::post('/update_cashout', [App\Http\Controllers\AdminController::class, 'update_cashout'])->name('update_cashout');
 Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
 
 
@@ -41,11 +46,23 @@ Route::post('/add_task', [App\Http\Controllers\AdminController::class, 'add_task
 Route::post('/accept_task', [App\Http\Controllers\AdminController::class, 'accept_task'])->name('accept_task');
 Route::get('/useractions', [App\Http\Controllers\AdminController::class, 'useractions'])->name('useractions');
 
-Route::get('/msg', function(){
-    return event(new \App\Events\NewRequest('hello world'));
+Route::get('/msg/{user_id}', function($user_id){
+    $user = \App\Models\User::where('id', $user_id)->first();
+  
+    $data = [
+        'title' => 'New Request',
+        'message' => 'New Request from salas Agent',
+        'type' => 2,
+        'user_id' => $user->id
+    ];
+    Notification::send($user, new \App\Notifications\RequestNotification($data));
+    event(new \App\Events\NewRequest('hello world',$data));
+
+    return 'New Request sent';
  });
  
  Route::get('/msg2', function(){
+  
     return view('msg');
  });
 Auth::routes(); 

@@ -101,7 +101,7 @@
           </li>
         `;
         notifications.html(newNotificationHtml + existingNotifications);
-
+       console.log(data);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
