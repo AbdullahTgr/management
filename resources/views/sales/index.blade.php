@@ -36,6 +36,19 @@
                         <th scope="col">Excursion</th> 
                         <th scope="col">Gateway</th> 
                         <th scope="col">Sales Comment</th> 
+
+                        <th scope="col">RES.Agent</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Received Time</th>
+                        <th scope="col">Response Time</th> 
+                        <th scope="col">Availbility</th> 
+                        <th scope="col">FROM</th> 
+                        <th scope="col">TO</th> 
+                        <th scope="col">Rooms</th> 
+                        <th scope="col">Included</th> 
+                        <th scope="col">Confirmation</th> 
+                        <th scope="col">Payment Option Date</th> 
+                        <th scope="col">Comment</th> 
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -95,6 +108,51 @@
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->salescomments}}
                         </th>
+
+
+                          <th scope="row">
+                              <a class="text-capitalize" href="{{route('profile',$sale->res_agent_id ? $sale->agent_res->id : '../sales')}}">{{$sale->res_agent_id ? $sale->agent_res->name : 'N/A'}}</a>
+                          </th>
+                          <th scope="row">
+                            <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} </span>
+                           </th>
+                          <th scope="row">
+                              <div class="badge bg-dark"><i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->received_time )->format('g:i A')}}</div>
+                          </th>
+                          <th scope="row">
+                              <div class="badge bg-dark"><i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->response_time )->format('g:i A')}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                              <div class="badge bg-{{$sale->avaliability == 1 ? 'success' : 'warning'}}">{{$sale->avaliability == 1 ? 'Avaliabale' : 'Not Avaliabale'}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                              <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->from}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                            <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->to}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                            <div class="badge bg-info">
+                              {{$sale->chalet ? 'Chalet' : ''}}
+                              {{$sale->single ? 'Single' : ''}}
+                              {{$sale->double ? 'Double' : ''}}
+                              {{$sale->triple ? 'Triple' : ''}}
+                          </div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                            <div class="">{{$sale->include_id ? $sale->included->include : 'No thing included.'}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                              <div class="badge bg-{{$sale->confirmation == 1 ? 'success' : 'danger'}}">{{$sale->confirmation == 1 ? 'Confirmed' : 'Not Confirmed'}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                              <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->payment_option_date}}</div>
+                          </th>
+                          <th scope="row" style=" text-align: center; ">
+                            {{$sale->res_comment}}
+                          </th>
+
+
                         <td class="text-right">
                           <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

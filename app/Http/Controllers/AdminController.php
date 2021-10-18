@@ -80,7 +80,7 @@ class AdminController extends Controller
     
     public function sales()
     {
-        $sales = Reservation::whereNull('avaliability')->get();
+        $sales = Reservation::whereNull('res_agent_id')->get();
  
         return view('sales.index', compact('sales'));
     }
@@ -88,7 +88,7 @@ class AdminController extends Controller
 
     public function reservations()
     {
-        $reservations = Reservation::whereNotNull('avaliability')->get();
+        $reservations = Reservation::whereNotNull('res_agent_id')->get();
 
         return view('reservations.index', compact('reservations'));
     }
@@ -229,11 +229,7 @@ class AdminController extends Controller
     public function approve_reservation(Request $request) {
 
         $res = Reservation::findOrFail($request->sale_id);
-        $res->avaliability  = $request->avalability;
-        $res->from  = $request->from;
-        $res->from  = $request->from;
         $res->received_time  = \Carbon\Carbon::now();
-        
         $res->res_agent_id  = Auth::user()->id;
         $res->save();
 
@@ -245,6 +241,49 @@ class AdminController extends Controller
         $res = Reservation::findOrFail($request->sale_id);
         $res->confirmation  = $request->confirmation;
         $res->res_comment  = $request->res_comment;
+        $res->save();
+
+        return redirect()->back();
+    }
+    public function update_rooms(Request $request) {
+
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->chalet  = $request->chalet;
+        $res->single  = $request->single;
+        $res->double  = $request->double;
+        $res->triple  = $request->triple;
+        $res->save();
+
+        return redirect()->back();
+    }
+
+    public function update_include(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->included_id  = $request->included_id;
+        $res->save();
+
+        return redirect()->back();
+    }
+
+    public function update_payment(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->payment_option_date  = $request->payment_option_date;
+        $res->save();
+
+        return redirect()->back();
+    }
+
+    public function update_cashin(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->cashin  = $request->cashin;
+        $res->cashin_photo = $request->cashin_photo ? $request->cashin_photo->store('cashin_photo') : $res->cashin_photo;
+        $res->save();
+
+        return redirect()->back();
+    }
+    public function update_cashout(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+        $res->cashout  = $request->cashout;
         $res->save();
 
         return redirect()->back();
