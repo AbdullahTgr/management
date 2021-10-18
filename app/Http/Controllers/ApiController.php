@@ -45,6 +45,14 @@ class ApiController extends Controller
         )); 
     }
 
+
+
+
+
+
+
+
+
     public function get_user($id)
     {
         $user = User::where('status',1)->where('id',$id)->first();

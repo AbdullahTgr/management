@@ -33,3 +33,13 @@ class HomeController extends Controller
         return view('home',compact('users','completed_tasks','incomplete_tasks','tasks'));
     }
 }
+
+
+
+
+
+
+
+
+
+

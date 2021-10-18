@@ -18,4 +18,5 @@ class UserRoles
     {
         return collect($roles)->contains(auth()->user()->role) ? $next($request) : redirect()->back();
     }
-}
+} 
+ 

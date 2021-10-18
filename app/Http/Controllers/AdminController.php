@@ -15,6 +15,12 @@ use App\Models\Setting;
 use Notification;
 use App\Models\UserAction;
 use App\Models\Reservation;
+use App\Models\Hotel;
+use App\Models\Triptype;
+use App\Models\Distination;
+use App\Models\View;
+use App\Models\Transportation;
+use App\Models\Gateway;
 use App\Notifications\MessageNotification;
 
 class AdminController extends Controller
@@ -37,6 +43,41 @@ class AdminController extends Controller
 
         return view('users.index', compact('users','user_attendings'));
     }
+
+
+
+    public function hotels()
+    {
+        $hotels = Hotel::get();
+        return view('hotels.index', compact('hotels'));
+    }
+    public function triptype()
+    {
+        $triptype = Triptype::get();
+        return view('triptype.index', compact('triptype'));
+    }
+    public function distinations()
+    {
+        $distinations = Distination::get();
+        return view('distinations.index', compact('distinations'));
+    }
+    public function views()
+    {
+        $views = View::get();
+        return view('views.index', compact('views'));
+    }
+    public function tranportations()
+    {
+        $tranportations = Transportation::get();
+        return view('tranportations.index', compact('tranportations'));
+    }
+    public function gateways()
+    {
+        $gateways = Gateway::get();
+        return view('gateways.index', compact('gateways'));
+    }
+
+    
     public function sales()
     {
         $sales = Reservation::whereNull('avaliability')->get();
@@ -52,12 +93,22 @@ class AdminController extends Controller
         return view('reservations.index', compact('reservations'));
     }
 
+
+    public function management()
+    {
+        return view('management.index');
+    }
+
+
+
     public function settings()
     {
         $setting = Setting::first();
 
         return view('settings.index', compact('setting'));
     }
+
+
 
     public function update_setting(Request $request) {
 
@@ -447,5 +498,20 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+
+
+
+    public function addhotel()
+    {
+        return view('hotels.addhotel');
+    }
+
+
+
+
+
+
+
 
 }
