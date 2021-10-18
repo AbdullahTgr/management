@@ -41,8 +41,13 @@ Route::post('/add_task', [App\Http\Controllers\AdminController::class, 'add_task
 Route::post('/accept_task', [App\Http\Controllers\AdminController::class, 'accept_task'])->name('accept_task');
 Route::get('/useractions', [App\Http\Controllers\AdminController::class, 'useractions'])->name('useractions');
 
-
-
+Route::get('/msg', function(){
+    return event(new \App\Events\NewRequest('hello world'));
+ });
+ 
+ Route::get('/msg2', function(){
+    return view('msg');
+ });
 Auth::routes(); 
 Auth::routes(['register' => false]);
 
