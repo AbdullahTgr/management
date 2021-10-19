@@ -60,7 +60,7 @@
                       <tr>
                     <th scope="row">
                         <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
-                    </th>
+                    </th> 
                     <th scope="row">
                       <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
                      </th>
@@ -89,7 +89,7 @@
                       <div class="badge bg-dark">{{$sale->checkout}}</div>
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                      {{$sale->trip->type}}
+                      {{$sale->trip->type}} 
                     </th>
                     <th scope="row" style=" text-align: center; ">
                       {{$sale->destination->destination}}

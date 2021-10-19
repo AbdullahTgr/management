@@ -15,7 +15,7 @@ class CreateGatewaysTable extends Migration
     {
         Schema::create('gateways', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('gateway')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateGatewaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gateways');
+        Schema::dropIfExists('gateways'); 
     }
 }

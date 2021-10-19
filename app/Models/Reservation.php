@@ -13,19 +13,22 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class, 'sales_agent_id');
     }
+
     public function agent_res()
     {
         return $this->belongsTo(User::class, 'res_agent_id');
     }
+
     public function included()
     {
         return $this->belongsTo(Included::class, 'included_id');
     }
 
     public function includes()
-       {
-          return Included::get();
-       }
+    {
+        return Included::get();
+    }
+
     public function hotel() 
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
@@ -35,7 +38,6 @@ class Reservation extends Model
     {
         return $this->belongsTo(Triptype::class, 'triptype_id');
     }
-
     public function destination()
     {
         return $this->belongsTo(Destnation::class, 'destination_id');

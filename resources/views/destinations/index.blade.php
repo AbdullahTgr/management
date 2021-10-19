@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
                
-   <h2 class="mb-2">Hotels</h2>
+   <h2 class="mb-2">destinations</h2>
       <!-- Table -->
        <div class="row">
  
@@ -14,9 +14,9 @@
 
 
             <div class="card-header border-0">
-              <h4 class="mb-0">Hotel List</h4>
+              <h4 class="mb-0">destination List</h4>
               <br>
-            </div>
+            </div> 
             <a data-bs-toggle="modal" data-bs-target="#add" href="#"><button class="btn" style="    height: 30px;
               border: 1px solid #ddd;
               padding: 0 30px; 
@@ -27,25 +27,36 @@
            ,#cb0c9f,#cb0c9f);
               margin-left: 23px;
               border-radius: 1px;">+</button></a>
+            <a href="{{route('excursions')}}"><button class="btn" style="    height: 30px;
+              border: 1px solid #ddd;
+              padding: 0 30px; 
+              color: white;
+              background: #000000;
+              background-image: linear-gradient(
+           310deg
+           ,#cb0c9f,#cb0c9f);
+              margin-left: 23px;
+              border-radius: 1px;">Add Excursions</button></a>
+
+
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Hotel Name</th>
+                        <th scope="col">destination Name</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($hotels as $hotel)
+                      @foreach ($destinations as $destination) 
                       <tr>
                         <th scope="row">
                           <div class="d-flex px-2 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <a href="{{route('profile',$hotel->id)}}" class="mb-0 text-sm">{{$hotel->type}}</a>
+                              <a href="{{route('profile',$destination->id)}}" class="mb-0 text-sm">{{$destination->destination}}</a>
                             </div>
                           </div>
                         </th>
-
                         <td class="text-right">
                           <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,8 +64,8 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               @if (Auth::user()->role == 1)
-                              <li><a class="dropdown-item del"  data-bs-toggle="modal" data-bs-target="#delete" href="#"><input type="hidden" class="id" value="{{$hotel->id}}" >Delete</a></li>
-                              <li><a class="dropdown-item getid" data-bs-toggle="modal" data-bs-target="#edit" href="#"><input type="hidden" class="id" value="{{$hotel->id}}" ><input type="hidden" class="name" value="{{$hotel->type}}" >Edit</a></li>
+                                <li><a class="dropdown-item del"  data-bs-toggle="modal" data-bs-target="#delete" href="#"><input type="hidden" class="id" value="{{$destination->id}}" >Delete</a></li>
+                                <li><a class="dropdown-item getid" data-bs-toggle="modal" data-bs-target="#edit" href="#"><input type="hidden" class="id" value="{{$destination->id}}" ><input type="hidden" class="name" value="{{$destination->destination}}" >Edit</a></li>
                               @endif
                              </ul>
                           </div>
@@ -68,7 +79,7 @@
             </div>
  
           </div>
-        </div> 
+        </div>
 
 
 
@@ -86,12 +97,10 @@
     </div>
 </div>
 
+@include('destinations.delete')
+@include('destinations.edit')
+@include('destinations.add')
 
-
-
-@include('hotels.delete')
-@include('hotels.edit')
-@include('hotels.add')
 
 
 

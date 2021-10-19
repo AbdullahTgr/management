@@ -17,11 +17,13 @@ use App\Models\UserAction;
 use App\Models\Reservation;
 use App\Models\Hotel;
 use App\Models\Triptype;
-use App\Models\Distination;
+use App\Models\Destination;
+use App\Models\Excursion;
 use App\Models\View;
 use App\Models\Transportation;
 use App\Models\Gateway;
 use App\Notifications\MessageNotification;
+
 
 class AdminController extends Controller
 {
@@ -46,36 +48,6 @@ class AdminController extends Controller
 
 
 
-    public function hotels()
-    {
-        $hotels = Hotel::get();
-        return view('hotels.index', compact('hotels'));
-    }
-    public function triptype()
-    {
-        $triptype = Triptype::get();
-        return view('triptype.index', compact('triptype'));
-    }
-    public function distinations()
-    {
-        $distinations = Distination::get();
-        return view('distinations.index', compact('distinations'));
-    }
-    public function views()
-    {
-        $views = View::get();
-        return view('views.index', compact('views'));
-    }
-    public function tranportations()
-    {
-        $tranportations = Transportation::get();
-        return view('tranportations.index', compact('tranportations'));
-    }
-    public function gateways()
-    {
-        $gateways = Gateway::get();
-        return view('gateways.index', compact('gateways'));
-    }
 
     
     public function sales()
@@ -539,12 +511,198 @@ class AdminController extends Controller
     }
 
 
+//////////////////////////////////////////  MANAGEMENT  ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    public function addhotel()
+public function hotels()
+{
+    $hotels = Hotel::get();
+    return view('hotels.index', compact('hotels'));
+}
+public function triptype()
+{
+    $triptypes = Triptype::get();
+    return view('triptypes.index', compact('triptypes'));
+}
+public function views()
+{
+    $views = View::get();
+    return view('views.index', compact('views'));
+}
+public function transportation()
+{
+    $transportations = Transportation::get();
+    return view('transportations.index', compact('transportations'));
+}
+public function gateways()
+{
+    $gateways = Gateway::get();
+    return view('gateways.index', compact('gateways'));
+}
+public function destinations()
+{
+    $destinations = Destination::get();
+    return view('destinations.index', compact('destinations'));
+}
+public function excursions()
+{
+    $destinations = Destination::get();
+    $excursions   = Excursion::get();
+    return view('excursions.index', compact('excursions','destinations'));
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function inserthotel(Request $request)
+{
+    $hotel = new Hotel();
+    $hotel->type = $request->hotel_name;
+    $hotel->save();
+    return redirect()->back();
+}
+public function edithotel(Request $request)
+{
+    $hotel = Hotel::findOrFail($request->hotel_id);
+    $hotel->type = $request->hotel_name;
+    $hotel->save();
+    return redirect()->back();
+}
+public function deletehotel(Request $request)
+{
+    Hotel::where('id',$request->modaledel_id)->delete();
+    return redirect()->back();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function inserttriptype(Request $request)
     {
-        return view('hotels.addhotel');
+        $triptype = new Triptype();
+        $triptype->type = $request->triptype_name;
+        $triptype->save();
+        return redirect()->back();
     }
+    public function edittriptype(Request $request)
+    {
+        $triptype = Triptype::findOrFail($request->triptype_id);
+        $triptype->type = $request->triptype_name;
+        $triptype->save();
+        return redirect()->back();
+    }
+    public function deletetriptype(Request $request)
+    {
+        Triptype::where('id',$request->modaledel_id)->delete();
+        return redirect()->back();
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function insertview(Request $request)
+    {
+        $view = new view();
+        $view->view = $request->view_name;
+        $view->save();
+        return redirect()->back();
+    }
+    public function editview(Request $request)
+    {
+        $view = View::findOrFail($request->view_id);
+        $view->view = $request->view_name;
+        $view->save();
+        return redirect()->back();
+    }
+    public function deleteview(Request $request)
+    {
+        View::where('id',$request->modaledel_id)->delete();
+        return redirect()->back();
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function inserttransportation(Request $request)
+    {
+        $transportation = new Transportation();
+        $transportation->transportation = $request->transportation_name;
+        $transportation->save();
+        return redirect()->back();
+    }
+    public function edittransportation(Request $request)
+    {
+        $transportation = Transportation::findOrFail($request->transportation_id);
+        $transportation->transportation = $request->transportation_name;
+        $transportation->save();
+        return redirect()->back();
+    }
+    public function deletetransportation(Request $request)
+    {
+        Transportation::where('id',$request->modaledel_id)->delete();
+        return redirect()->back();
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function insertgateway(Request $request)
+    {
+        $gateway = new Gateway();
+        $gateway->gateway = $request->gateway_name;
+        $gateway->save();
+        return redirect()->back();
+    }
+    public function editgateway(Request $request)
+    {
+        $gateway = Gateway::findOrFail($request->gateway_id);
+        $gateway->gateway = $request->gateway_name;
+        $gateway->save();
+        return redirect()->back();
+    }
+    public function deletegateway(Request $request)
+    {
+        Gateway::where('id',$request->modaledel_id)->delete();
+        return redirect()->back();
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function insertdestination(Request $request)
+{
+    $destination = new Destination();
+    $destination->destination = $request->destination_name;
+    $destination->save();
+    return redirect()->back(); 
+}
+public function editdestination(Request $request)
+{
+    $destination = Destination::findOrFail($request->destination_id);
+    $destination->destination = $request->destination_name;
+    $destination->save();
+    return redirect()->back();
+}
+public function deletedestination(Request $request) 
+{
+    Destination::where('id',$request->modaledel_id)->delete();
+    return redirect()->back();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function insertexcursion(Request $request)
+{
+    $excursion = new Excursion();
+    $excursion->excursion = $request->excursion_name;
+    $excursion->dest_id = $request->dest_id;
+    $excursion->save();
+    return redirect()->back(); 
+}
+public function editexcursion(Request $request)
+{
+    $excursion = Excursion::findOrFail($request->excursion_id);
+    $excursion->excursion = $request->excursion_name;
+    $excursion->dest_id = $request->dest_id;
+    $excursion->save();
+    return redirect()->back();
+}
+public function deleteexcursion(Request $request) 
+{
+    Excursion::where('id',$request->modaledel_id)->delete();
+    return redirect()->back();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
                
-   <h2 class="mb-2">Hotels</h2>
+   <h2 class="mb-2">excursions</h2>
       <!-- Table -->
        <div class="row">
  
@@ -13,10 +13,11 @@
           <div style=" padding: 10px; " class="card shadow">
 
 
-            <div class="card-header border-0">
-              <h4 class="mb-0">Hotel List</h4>
+            <div class="card-header border-0"> 
+              <h4 class="mb-0">excursion List</h4> 
               <br>
-            </div>
+            </div> 
+
             <a data-bs-toggle="modal" data-bs-target="#add" href="#"><button class="btn" style="    height: 30px;
               border: 1px solid #ddd;
               padding: 0 30px; 
@@ -31,21 +32,28 @@
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Hotel Name</th>
+                      <th scope="col">excursion Name</th>
+                      <th scope="col">Destination</th>
                         <th scope="col"></th>
-                      </tr>
+                      </tr> 
                     </thead>
                     <tbody>
-                      @foreach ($hotels as $hotel)
+                      @foreach ($excursions as $excursion) 
                       <tr>
                         <th scope="row">
                           <div class="d-flex px-2 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <a href="{{route('profile',$hotel->id)}}" class="mb-0 text-sm">{{$hotel->type}}</a>
+                              <a href="" class="mb-0 text-sm">{{$excursion->excursion}}</a>
                             </div>
                           </div>
                         </th>
-
+                        <th scope="row">
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <a href="" class="mb-0 text-sm">{{$excursion->excur->destination}}</a>
+                            </div>
+                          </div>
+                        </th>
                         <td class="text-right">
                           <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,8 +61,8 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               @if (Auth::user()->role == 1)
-                              <li><a class="dropdown-item del"  data-bs-toggle="modal" data-bs-target="#delete" href="#"><input type="hidden" class="id" value="{{$hotel->id}}" >Delete</a></li>
-                              <li><a class="dropdown-item getid" data-bs-toggle="modal" data-bs-target="#edit" href="#"><input type="hidden" class="id" value="{{$hotel->id}}" ><input type="hidden" class="name" value="{{$hotel->type}}" >Edit</a></li>
+                                <li><a class="dropdown-item del"  data-bs-toggle="modal" data-bs-target="#delete" href="#"><input type="hidden" class="id" value="{{$excursion->id}}" >Delete</a></li>
+                                <li><a class="dropdown-item getid" data-bs-toggle="modal" data-bs-target="#edit" href="#"><input type="hidden" class="id" value="{{$excursion->id}}" ><input type="hidden" class="name" value="{{$excursion->excursion}}" >Edit</a></li>
                               @endif
                              </ul>
                           </div>
@@ -68,7 +76,7 @@
             </div>
  
           </div>
-        </div> 
+        </div>
 
 
 
@@ -86,12 +94,10 @@
     </div>
 </div>
 
+@include('excursions.delete')
+@include('excursions.edit')
+@include('excursions.add')
 
-
-
-@include('hotels.delete')
-@include('hotels.edit')
-@include('hotels.add')
 
 
 

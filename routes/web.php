@@ -20,20 +20,6 @@ Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reser
 Route::get('/management', [App\Http\Controllers\AdminController::class, 'management'])->name('management')->middleware('roles:1');
 
 
-Route::get('/hotels', [App\Http\Controllers\AdminController::class, 'hotels'])->name('hotels')->middleware('roles:1');
-Route::get('/triptype', [App\Http\Controllers\AdminController::class, 'triptype'])->name('triptype')->middleware('roles:1');
-Route::get('/distinations', [App\Http\Controllers\AdminController::class, 'distinations'])->name('distinations')->middleware('roles:1');
-Route::get('/views', [App\Http\Controllers\AdminController::class, 'views'])->name('views')->middleware('roles:1');
-Route::get('/tranportations', [App\Http\Controllers\AdminController::class, 'tranportations'])->name('tranportations')->middleware('roles:1');
-Route::get('/gateways', [App\Http\Controllers\AdminController::class, 'gateways'])->name('gateways')->middleware('roles:1');
-
-
-
-Route::get('/addhotel', [App\Http\Controllers\AdminController::class, 'addhotel'])->name('addhotel')->middleware('roles:1');
-Route::post('/delete_hotel', [App\Http\Controllers\AdminController::class, 'delete_hotel'])->name('delete_hotel');
-
-
-
 
 
 
@@ -103,3 +89,56 @@ Route::get('/deleteuserlog{id}', [App\Http\Controllers\AdminController::class, '
 
 
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/hotels', [App\Http\Controllers\AdminController::class, 'hotels'])->name('hotels')->middleware('roles:1');
+Route::get('/addhotel', [App\Http\Controllers\AdminController::class, 'addhotel'])->name('addhotel')->middleware('roles:1');
+Route::post('/deletehotel', [App\Http\Controllers\AdminController::class, 'deletehotel'])->name('deletehotel')->middleware('roles:1');
+Route::post('/inserthotel', [App\Http\Controllers\AdminController::class, 'inserthotel'])->name('inserthotel')->middleware('roles:1');
+Route::post('/edithotel', [App\Http\Controllers\AdminController::class, 'edithotel'])->name('edithotel')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/triptype', [App\Http\Controllers\AdminController::class, 'triptype'])->name('triptype')->middleware('roles:1');
+Route::get('/addtriptype', [App\Http\Controllers\AdminController::class, 'addtriptype'])->name('addtriptype')->middleware('roles:1');
+Route::post('/deletetriptype', [App\Http\Controllers\AdminController::class, 'deletetriptype'])->name('deletetriptype')->middleware('roles:1');
+Route::post('/inserttriptype', [App\Http\Controllers\AdminController::class, 'inserttriptype'])->name('inserttriptype')->middleware('roles:1');
+Route::post('/edittriptype', [App\Http\Controllers\AdminController::class, 'edittriptype'])->name('edittriptype')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/views', [App\Http\Controllers\AdminController::class, 'views'])->name('views')->middleware('roles:1');
+Route::get('/addview', [App\Http\Controllers\AdminController::class, 'addview'])->name('addview')->middleware('roles:1');
+Route::post('/deleteview', [App\Http\Controllers\AdminController::class, 'deleteview'])->name('deleteview')->middleware('roles:1');
+Route::post('/insertview', [App\Http\Controllers\AdminController::class, 'insertview'])->name('insertview')->middleware('roles:1');
+Route::post('/editview', [App\Http\Controllers\AdminController::class, 'editview'])->name('editview')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/transportation', [App\Http\Controllers\AdminController::class, 'transportation'])->name('transportation')->middleware('roles:1');
+Route::get('/addtransportation', [App\Http\Controllers\AdminController::class, 'addtransportation'])->name('addtransportation')->middleware('roles:1');
+Route::post('/deletetransportation', [App\Http\Controllers\AdminController::class, 'deletetransportation'])->name('deletetransportation')->middleware('roles:1');
+Route::post('/inserttransportation', [App\Http\Controllers\AdminController::class, 'inserttransportation'])->name('inserttransportation')->middleware('roles:1');
+Route::post('/edittransportation', [App\Http\Controllers\AdminController::class, 'edittransportation'])->name('edittransportation')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/gateways', [App\Http\Controllers\AdminController::class, 'gateways'])->name('gateways')->middleware('roles:1');
+Route::get('/addgateway', [App\Http\Controllers\AdminController::class, 'addgateway'])->name('addgateway')->middleware('roles:1');
+Route::post('/deletegateway', [App\Http\Controllers\AdminController::class, 'deletegateway'])->name('deletegateway')->middleware('roles:1');
+Route::post('/insertgateway', [App\Http\Controllers\AdminController::class, 'insertgateway'])->name('insertgateway')->middleware('roles:1');
+Route::post('/editgateway', [App\Http\Controllers\AdminController::class, 'editgateway'])->name('editgateway')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/destinations', [App\Http\Controllers\AdminController::class, 'destinations'])->name('destinations')->middleware('roles:1');
+Route::get('/adddestination', [App\Http\Controllers\AdminController::class, 'adddestination'])->name('adddestination')->middleware('roles:1');
+Route::post('/deletedestination', [App\Http\Controllers\AdminController::class, 'deletedestination'])->name('deletedestination')->middleware('roles:1');
+Route::post('/insertdestination', [App\Http\Controllers\AdminController::class, 'insertdestination'])->name('insertdestination')->middleware('roles:1');
+Route::post('/editdestination', [App\Http\Controllers\AdminController::class, 'editdestination'])->name('editdestination')->middleware('roles:1');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+Route::get('/excursions', [App\Http\Controllers\AdminController::class, 'excursions'])->name('excursions')->middleware('roles:1');
+Route::get('/addexcursion', [App\Http\Controllers\AdminController::class, 'addexcursion'])->name('addexcursion')->middleware('roles:1');
+Route::post('/deleteexcursion', [App\Http\Controllers\AdminController::class, 'deleteexcursion'])->name('deleteexcursion')->middleware('roles:1');
+Route::post('/insertexcursion', [App\Http\Controllers\AdminController::class, 'insertexcursion'])->name('insertexcursion')->middleware('roles:1');
+Route::post('/editexcursion', [App\Http\Controllers\AdminController::class, 'editexcursion'])->name('editexcursion')->middleware('roles:1');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 

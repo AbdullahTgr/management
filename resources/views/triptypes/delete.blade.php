@@ -1,7 +1,7 @@
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog"> 
     <div class="modal-content">
-         <form action="{{route('deletedestination')}}" method="post">
+         <form action="{{route('deletetriptype')}}" method="post">
              @csrf
              <input type="hidden" class="modaledel_id" name="modaledel_id" value="">
           <div class="modal-header">

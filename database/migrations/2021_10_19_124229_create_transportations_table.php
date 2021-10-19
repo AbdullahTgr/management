@@ -15,14 +15,14 @@ class CreateTransportationsTable extends Migration
     {
         Schema::create('transportations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('transportation')->nullable();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function down()
     {

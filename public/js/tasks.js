@@ -77,11 +77,25 @@ $( document ).ready(function() {
     $(".add-task").fadeIn();
 
     });
+    
     $(document).on("click",".btn3d",function(){
         $(this).remove();
         $(".validate").val("");
     });
 
-    
+    $(document).on("click",".getid",function(){
+        var id=$(this).children(".id").val();
+        var name=$(this).children(".name").val();
+
+        $(".modaledit_id").val(id);
+        $(".modaledit_name").val(name);
+        
+    });
+
+    $(document).on("click",".del",function(){
+        var id=$(this).children(".id").val();
+        $(".modaledel_id").val(id);
+        
+    });
 
 });
