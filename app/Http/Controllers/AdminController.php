@@ -21,6 +21,7 @@ use App\Models\Distination;
 use App\Models\View;
 use App\Models\Transportation;
 use App\Models\Gateway;
+use App\Models\Cashout;
 use App\Notifications\MessageNotification;
 
 class AdminController extends Controller
@@ -285,6 +286,28 @@ class AdminController extends Controller
         $res = Reservation::findOrFail($request->sale_id);
         $res->cashout  = $request->cashout;
         $res->save();
+
+        for ($count = 1; $count <= $request->count;$count++)
+        {
+            $check = Cashout::where('id', $request['cash_id_'.$count])->first();
+
+            if ($check)
+            {
+                $cash = Cashout::findOrFail( $request['cash_id_'.$count]);
+                $cash->price = $request['cashout_'.$count];
+                $cash->name = $request['name_'.$count];
+                $cash->save();
+            }else
+            {
+                $cash = new Cashout();
+                $cash->price = $request['cashout_'.$count];
+                $cash->name = $request['name_'.$count];
+                $cash->res_id = $res->id;
+                $cash->save();
+            }
+
+        }
+        
 
         return redirect()->back();
     }

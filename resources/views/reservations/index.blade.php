@@ -232,10 +232,17 @@
       $('.next a').html('<i class="bi bi-skip-forward"></i>');
       },500);
     
-      var count = 2;
+      var count = Number($('#count').val())+1;
 
-    $(document).on('click', '#add_cashout' , function() {
-        $('#cashList').append('<div class="col-md-6"><label for="cashout">Price</label><input class="form-control" value=" " type="number" step="0.1" name="cashout" id="cashout"></div>');
+    $(document).on('click', '#add_cash' , function() {
+        $('#cashList').append('<div class="col-md-6"><label for="cashout">Price</label>'
+          + '<input class="form-control" type="number" step="0.1" name="cashout_' + count + '" id="cashout_' + count + '">'
+          + '</div>'
+          + '<div class="col-md-6"><label for="name">Name</label>'
+          + '<input class="form-control" type="text" name="name_' + count + '" id="name_' + count + '">'
+          + '</div>'
+          );
+        $('#count').val(count); 
         count +=1;
     });
 </script>

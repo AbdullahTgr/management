@@ -22,6 +22,11 @@ class Reservation extends Model
         return $this->belongsTo(Included::class, 'included_id');
     }
 
+    public function cashouts()
+    {
+        return Cashout::where('res_id', $this->id)->get();
+    }
+
     public function includes()
        {
           return Included::get();
