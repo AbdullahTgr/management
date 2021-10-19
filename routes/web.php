@@ -41,6 +41,8 @@ Route::post('/update_include', [App\Http\Controllers\AdminController::class, 'up
 Route::post('/update_payment', [App\Http\Controllers\AdminController::class, 'update_payment'])->name('update_payment');
 Route::post('/update_cashin', [App\Http\Controllers\AdminController::class, 'update_cashin'])->name('update_cashin');
 Route::post('/update_cashout', [App\Http\Controllers\AdminController::class, 'update_cashout'])->name('update_cashout');
+Route::post('/update_bank', [App\Http\Controllers\AdminController::class, 'update_bank'])->name('update_bank');
+Route::post('/update_comment', [App\Http\Controllers\AdminController::class, 'update_comment'])->name('update_comment');
 Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
 
 

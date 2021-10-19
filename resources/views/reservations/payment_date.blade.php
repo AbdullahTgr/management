@@ -1,7 +1,7 @@
 <div class="modal fade" id="payment{{$sale->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-           <form action="{{route('update_payment')}}" method="post">
+           <form class="updatePayment"  method="post">
                @csrf
                <input type="hidden" name="sale_id" value="{{$sale->id}}">
             <div class="modal-header">

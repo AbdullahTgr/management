@@ -22,6 +22,9 @@ use App\Models\Excursion;
 use App\Models\View;
 use App\Models\Transportation;
 use App\Models\Gateway;
+use App\Models\Cashout;
+use App\Models\Bank;
+use App\Models\Comment  ;
 use App\Notifications\MessageNotification;
 
 
@@ -258,8 +261,108 @@ class AdminController extends Controller
         $res->cashout  = $request->cashout;
         $res->save();
 
+        for ($count = 1; $count <= $request->count;$count++)
+        {
+            $check = Cashout::where('id', $request['cash_id_'.$count])->first();
+
+            if ($check)
+            {
+                $cash = Cashout::findOrFail( $request['cash_id_'.$count]);
+                $cash->price = $request['cashout_'.$count];
+                $cash->name = $request['name_'.$count];
+                $cash->save();
+            }else
+            {
+                $cash = new Cashout();
+                $cash->price = $request['cashout_'.$count];
+                $cash->name = $request['name_'.$count];
+                $cash->res_id = $res->id;
+                $cash->save();
+            }
+
+        }
+        
+
         return redirect()->back();
     }
+
+    public function update_bank(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+       
+
+        for ($count = 1; $count <= $request->count;$count++)
+        {
+            $check = Bank::where('id', $request['bank_id_'.$count])->first();
+
+            if ($check)
+            {
+                $bank = Bank::findOrFail( $request['bank_id_'.$count]);
+                $bank->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('bank_photo') : $bank->photo;
+                $bank->name = $request['name_'.$count];
+                $bank->account = $request['account_'.$count];
+                $bank->save();
+            }else
+            {
+                $bank = new Bank();
+                $bank->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('bank_photo') : null;
+                $bank->name = $request['name_'.$count];
+                $bank->account = $request['account_'.$count];
+                $bank->res_id  = $res->id;
+                $bank->save();
+            }
+
+        }
+        
+
+        return redirect()->back();
+    }
+
+    public function update_comment(Request $request) {
+        $res = Reservation::findOrFail($request->sale_id);
+ 
+        for ($count = 1; $count <= $request->count;$count++)
+        {
+            $check = Comment::where('id', $request['comment_id_'.$count])->first();
+
+            if ($check)
+            {
+                $comment = Comment::findOrFail( $request['comment_id_'.$count]);
+                $comment->price = $request['price_'.$count];
+                $comment->comment = $request['comment_'.$count];
+                $comment->save();
+            }else
+            {
+                $comment = new Comment();
+                $comment->price = $request['price_'.$count];
+                $comment->comment = $request['comment_'.$count];
+                $comment->res_id = $res->id;
+                $comment->save();
+            }
+
+        }
+
+        $total = null;
+        $txt = null;
+    foreach ($res->comments() as $key=> $comment)
+         {
+            $total = $total + $comment->price;
+            if ($key+1 < count($res->comments()))
+            {
+             $txt .=  $comment->comment . ' + ';
+            }
+          else
+          {
+             $txt .=   $comment->comment;
+          }
+         }
+
+    
+        $all = $txt .  ' = ' . $total;
+        
+
+        return response()->json(['success'=>$all]);
+    }
+
 
 
     public function add_task(Request $request)

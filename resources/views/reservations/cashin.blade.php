@@ -1,7 +1,7 @@
 <div class="modal fade" id="cashin{{$sale->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-           <form enctype="multipart/form-data" action="{{route('update_cashin')}}" method="post">
+           <form enctype="multipart/form-data" class="updateCashin" method="post">
                @csrf
                <input type="hidden" name="sale_id" value="{{$sale->id}}">
             <div class="modal-header">
