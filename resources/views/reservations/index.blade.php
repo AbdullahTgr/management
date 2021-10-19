@@ -50,6 +50,7 @@
                       <th scope="col">Payment Option Date</th> 
                       <th scope="col">Cash In</th> 
                       <th scope="col">Cash Out</th> 
+                      <th scope="col">Bank</th> 
                       <th scope="col">Comment</th> 
                       <th scope="col"></th>
                       </tr>
@@ -135,30 +136,51 @@
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           <a href="#">
-                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info">{{$sale->chalet ? $sale->chalet . ' Chalet' : ''}}</div>
-                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info">{{$sale->single ? $sale->single . ' Single' : ''}}</div>
-                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info">{{$sale->double ? $sale->double . ' Double' : ''}}</div>
-                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info">{{$sale->triple ? $sale->triple . ' Triple' : ''}}</div>
+                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info chalet{{$sale->id}}">{{$sale->chalet ? $sale->chalet . ' Chalet' : ' 0 Chalet'}}</div>
+                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info single{{$sale->id}}">{{$sale->single ? $sale->single . ' Single' : ' 0 Single'}}</div>
+                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info double{{$sale->id}}">{{$sale->double ? $sale->double . ' Double' : ' 0 Double'}}</div>
+                            <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info triple{{$sale->id}}">{{$sale->triple ? $sale->triple . ' Triple' : ' 0 Triple'}}</div>
                           </a>
                         </div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#include{{$sale->id}}" class="">{{$sale->included_id ? $sale->included->include : 'No thing included.'}}</a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#include{{$sale->id}}" class="includes{{$sale->id}}">{{$sale->included_id ? $sale->included->include : 'No thing included.'}}</a>
                         </th>
                         <th scope="row" style=" text-align: center; ">
                             <div class="badge bg-{{$sale->confirmation == 1 ? 'success' : 'danger'}}">{{$sale->confirmation == 1 ? 'Confirmed' : 'Not Confirmed'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#payment{{$sale->id}}" class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->payment_option_date ? \Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d') : 'N/A'}}</a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#payment{{$sale->id}}" class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> <span class="payments{{$sale->id}}">{{$sale->payment_option_date ? \Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d') : 'N/A'}}</span></a>
                       </th>
                       <th scope="row" style=" text-align: center; ">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#cashin{{$sale->id}}"> {{$sale->cashin ?  $sale->cashin  : 'N/A'}}</a>
+                        <a href="#" data-bs-toggle="modal" class="cashins{{$sale->id}}" data-bs-target="#cashin{{$sale->id}}"> {{$sale->cashin ?  $sale->cashin  : 'N/A'}}</a>
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#cashout{{$sale->id}}"> {{$sale->cashout ?  $sale->cashout  : 'N/A'}}</a>
+                      <a href="#" data-bs-toggle="modal" class="cashouts{{$sale->id}}" data-bs-target="#cashout{{$sale->id}}"> {{$sale->cashout ?  $sale->cashout  : 'N/A'}}</a>
+                    </th>
+                    <th scope="row" style=" text-align: center; ">
+                      <a href="#" class="badge bg-primary" data-bs-toggle="modal" data-bs-target="#bank{{$sale->id}}">Bank Details</a>
                     </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->res_comment}}
+                          <a href="#" id="view_comment" c_id="{{$sale->id}}" class="comments{{$sale->id}}" data-bs-toggle="modal" data-bs-target="#comment{{$sale->id}}">
+                             @php
+                                 $total = null;
+                             @endphp
+                             @forelse ($sale->comments() as $key=> $comment)
+                             @php
+                                 
+                                 $total = $total + $comment->price;
+                             @endphp
+                                  @if ($key+1 < count($sale->comments()))
+                                  {{$comment->comment . ' + ' }}
+                                  @else
+                                  {{$comment->comment}}
+                                  @endif
+                             @empty
+                                 {{'No comments.'}}
+                             @endforelse
+                                 {{$total ? ' = ' . $total : ''}}
+                          </a>
                         </th>
  
  
@@ -209,6 +231,8 @@
 @include('reservations.payment_date')
 @include('reservations.cashin')
 @include('reservations.cashout')
+@include('reservations.bank')
+@include('reservations.comments')
  @empty
 @endforelse
   
@@ -232,18 +256,385 @@
       $('.next a').html('<i class="bi bi-skip-forward"></i>');
       },500);
     
-      var count = Number($('#count').val())+1;
+    
 
-    $(document).on('click', '#add_cash' , function() {
-        $('#cashList').append('<div class="col-md-6"><label for="cashout">Price</label>'
+      $(document).on('click', '#add_cash' , function() {
+      var count = Number($(this).parent().parent().find('#count').val())+1;
+      $(this).parent().parent().find('#cashList').append('<div class="col-md-6"><label for="cashout">Price</label>'
           + '<input class="form-control" type="number" step="0.1" name="cashout_' + count + '" id="cashout_' + count + '">'
           + '</div>'
           + '<div class="col-md-6"><label for="name">Name</label>'
           + '<input class="form-control" type="text" name="name_' + count + '" id="name_' + count + '">'
           + '</div>'
           );
-        $('#count').val(count); 
+          $(this).parent().parent().find('#count').val(count); 
         count +=1;
     });
+
+    $(document).on('click', '#add_bank' , function() {
+      var count = Number($(this).parent().parent().find('#bank_count').val())+1;
+      $(this).parent().parent().find('#bankList').append(
+            '<div class="col-md-4"><label for="photo_1">Photo</label>'
+          + '<input class="form-control"  type="file" name="photo_' + count + '" id="photo_' + count + '">'
+          + '</div>'
+          + '<div class="col-md-4"><label for="name">Bank</label>'
+          + '<input class="form-control" type="text" name="name_' + count + '" id="name_' + count + '">'
+          + '</div>'
+          + '<div class="col-md-4"><label for="account">Account Num</label>'
+          + '<input class="form-control" type="text" name="account_' + count + '" id="account_' + count + '">'
+          + '</div>'
+          );
+          $(this).parent().parent().find('#bank_count').val(count); 
+        count +=1;
+    });
+
+    $(document).on('click', '#add_comment' , function() {
+      var count = Number($(this).parent().parent().find('#count').val())+1;
+      $(this).parent().parent().find('#commentList').append('<div class="col-md-6"><label for="price_">Price</label>'
+          + '<input class="form-control" type="number" step="0.1" name="price_' + count + '" id="price_' + count + '">'
+          + '</div>'
+          + '<div class="col-md-6"><label for="comment_">Comment</label>'
+          + '<input class="form-control" type="text" name="comment_' + count + '" id="comment_' + count + '">'
+          + '</div>'
+          );
+          $(this).parent().parent().find('#count').val(count); 
+        count +=1;
+    });
+
+    $(document).on('click', '#view_comment' , function() {
+       var c_id = $(this).attr('c_id');
+       var total = $('#comment'+c_id).find('#total').val();
+       var count = $('#comment'+c_id).find('#count').val();
+        
+       for (var i=1;i <= count;i++)
+       {
+         total =  Number(total) + Number(parseInt($('#comment'+c_id).find('#price_'+i).val()));
+       }
+       $('#comment'+c_id).find('#total').val(total);
+    });
+
+
+
+
+    $(document).ready(function (e) {
+
+      // Rooms Ajax Request 
+
+ $(".updateRooms").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_rooms')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.chalet'+form[0].sale_id.value).text(form[0].chalet.value + ' Chalet');
+        $('.single'+form[0].sale_id.value).text(form[0].single.value + ' Single');
+        $('.double'+form[0].sale_id.value).text(form[0].double.value + ' Double');
+        $('.triple'+form[0].sale_id.value).text(form[0].triple.value + ' Triple');
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+
+ $(".updateIncludes").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_include')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.includes'+ form[0].sale_id.value).text(form[0].included_id.options[form[0].included_id.selectedIndex].text);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+ $(".updatePayment").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_payment')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.payments'+ form[0].sale_id.value).text(form[0].payment_option_date.value);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+ $(".updateCashin").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_cashin')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.cashins'+ form[0].sale_id.value).text(form[0].cashin.value);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+ 
+ $(".updateCashout").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_cashout')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.cashouts'+ form[0].sale_id.value).text(form[0].cashout.value);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+ $(".updateBank").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_bank')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+       // $('.cashouts'+ form[0].sale_id.value).text(form[0].cashout.value);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+
+ $(".updateComment").on('submit',(function(e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  e.preventDefault();
+  form = $(this);
+  $.ajax({
+    url:"{{route('update_comment')}}",
+   type: "POST",
+   data:  new FormData(this),
+   contentType: false,
+   cache: false,
+   processData:false,
+   beforeSend : function()
+   {
+      $('#update_user').text('Saving..');
+      $('#update_user').attr('disabled' , true);
+   },
+   success: function(data)
+      {
+        console.log(form[0].sale_id.value);
+        $('.comments'+ form[0].sale_id.value).text(data.success);
+        $('.modal').modal('hide');
+    if(data.success)
+    {
+        $('#update_user').text('Save Profile');
+        $('#update_user').attr('disabled' , false);
+        $('#liveToast').show();
+    }
+    else
+    {
+        $('#ErrliveToast').show();
+
+    }
+      },
+     error: function(e) 
+      {
+        $('#ErrliveToast').show();
+      }          
+    });
+ }));
+
+});
+
 </script>
 @endsection

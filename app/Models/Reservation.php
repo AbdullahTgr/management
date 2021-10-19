@@ -27,6 +27,15 @@ class Reservation extends Model
         return Cashout::where('res_id', $this->id)->get();
     }
 
+    public function banks()
+    {
+        return Bank::where('res_id', $this->id)->get();
+    }
+    public function comments()
+    {
+        return Comment::where('res_id', $this->id)->get();
+    }
+
     public function includes()
        {
           return Included::get();
