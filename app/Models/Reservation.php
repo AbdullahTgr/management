@@ -24,6 +24,21 @@ class Reservation extends Model
         return $this->belongsTo(Included::class, 'included_id');
     }
 
+    public function transport()
+    {
+        return $this->belongsTo(Transportation::class, 'transportations');
+    }
+
+    public function exc()
+    {
+        return $this->belongsTo(Excursion::class, 'excursion');
+    }
+
+    public function gate()
+    {
+        return $this->belongsTo(Gateway::class, 'gateway');
+    }
+
     public function cashouts()
     {
         return Cashout::where('res_id', $this->id)->get();
@@ -54,7 +69,7 @@ class Reservation extends Model
     }
     public function destination()
     {
-        return $this->belongsTo(Destnation::class, 'destination_id');
+        return $this->belongsTo(Destination::class, 'destination_id');
     }
     public function view()
     {

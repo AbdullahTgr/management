@@ -14,10 +14,7 @@
                     <option {{$sale->confirmation == 1 ? 'selected' : ''}} value="1">Confirmed</option>
                     <option {{$sale->confirmation == 2 ? 'selected' : ''}} value="2">Not Confirmed</option>
                 </select>
-                <br>
-                <label for="res_comment">Comment</label>
-                 <textarea class="form-control" name="res_comment" id="res_comment" cols="30" rows="10">{{$sale->res_comment}}</textarea>
- 
+             
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

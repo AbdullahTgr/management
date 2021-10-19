@@ -93,25 +93,23 @@
                       {{$sale->trip->type}} 
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                      {{$sale->destination->destination}}
+                      {{$sale->destination_id ? $sale->destination->destination : 'no destination'}}
                     </th>
                     <th scope="row" style=" text-align: center; ">
                       {{$sale->view->view}}
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                       <i class="bi bi-{{$sale->transportations ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
+                       {{$sale->transportations ? $sale->transport->transportation : 'not selected'}} 
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                      <i class="bi bi-{{$sale->excursion ? 'check-circle-fill text-success' : 'x-circle text-danger'}}"></i> 
+                        {{$sale->excursion ?  $sale->exc->excursion : 'no excursion'}} 
                      </th>
                      <th scope="row" style=" text-align: center; ">
-                      <div class="badge bg-info">{{$sale->gateway}}</div>
+                      <div class="badge bg-info">{{$sale->gateway ? $sale->gate->gateway : 'no gateway'}}</div>
                     </th>
                     <th scope="row" style=" text-align: center; ">
                       {{$sale->salescomments}}
                     </th>
-
-
 
                         <th scope="row">
                             <a class="text-capitalize" href="{{route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
@@ -190,10 +188,10 @@
                               Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Edit</a></li>
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
 
                                 @if (Auth::user()->role == 1)
-                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
+                                 <li class="d-none"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
                                 @endif
                              </ul>
                           </div>
