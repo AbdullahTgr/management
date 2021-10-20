@@ -73,7 +73,7 @@
                           {{$sale->adults}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->hotel->type}}
+                          {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           <div class="badge bg-info">{{$sale->days_night}}</div>
@@ -88,13 +88,13 @@
                           <div class="badge bg-dark">{{$sale->checkout}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->trip->type}}
+                          {{$sale->triptype_id ? $sale->trip->type : 'no type'}} 
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->destination_id ? $sale->destination->destination : 'no destination'}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->view->view}}
+                          {{$sale->view_id ? $sale->view->view : 'no view'}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
                            {{$sale->transportations ? $sale->transport->transportation : 'not selected'}} 
