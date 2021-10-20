@@ -87,7 +87,7 @@
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
         <li class="mb-2">
-              <a class="dropdown-item border-radius-md" href="javascript:;">
+              <a class="dropdown-item border-radius-md" href="{{route('sales')}}">
                 <div class="d-flex py-1">
                   <div class="my-auto">
                     <img src="https://png.pngitem.com/pimgs/s/463-4637103_icon-info-transparent-svg-new-icon-hd-png.png" class="avatar avatar-sm  me-3 ">
