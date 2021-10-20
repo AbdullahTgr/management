@@ -25,6 +25,7 @@ use App\Models\Gateway;
 use App\Models\Cashout;
 use App\Models\Bank;
 use App\Models\Comment;
+use App\Models\Included;
 use App\Models\Finance;
 use App\Notifications\MessageNotification;
 
@@ -52,14 +53,25 @@ class AdminController extends Controller
 
 
 
-
+ 
     
     public function sales()
     {
         $sales = Reservation::get();
         $user = Auth::user();
+
+        $hotel = Hotel::get();
+        $triptype = Triptype::get();
+        $view = View::get();
+        $included = Included::get(); 
+        $destination = Destination::get();
+        $excursion = Excursion::get(); 
+        $transportation = Transportation::get(); 
+        $gateway = Gateway::get(); 
+
+
         $user->unreadNotifications->markAsRead();
-        return view('sales.index', compact('sales'));
+        return view('sales.index', compact('sales','hotel','triptype','view','included','destination','excursion','transportation','gateway'));
     }
 
 
@@ -273,7 +285,7 @@ class AdminController extends Controller
             $finance->transportation_id  = $request->transportation_id;
             $finance->excursion_id  = $request->excursion_id;
             $finance->cashin  = $request->cashin;
-            $finance->cashout  = $request->cashout;
+            $finance->cashout  = $request->cashout; 
             $finance->bank_id  = $request->bank_id;
             $finance->notes  = $request->notes;
             $finance->commission  = $request->cashin -  $request->cashout;

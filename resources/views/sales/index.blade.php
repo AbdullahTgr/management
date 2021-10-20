@@ -6,6 +6,11 @@
         <div class="col-md-12">
                
    <h2 class="mb-2">Sales Agent</h2>
+
+   <button class="btn btn-primary  btn-sm" type="button" data-bs-target="#addrequest" data-bs-toggle="modal" >
+    Add Request
+  </button>
+  
       <!-- Table -->
        <div class="row">
 
@@ -221,6 +226,7 @@
 </div>
 
  
+@include('sales.add_request')
 @forelse ($sales as $sale)
 @include('sales.delete')
 @include('sales.approve')

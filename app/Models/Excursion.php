@@ -14,6 +14,6 @@ class Excursion extends Model
     {
         return $this->belongsTo(Destination::class, 'dest_id');
     }
-}
+} 
 
 

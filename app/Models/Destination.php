@@ -15,3 +15,4 @@ class Destination extends Model
     }
   
 }
+ 

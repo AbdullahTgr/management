@@ -132,7 +132,7 @@ class ApiController extends Controller
         $triptype = Triptype::get();
         $view = View::get();
         $included = Included::get(); 
-        $Destination = Destination::get();
+        $destination = Destination::get();
         $excursion = Excursion::get(); 
         $transportation = Transportation::get(); 
 
@@ -140,7 +140,7 @@ class ApiController extends Controller
         return Response::json(array(
             "hotels" => $hotel,
             "triptype" => $triptype,
-            "Destinations" => $Destination,
+            "destinations" => $destination,
             "views" => $view ,
             "included" => $included,
             "excursion" => $excursion , 
@@ -161,10 +161,7 @@ class ApiController extends Controller
         
         \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
          return  redirect()->back();
-
     }
-
-
 
 
 
@@ -282,6 +279,266 @@ class ApiController extends Controller
             "state" => 1,
         ));
     }
+
+
+
+
+
+// /////////////////////////////////////////////  Manage From Mobile App  //////////////////////////////////
+
+//     public function approve_reservation(Request $request) {
+
+//         $res = Reservation::findOrFail($request->sale_id);
+//         $res->received_time  = \Carbon\Carbon::now();
+//         $res->res_agent_id  = $request->user_d;
+//         $res->save();
+
+//         return Response::json(array(
+//             'res' => $res,
+//             "success" => 1,
+//             "state" => 1,
+//         ));
+//     }
+//     public function update_reservation(Request $request) {
+
+//         $res = Reservation::findOrFail($request->sale_id);
+//         $res->confirmation  = $request->confirmation;
+//         $res->save();
+
+//         return Response::json(array(
+//             'res' => $res,
+//             "success" => 1,
+//             "state" => 1,
+//         ));
+//     }
+//     //////////////
+//     public function update_rooms(Request $request) {
+
+//         $res = Reservation::findOrFail($request->sale_id);
+//         $res->chalet  = $request->chalet;
+//         $res->single  = $request->single;
+//         $res->double  = $request->double;
+//         $res->triple  = $request->triple;
+//         $res->save();
+
+//         return Response::json(array(
+//             'res' => $res,
+//             "success" => 1,
+//             "state" => 1,
+//         ));
+//     }
+// ////////
+// public function update_include(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+//     $res->included_id  = $request->included_id;
+//     $res->save();
+
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+// ///////////
+// public function update_payment(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+//     $res->payment_option_date  = $request->payment_option_date;
+//     $res->save();
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+// ///////////////
+// public function update_cashin(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+//     $res->cashin  = $request->cashin;
+//     $res->cashin_photo = $request->cashin_photo ? $request->cashin_photo->store('cashin_photo') : $res->cashin_photo;
+//     $res->save();
+
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+// public function update_cashout(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+//     $res->cashout  = $request->cashout;
+//     $res->save();
+
+//     for ($count = 1; $count <= $request->count;$count++)
+//     {
+//         $check = Cashout::where('id', $request['cash_id_'.$count])->first();
+
+//         if ($check)
+//         {
+//             $cash = Cashout::findOrFail( $request['cash_id_'.$count]);
+//             $cash->price = $request['cashout_'.$count];
+//             $cash->name = $request['name_'.$count];
+//             $cash->save();
+//         }else
+//         {
+//             $cash = new Cashout();
+//             $cash->price = $request['cashout_'.$count];
+//             $cash->name = $request['name_'.$count];
+//             $cash->res_id = $res->id;
+//             $cash->save();
+//         }
+
+//     }
+    
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+// ///////////////////
+
+// public function update_bank(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+   
+
+//     for ($count = 1; $count <= $request->count;$count++)
+//     {
+//         $check = Bank::where('id', $request['bank_id_'.$count])->first();
+
+//         if ($check)
+//         {
+//             $bank = Bank::findOrFail( $request['bank_id_'.$count]);
+//             $bank->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('bank_photo') : $bank->photo;
+//             $bank->name = $request['name_'.$count];
+//             $bank->account = $request['account_'.$count];
+//             $bank->save();
+//         }else
+//         {
+//             $bank = new Bank();
+//             $bank->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('bank_photo') : null;
+//             $bank->name = $request['name_'.$count];
+//             $bank->account = $request['account_'.$count];
+//             $bank->res_id  = $res->id;
+//             $bank->save();
+//         }
+
+//     }
+    
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+// //////////////////
+
+// public function update_comment(Request $request) {
+//     $res = Reservation::findOrFail($request->sale_id);
+
+//     for ($count = 1; $count <= $request->count;$count++)
+//     {
+//         $check = Comment::where('id', $request['comment_id_'.$count])->first();
+
+//         if ($check)
+//         {
+//             $comment = Comment::findOrFail( $request['comment_id_'.$count]);
+//             $comment->price = $request['price_'.$count];
+//             $comment->comment = $request['comment_'.$count];
+//             $comment->save();
+//         }else
+//         {
+//             $comment = new Comment();
+//             $comment->price = $request['price_'.$count];
+//             $comment->comment = $request['comment_'.$count];
+//             $comment->res_id = $res->id;
+//             $comment->save();
+//         }
+
+//     }
+
+//     $total = null;
+//     $txt = null;
+// foreach ($res->comments() as $key=> $comment)
+//      {
+//         $total = $total + $comment->price;
+//         if ($key+1 < count($res->comments()))
+//         {
+//          $txt .=  $comment->comment . ' + ';
+//         }
+//       else
+//       {
+//          $txt .=   $comment->comment;
+//       }
+//      }
+
+
+//     $all = $txt .  ' = ' . $total;
+    
+
+//     return Response::json(array(
+//         'comment' => $all,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+
+// public function add_to_finance(Request $request) {
+//     $check = Finance::where('res_id', $request->res_id)->first();
+
+//     if ($check)
+//     {
+
+//     }else
+//     {
+//         $finance = new Finance();
+
+//         $finance->agent_id  = $request->agent_id;
+//         $finance->hotel_id  = $request->hotel_id;
+//         $finance->client_name  = $request->client_name;
+//         $finance->days_nights  = $request->days_nights;
+//         $finance->checkin  = $request->checkin;
+//         $finance->transportation_id  = $request->transportation_id;
+//         $finance->excursion_id  = $request->excursion_id;
+//         $finance->cashin  = $request->cashin;
+//         $finance->cashout  = $request->cashout; 
+//         $finance->bank_id  = $request->bank_id;
+//         $finance->notes  = $request->notes;
+//         $finance->commission  = $request->cashin -  $request->cashout;
+//         $finance->res_id  = $request->res_id;
+//         $finance->save();
+
+//         $res = Reservation::findOrFail($request->res_id);
+//         $res->finance  = 1;
+//         $res->save();
+//     }
+ 
+//     return Response::json(array(
+//         'res' => $res,
+//         "success" => 1,
+//         "state" => 1,
+//     ));
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
