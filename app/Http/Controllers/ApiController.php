@@ -323,7 +323,33 @@ class ApiController extends Controller
         $reservation->transportation = $request->transportation;
         $reservation->kidscharge = $request->kidscharge;
         $reservation->save();
- 
+
+        $details = [
+            'title' => $request->subject,
+            'email' => $request->email,
+            'body' =>  $request->message
+        ];
+        
+        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
+
+
+        if ($reservation)
+        {
+            $users = User::where('role', 1)->orWhere('role',2)->get();
+  
+            foreach ($users as $user)
+            {
+                $data = [
+                    'title' => 'New Request',
+                    'message' => 'New Request from salas Agent',
+                    'type' => 2,
+                    'user_id' => $user->id
+                ];
+                Notification::send($user, new \App\Notifications\RequestNotification($data));
+            }
+
+            event(new \App\Events\NewRequest('hello world',$data));
+        }
         
         return Response::json(array(
             'request' => $request,
