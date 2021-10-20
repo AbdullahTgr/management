@@ -56,7 +56,8 @@ class AdminController extends Controller
     public function sales()
     {
         $sales = Reservation::whereNull('res_agent_id')->get();
- 
+        $user = Auth::user();
+        $user->unreadNotifications->markAsRead();
         return view('sales.index', compact('sales'));
     }
 

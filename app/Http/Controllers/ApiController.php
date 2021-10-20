@@ -141,7 +141,19 @@ class ApiController extends Controller
 
 
 
+    public function send_mail(Request $request)
+    { 
 
+        $details = [
+            'title' => $request->subject,
+            'email' => $request->email,
+            'body' =>  $request->message
+        ];
+        
+        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
+         return  redirect()->back();
+
+    }
 
 
 

@@ -141,3 +141,19 @@ body::-webkit-scrollbar-thumb , *::-webkit-scrollbar-thumb  {
     outline: 1px solid #ccc;
     border-radius: 5px;
 }
+
+span.counter {
+    position: absolute;
+    z-index: 8888;
+    background: #cb0c9f;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 12px;
+    right: -10px;
+    box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+    cursor: pointer;
+    display: none;
+}

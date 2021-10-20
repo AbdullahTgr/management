@@ -25,29 +25,27 @@
         </div>
 
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown dropdown-notifications">
-              <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
-                <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
-              </a>
-
-              <div class="dropdown-container">
-                <div class="dropdown-toolbar">
-                  <div class="dropdown-toolbar-actions">
-                    <a href="#">Mark all as read</a>
+          <ul id="notifications" class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+            <li class="mb-2">
+              <a class="dropdown-item border-radius-md" href="javascript:;">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
                   </div>
-                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="text-sm font-weight-normal mb-1">
+                      <span class="font-weight-bold">New message</span> from Laur
+                    </h6>
+                    <p class="text-xs text-secondary mb-0">
+                      <i class="fa fa-clock me-1"></i>
+                      13 minutes ago
+                    </p>
+                  </div>
                 </div>
-                <ul class="dropdown-menu">
-                </ul>
-                <div class="dropdown-footer text-center">
-                  <a href="#">View All</a>
-                </div>
-              </div>
+              </a>
             </li>
-            <li><a href="#">Timeline</a></li>
-            <li><a href="#">Friends</a></li>
           </ul>
+ 
         </div>
       </div>
     </nav>
@@ -60,7 +58,7 @@
       var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
       var notificationsCountElem = notificationsToggle.find('i[data-count]');
       var notificationsCount     = parseInt(notificationsCountElem.data('count'));
-      var notifications          = notificationsWrapper.find('ul.dropdown-menu');
+      var notifications          =  $('#notifications');
 
       if (notificationsCount <= 0) {
         notificationsWrapper.hide();
@@ -83,25 +81,30 @@
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
-          <li class="notification active">
-              <div class="media">
-                <div class="media-left">
-                  <div class="media-object">
-                    <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+        <li class="mb-2">
+              <a class="dropdown-item border-radius-md" href="javascript:;">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="text-sm font-weight-normal mb-1">
+                      <span class="font-weight-bold">` + data.data.title + `</span> from Laur
+                    </h6>
+                    <p class="text-sm text-secondary mb-0">
+                         ` +  data.data.message  + `
+                    </p>
+                    <p class="text-xs text-secondary mb-0">
+                      <i class="fa fa-clock me-1"></i>
+                      13 minutes ago
+                    </p>
                   </div>
                 </div>
-                <div class="media-body">
-                  <strong class="notification-title">`+data.message+`</strong>
-                  <!--p class="notification-desc">Extra description can go here</p-->
-                  <div class="notification-meta">
-                    <small class="timestamp">about a minute ago</small>
-                  </div>
-                </div>
-              </div>
-          </li>
+              </a>
+            </li>
         `;
         notifications.html(newNotificationHtml + existingNotifications);
-       console.log(data);
+       console.log(data.data);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);

@@ -56,5 +56,64 @@
     @yield('scripts')  
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{asset('js/soft-ui-dashboard.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+ 
+    <script type="text/javascript">
+
+      var notificationsCount     = parseInt($('.counter').text());
+      var notifications          =  $('#notifications');
+
+      if (notificationsCount <= 0) {
+        $('.counter').removeClass('d-block');
+        $('.counter').addClass('d-none');
+      }
+
+      // Enable pusher logging - don't include this in production
+      // Pusher.logToConsole = true;
+
+      var pusher = new Pusher('4fed3cc1904f7b29666d', {
+        encrypted: true,
+        cluster: 'eu'
+
+      });
+
+      // Subscribe to the channel we specified in our Laravel Event
+      var channel = pusher.subscribe('my-channel');
+
+      // Bind a function to a Event (the full Laravel class)
+      channel.bind('App\\Events\\NewRequest', function(data) {
+        var existingNotifications = notifications.html();
+        var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+        var newNotificationHtml = `
+        <li class="mb-2">
+              <a class="dropdown-item border-radius-md" href="javascript:;">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <img src="https://png.pngitem.com/pimgs/s/463-4637103_icon-info-transparent-svg-new-icon-hd-png.png" class="avatar avatar-sm  me-3 ">
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="text-sm font-weight-normal mb-1">
+                      <span class="font-weight-bold">` + data.data.title + `</span>
+                    </h6>
+                    <p class="text-sm text-secondary mb-0">
+                         ` +  data.data.message  + `
+                    </p>
+                    <p class="text-xs text-secondary mb-0">
+                      <i class="fa fa-clock me-1"></i>
+                      13 minutes ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+        `;
+        notifications.html(newNotificationHtml + existingNotifications);
+       console.log(data.data);
+        notificationsCount += 1;
+        $('.counter').text(notificationsCount);
+        $('.counter').removeClass('d-none');
+        $('.counter').addClass('d-block');      });
+    </script>
 </body>
 </html>
