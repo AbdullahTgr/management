@@ -41,7 +41,7 @@ class ApiController extends Controller
         return Response::json(array(
             "users" => $users,
             "success" => 1,
-            "state" => 1,
+            "state" => 1, 
         )); 
     }
 
@@ -300,7 +300,7 @@ class ApiController extends Controller
         $reservation->res_agent_id = $request->res_agent_id;
         $reservation->clint_name = $request->clint_name;
         $reservation->phone_number = $request->phone_number;
-        $reservation->adults = $request->adults;
+        $reservation->adults = $request->adults; 
         $reservation->kids = $request->kids;
         $reservation->kids_age = $request->kids_age;
         $reservation->days_night = $request->days_night;
