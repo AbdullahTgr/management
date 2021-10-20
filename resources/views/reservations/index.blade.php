@@ -20,7 +20,7 @@
                 <thead class="thead-light">
                     <tr>
                       <th scope="col">Agent</th>
-                      <th scope="col">Date & Time </th>
+                      {{-- <th scope="col">Date & Time </th> --}}
                       <th scope="col">Client Name</th>
                       <th scope="col">Phone</th> 
                       <th scope="col">Persons</th> 
@@ -41,9 +41,9 @@
                       <th scope="col">Date</th>
                       <th scope="col">Received Time</th>
                       <th scope="col">Response Time</th> 
-                      <th scope="col">Availbility</th> 
+                      {{-- <th scope="col">Availbility</th> 
                       <th scope="col">FROM</th> 
-                      <th scope="col">TO</th> 
+                      <th scope="col">TO</th>  --}}
                       <th scope="col">Rooms</th> 
                       <th scope="col">Included</th> 
                       <th scope="col">Confirmation</th> 
@@ -62,9 +62,9 @@
                     <th scope="row">
                         <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                     </th> 
-                    <th scope="row">
+                    {{-- <th scope="row">
                       <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
-                     </th>
+                     </th> --}}
                     <th scope="row">
                       {{$sale->clint_name}}
                     </th>
@@ -183,12 +183,14 @@
  
  
                         <td class="text-right">
-                          <div class="dropdown">
+                          {{$sale->finance ? 'Added to finance' : ''}}
+                          <div class="dropdown {{$sale->finance ? 'd-none' : ''}}">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
+                              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFinance{{$sale->id}}" href="#">Add to finance</a></li>
 
                                 @if (Auth::user()->role == 1)
                                  <li class="d-none"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
@@ -223,6 +225,9 @@
  
 @forelse ($reservations as $sale)
 {{-- @include('reservations.delete') --}}
+@if ($sale->finance)
+    
+@else
 @include('reservations.edit')
 @include('reservations.rooms')
 @include('reservations.include')
@@ -231,6 +236,9 @@
 @include('reservations.cashout')
 @include('reservations.bank')
 @include('reservations.comments')
+@include('reservations.add_finance')
+@endif
+
  @empty
 @endforelse
   

@@ -17,6 +17,7 @@ Route::get('/employees', [App\Http\Controllers\AdminController::class, 'users'])
 Route::get('/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('settings')->middleware('roles:1');
 Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1');
 Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations')->middleware('roles:1');
+Route::get('/finance', [App\Http\Controllers\AdminController::class, 'finance'])->name('finance')->middleware('roles:1');
 Route::get('/management', [App\Http\Controllers\AdminController::class, 'management'])->name('management')->middleware('roles:1');
 
 
@@ -43,6 +44,7 @@ Route::post('/update_cashin', [App\Http\Controllers\AdminController::class, 'upd
 Route::post('/update_cashout', [App\Http\Controllers\AdminController::class, 'update_cashout'])->name('update_cashout');
 Route::post('/update_bank', [App\Http\Controllers\AdminController::class, 'update_bank'])->name('update_bank');
 Route::post('/update_comment', [App\Http\Controllers\AdminController::class, 'update_comment'])->name('update_comment');
+Route::post('/add_to_finance', [App\Http\Controllers\AdminController::class, 'add_to_finance'])->name('add_to_finance');
 Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
 
 

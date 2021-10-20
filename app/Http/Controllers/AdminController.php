@@ -24,7 +24,8 @@ use App\Models\Transportation;
 use App\Models\Gateway;
 use App\Models\Cashout;
 use App\Models\Bank;
-use App\Models\Comment  ;
+use App\Models\Comment;
+use App\Models\Finance;
 use App\Notifications\MessageNotification;
 
 
@@ -55,7 +56,7 @@ class AdminController extends Controller
     
     public function sales()
     {
-        $sales = Reservation::whereNull('res_agent_id')->get();
+        $sales = Reservation::get();
         $user = Auth::user();
         $user->unreadNotifications->markAsRead();
         return view('sales.index', compact('sales'));
@@ -65,8 +66,13 @@ class AdminController extends Controller
     public function reservations()
     {
         $reservations = Reservation::whereNotNull('res_agent_id')->get();
-
         return view('reservations.index', compact('reservations'));
+    }
+
+    public function finance()
+    {
+        $finance = Finance::get();
+        return view('finance.index', compact('finance'));
     }
 
 
@@ -245,6 +251,40 @@ class AdminController extends Controller
         $res = Reservation::findOrFail($request->sale_id);
         $res->payment_option_date  = $request->payment_option_date;
         $res->save();
+
+        return redirect()->back();
+    }
+
+    public function add_to_finance(Request $request) {
+        $check = Finance::where('res_id', $request->res_id)->first();
+
+        if ($check)
+        {
+
+        }else
+        {
+            $finance = new Finance();
+
+            $finance->agent_id  = $request->agent_id;
+            $finance->hotel_id  = $request->hotel_id;
+            $finance->client_name  = $request->client_name;
+            $finance->days_nights  = $request->days_nights;
+            $finance->checkin  = $request->checkin;
+            $finance->transportation_id  = $request->transportation_id;
+            $finance->excursion_id  = $request->excursion_id;
+            $finance->cashin  = $request->cashin;
+            $finance->cashout  = $request->cashout;
+            $finance->bank_id  = $request->bank_id;
+            $finance->notes  = $request->notes;
+            $finance->commission  = $request->cashin -  $request->cashout;
+            $finance->res_id  = $request->res_id;
+            $finance->save();
+
+            $res = Reservation::findOrFail($request->res_id);
+            $res->finance  = 1;
+            $res->save();
+        }
+     
 
         return redirect()->back();
     }

@@ -20,7 +20,6 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Agent</th>
-                        <th scope="col">Date & Time </th>
                         <th scope="col">Client Name</th>
                         <th scope="col">Phone</th> 
                         <th scope="col">Persons</th> 
@@ -41,13 +40,16 @@
                         <th scope="col">Date</th>
                         <th scope="col">Received Time</th>
                         <th scope="col">Response Time</th> 
-                        <th scope="col">Availbility</th> 
+                        {{-- <th scope="col">Availbility</th> 
                         <th scope="col">FROM</th> 
-                        <th scope="col">TO</th> 
+                        <th scope="col">TO</th>  --}}
                         <th scope="col">Rooms</th> 
                         <th scope="col">Included</th> 
                         <th scope="col">Confirmation</th> 
                         <th scope="col">Payment Option Date</th> 
+                        <th scope="col">Cash In</th> 
+                        <th scope="col">Cash Out</th> 
+                        <th scope="col">Bank</th> 
                         <th scope="col">Comment</th> 
                         <th scope="col"></th>
                       </tr>
@@ -60,9 +62,9 @@
                         <th scope="row">
                             <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                         </th>
-                        <th scope="row">
+                        {{-- <th scope="row">
                           <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
-                         </th>
+                         </th> --}}
                         <th scope="row">
                           {{$sale->clint_name}}
                         </th>
@@ -132,12 +134,12 @@
                             <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->to}}</div>
                           </th> --}}
                           <th scope="row" style=" text-align: center; ">
-                            <div class="badge bg-info">
-                              {{$sale->chalet ? 'Chalet' : ''}}
-                              {{$sale->single ? 'Single' : ''}}
-                              {{$sale->double ? 'Double' : ''}}
-                              {{$sale->triple ? 'Triple' : ''}}
-                          </div>
+                            <a href="#">
+                              <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info chalet{{$sale->id}}">{{$sale->chalet ? $sale->chalet . ' Chalet' : ' 0 Chalet'}}</div>
+                              <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info single{{$sale->id}}">{{$sale->single ? $sale->single . ' Single' : ' 0 Single'}}</div>
+                              <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info double{{$sale->id}}">{{$sale->double ? $sale->double . ' Double' : ' 0 Double'}}</div>
+                              <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info triple{{$sale->id}}">{{$sale->triple ? $sale->triple . ' Triple' : ' 0 Triple'}}</div>
+                            </a>
                           </th>
                           <th scope="row" style=" text-align: center; ">
                             <div class="">{{$sale->include_id ? $sale->included->include : 'No thing included.'}}</div>
@@ -149,8 +151,35 @@
                               <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->payment_option_date}}</div>
                           </th>
                           <th scope="row" style=" text-align: center; ">
-                            {{$sale->res_comment}}
-                          </th>
+                            <a href="#" data-bs-toggle="modal" class="cashins{{$sale->id}}" data-bs-target="#cashin{{$sale->id}}"> {{$sale->cashin ?  $sale->cashin  : 'N/A'}}</a>
+                        </th>
+                        <th scope="row" style=" text-align: center; ">
+                          <a href="#" data-bs-toggle="modal" class="cashouts{{$sale->id}}" data-bs-target="#cashout{{$sale->id}}"> {{$sale->cashout ?  $sale->cashout  : 'N/A'}}</a>
+                        </th>
+                        <th scope="row" style=" text-align: center; ">
+                          <a href="#" class="badge bg-primary" data-bs-toggle="modal" data-bs-target="#bank{{$sale->id}}">Bank Details</a>
+                        </th>
+                            <th scope="row" style=" text-align: center; ">
+                              <a href="#" id="view_comment" c_id="{{$sale->id}}" class="comments{{$sale->id}}" data-bs-toggle="modal" data-bs-target="#comment{{$sale->id}}">
+                                 @php
+                                     $total = null;
+                                 @endphp
+                                 @forelse ($sale->comments() as $key=> $comment)
+                                 @php
+                                     
+                                     $total = $total + $comment->price;
+                                 @endphp
+                                      @if ($key+1 < count($sale->comments()))
+                                      {{$comment->comment . ' + ' }}
+                                      @else
+                                      {{$comment->comment}}
+                                      @endif
+                                 @empty
+                                     {{'No comments.'}}
+                                 @endforelse
+                                     {{$total ? ' = ' . $total : ''}}
+                              </a>
+                            </th>
 
 
                         <td class="text-right">
