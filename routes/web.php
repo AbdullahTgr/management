@@ -143,4 +143,4 @@ Route::post('/deleteexcursion', [App\Http\Controllers\AdminController::class, 'd
 Route::post('/insertexcursion', [App\Http\Controllers\AdminController::class, 'insertexcursion'])->name('insertexcursion')->middleware('roles:1');
 Route::post('/editexcursion', [App\Http\Controllers\AdminController::class, 'editexcursion'])->name('editexcursion')->middleware('roles:1');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
+  
