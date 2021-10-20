@@ -12,12 +12,16 @@ use App\Models\UserAction;
 use App\Models\UserTask;
 use App\Models\Hotel;
 use App\Models\Triptype;
-use App\Models\Destnation;
+use App\Models\Destination;
+use App\Models\Excursion;
 use App\Models\View;
 use App\Models\Included;
 use App\Models\Reservation;
+use App\Models\Transportation;
 use Response;
+use Notification;
 use App\Models\UserAttending;
+use Carbon\Carbon;
 use DB; 
 
 
@@ -126,19 +130,24 @@ class ApiController extends Controller
     {
         $hotel = Hotel::get();
         $triptype = Triptype::get();
-        $destnation = Destnation::get();
         $view = View::get();
         $included = Included::get(); 
+        $Destination = Destination::get();
+        $excursion = Excursion::get(); 
+        $transportation = Transportation::get(); 
+
 
         return Response::json(array(
             "hotels" => $hotel,
             "triptype" => $triptype,
-            "destnations" => $destnation,
+            "Destinations" => $Destination,
             "views" => $view ,
             "included" => $included,
+            "excursion" => $excursion , 
+            "transportation" => $transportation,
         ));
-    }
 
+    }
 
 
     public function send_mail(Request $request)
@@ -312,7 +321,7 @@ class ApiController extends Controller
         $reservation->gateway = $request->gateway;
         $reservation->salescomments = $request->salescomments;
         $reservation->received_time = $request->received_time;
-        $reservation->response_time = $request->response_time;
+        $reservation->response_time = \Carbon\Carbon::now();
         $reservation->avaliability = $request->avaliability;
         $reservation->confirmation = $request->confirmation;
         $reservation->res_comment = $request->res_comment;
@@ -320,7 +329,6 @@ class ApiController extends Controller
         $reservation->single = $request->single;
         $reservation->double = $request->double;
         $reservation->triple = $request->triple;
-        $reservation->transportation = $request->transportation;
         $reservation->kidscharge = $request->kidscharge;
         $reservation->save();
 

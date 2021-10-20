@@ -9,4 +9,4 @@ class Transportation extends Model
 {
     public $timestamps = false;
     use HasFactory;
-}
+} 

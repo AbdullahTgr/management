@@ -9,5 +9,9 @@ class Destination extends Model
 {
     public $timestamps = false;
     use HasFactory;
+    public function excur1()
+    {
+        return $this->belongsTo(Excursion::class, 'id');
+    }
   
 }
