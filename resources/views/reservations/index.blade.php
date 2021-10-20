@@ -123,7 +123,7 @@
                         <th scope="row">
                             <div class="badge bg-dark"><i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->response_time )->format('g:i A')}}</div>
                         </th>
-                        <th scope="row" style=" text-align: center; ">
+                        {{-- <th scope="row" style=" text-align: center; ">
                             <div class="badge bg-{{$sale->avaliability == 1 ? 'success' : 'warning'}}">{{$sale->avaliability == 1 ? 'Avaliabale' : 'Not Avaliabale'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
@@ -131,7 +131,7 @@
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           <div class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{$sale->to}}</div>
-                        </th>
+                        </th> --}}
                         <th scope="row" style=" text-align: center; ">
                           <a href="#">
                             <div data-bs-toggle="modal" data-bs-target="#rooms{{$sale->id}}" class="badge bg-info chalet{{$sale->id}}">{{$sale->chalet ? $sale->chalet . ' Chalet' : ' 0 Chalet'}}</div>

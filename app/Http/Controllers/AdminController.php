@@ -216,7 +216,7 @@ class AdminController extends Controller
 
         $res = Reservation::findOrFail($request->sale_id);
         $res->confirmation  = $request->confirmation;
-        $res->res_comment  = $request->res_comment;
+      //  $res->res_comment  = $request->res_comment;
         $res->save();
 
         return redirect()->back();
