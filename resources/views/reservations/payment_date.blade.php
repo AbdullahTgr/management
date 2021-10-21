@@ -12,7 +12,6 @@
                     <label for="payment_option_date">Payment Option Date</label>
                     <input class="form-control" value="{{\Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d')}}" type="datetime" name="payment_option_date" id="payment_option_date">
                  <br>
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
