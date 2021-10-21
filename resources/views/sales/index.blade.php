@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
                
-   <h2 class="mb-2 ">Sales Agent</h2>
+   <h2 class="mb-2  {{isset($api) ? 'd-none' : ''}} ">Sales Agent</h2>
 
    <button class="btn btn-primary  {{isset($api) ? 'd-none' : ''}} btn-sm" type="button" data-bs-target="#addrequest" data-bs-toggle="modal" >
     Add Request
