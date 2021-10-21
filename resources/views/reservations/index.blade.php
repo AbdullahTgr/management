@@ -60,7 +60,7 @@
                       @foreach ($reservations as $sale)
                       <tr>
                     <th scope="row">
-                        <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
+                        <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                     </th> 
                     {{-- <th scope="row">
                       <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
@@ -112,7 +112,7 @@
                     </th>
 
                         <th scope="row">
-                            <a class="text-capitalize" href="{{route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
+                            <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
                         </th>
                         <th scope="row">
                           <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} </span>

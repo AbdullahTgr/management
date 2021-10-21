@@ -57,7 +57,7 @@
                             <span class="badge bg-dark" >{{$sale->created_at}}</span>
                           </th>
                         <th scope="row">
-                            <a class="text-capitalize" href="{{route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
+                            <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
                         </th>
                         <th scope="row">
                           {{$sale->client_name}}
