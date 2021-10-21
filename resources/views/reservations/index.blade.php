@@ -192,9 +192,9 @@
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFinance{{$sale->id}}" href="#">Add to finance</a></li>
 
-                                @if (Auth::user()->role == 1)
+                                {{-- @if (Auth::user()->role == 1)
                                  <li class="d-none"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
-                                @endif
+                                @endif --}}
                              </ul>
                           </div>
  
@@ -335,7 +335,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_rooms')}}",
+    url:"{{isset($api) ? route('update_rooms_api') : route('update_rooms')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -383,7 +383,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_include')}}",
+    url:"{{isset($api) ? route('update_include_api') : route('update_include')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -427,7 +427,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_payment')}}",
+    url:"{{isset($api) ? route('update_payment_api') : route('update_payment')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -471,7 +471,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_cashin')}}",
+    url:"{{isset($api) ? route('update_cashin_api') : route('update_cashin')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -516,7 +516,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_cashout')}}",
+    url:"{{isset($api) ? route('update_cashout_api') : route('update_cashout')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -560,7 +560,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_bank')}}",
+    url:"{{isset($api) ? route('update_bank_api') : route('update_bank')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -605,7 +605,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_comment')}}",
+    url:"{{isset($api) ? route('update_comment_api') : route('update_comment')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,

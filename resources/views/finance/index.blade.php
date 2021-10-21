@@ -13,7 +13,20 @@
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
               <h4 class="mb-0">Finance List</h4>
-  
+              @php
+                  if (isset($_GET['month']))
+                  {
+                    $selected_month = $_GET['month'];
+                  }else
+                  {
+                    $selected_month = Carbon\Carbon::now()->month;
+                  }
+                    $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
+
+              @endphp
+                @foreach ($finance[0]->months() as $key => $month)
+                    <a href="?month={{$key}}" class="btn btn-{{$key == $selected_month ? 'dark' : 'primary'}}"><i class="fas fa-calendar"></i> {{$key}}</a>
+                @endforeach
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
@@ -37,7 +50,7 @@
                     </thead>
                     <tbody>
                
-                      @foreach ($finance as $sale)
+                      @foreach ($current_finance as $sale)
                       
                       <tr>
                           <th>

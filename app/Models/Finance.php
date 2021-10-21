@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Finance extends Model
 {
@@ -41,6 +42,12 @@ class Finance extends Model
 
     public function months()
     {
-        return $this::whereMonth('created_at', DB::row('between(1,12)'))->whereYear('created_at', \Carbon\Carbon::now()->year)->orderBy('id','DESC')->get();
+        $months = [];
+
+        for ($m = 1; $m <=12;$m++)
+        {
+          $months [$m]  =   $this::whereMonth('created_at', $m)->whereYear('created_at', \Carbon\Carbon::now()->year)->orderBy('id','DESC')->get();
+        }
+        return $months;
     }
 }

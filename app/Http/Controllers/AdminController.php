@@ -84,6 +84,7 @@ class AdminController extends Controller
     public function finance()
     {
         $finance = Finance::get();
+        
         return view('finance.index', compact('finance'));
     }
 

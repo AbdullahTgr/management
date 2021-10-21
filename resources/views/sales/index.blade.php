@@ -195,9 +195,9 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#approve{{$sale->id}}" href="#">Approve</a></li>
 
-                                @if (Auth::user()->role == 1)
+                                {{-- @if (Auth::user()->role == 1)
                                  <li class="d-none"><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
-                                @endif
+                                @endif --}}
                              </ul>
                           </div>
  
