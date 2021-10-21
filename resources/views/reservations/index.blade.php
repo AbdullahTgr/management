@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
                
-   <h2 class="mb-2">Reservations</h2>
+   <h2 class="mb-2 {{isset($api) ? 'd-none' : ''}}">Reservations</h2>
       <!-- Table -->
        <div class="row">
 
