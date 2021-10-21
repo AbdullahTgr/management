@@ -228,13 +228,13 @@
 </div>
 
  
-@include('sales.add_request')
 @forelse ($sales as $sale)
 @include('sales.approve')
 @include('sales.delete')
  @empty
 @endforelse
   
+@include('sales.add_request')
 @endsection 
 
 
