@@ -35,6 +35,14 @@ class WebViewController extends Controller
     
     public function sales($user)
     {
+        if (!isset($_GET['key']))
+        {
+            return 'Unauthorized Access!';
+        }
+        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
+        {
+            return 'Unauthorized Access!';
+        }
         $sales = Reservation::get();
         $user = User::where('id',$user)->first();
 
@@ -64,6 +72,14 @@ class WebViewController extends Controller
 
     public function reservations()
     {
+        if (!isset($_GET['key']))
+        {
+            return 'Unauthorized Access!';
+        }
+        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
+        {
+            return 'Unauthorized Access!';
+        }
         $reservations = Reservation::whereNotNull('res_agent_id')->get();
         $api = true;
         return view('reservations.index', compact('reservations','api'));
@@ -71,6 +87,15 @@ class WebViewController extends Controller
 
     public function finance()
     {
+        if (!isset($_GET['key']))
+        {
+            return 'Unauthorized Access!';
+        }
+        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
+        {
+            return 'Unauthorized Access!';
+        }
+        
         $finance = Finance::get();
         $api = true;
         return view('finance.index', compact('finance','api'));
