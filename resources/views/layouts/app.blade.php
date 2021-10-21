@@ -28,9 +28,29 @@
 
 <link rel="stylesheet" href="{{asset('css/nucleo-icons.css')}}">
 <link rel="stylesheet" href="{{asset('css/nucleo-svg.css')}}">
-<link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.css')}}">
-<link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.css.map')}}">
-<link rel="stylesheet" href="{{asset('css/soft-ui-dashboard.min.css')}}">
+<link id="pagestyle" rel="stylesheet" href="{{asset('css/soft-ui-dashboard.min.css')}}?v=1.0.3">
+<style>
+    .async-hide {
+      opacity: 0 !important
+    }
+  </style>
+  <script>
+    (function(a, s, y, n, c, h, i, d, e) {
+      s.className += ' ' + y;
+      h.start = 1 * new Date;
+      h.end = i = function() {
+        s.className = s.className.replace(RegExp(' ?' + y), '')
+      };
+      (a[n] = a[n] || []).hide = h;
+      setTimeout(function() {
+        i();
+        h.end = null
+      }, c);
+      h.timeout = c;
+    })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+      'GTM-K9BGS8K': true
+    });
+  </script>
 <link rel="stylesheet" href="{{asset('css/main.css')}}">
 <link rel="stylesheet" href="{{asset('css/tasks.css')}}">
 
@@ -39,7 +59,7 @@
 @endif
 
 </head> 
-<body>
+<body  class="g-sidenav-show bg-gray-100" data-new-gr-c-s-check-loaded="14.1034.0" data-gr-ext-installed="">
     <div id="app">
          @if (!isset($nav) && Auth::check())
          @include('layouts.sidebar')
@@ -54,9 +74,23 @@
     </div>
 
     @yield('scripts')  
+    <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+          var options = {
+            damping: '0.5'
+          }
+          Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+      </script>
+    
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="{{asset('js/soft-ui-dashboard.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{asset('js/soft-ui-dashboard.min.js')}}?v=1.0.3"></script>
+
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
  
     <script type="text/javascript">

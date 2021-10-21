@@ -31,6 +31,7 @@
                 </div>
               </a>
             </li>
+            
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="{{route('settings')}}" class="nav-link text-body p-0">
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
