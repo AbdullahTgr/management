@@ -10,7 +10,7 @@
               </div>
               <div class="modal-body">
                     <label for="payment_option_date">Payment Option Date</label>
-                    <input class="form-control" value="{{\Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d')}}" type="date" name="payment_option_date" id="payment_option_date">
+                    <input class="form-control" value="{{\Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d')}}" type="datetime-local" name="payment_option_date" id="payment_option_date">
                  <br>
                
  
