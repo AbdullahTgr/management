@@ -567,7 +567,7 @@ class ApiController extends Controller
         $reservation->clint_name = $request->clint_name;
         $reservation->phone_number = $request->phone_number;
         $reservation->adults = $request->adults; 
-        $reservation->kids = $request->kids;
+        $reservation->kids = $request->kids; 
         $reservation->kids_age = $request->kids_age;
         $reservation->days_night = $request->days_night;
         $reservation->month = $request->month;

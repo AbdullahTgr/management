@@ -11,6 +11,7 @@
     Add Request
   </button>
   
+  
       <!-- Table -->
        <div class="row">
 
@@ -228,12 +229,14 @@
  
 @include('sales.add_request')
 @forelse ($sales as $sale)
-@include('sales.delete')
 @include('sales.approve')
+@include('sales.delete')
  @empty
 @endforelse
   
-@endsection
+@endsection 
+
+
 
 
 @section('scripts')
@@ -242,6 +245,7 @@
 <script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="{{asset('js/tasks.js')}}"></script>
 
 <script>
      

@@ -11,8 +11,8 @@ class Destination extends Model
     use HasFactory;
     public function excur1()
     {
-        return $this->belongsTo(Excursion::class, 'id');
+        return $this->belongsTo(Excursion::class, 'id'); 
     }
-  
+   
 }
  
