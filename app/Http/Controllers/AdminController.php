@@ -64,14 +64,14 @@ class AdminController extends Controller
         $triptype = Triptype::get();
         $view = View::get();
         $included = Included::get(); 
-        $destination = Destination::get();
+        $destinations = Destination::get();
         $excursion = Excursion::get(); 
         $transportation = Transportation::get(); 
         $gateway = Gateway::get(); 
 
 
         $user->unreadNotifications->markAsRead();
-        return view('sales.index', compact('sales','hotel','triptype','view','included','destination','excursion','transportation','gateway'));
+        return view('sales.index', compact('sales','hotel','triptype','view','included','destinations','excursion','transportation','gateway'));
     }
 
 
@@ -80,6 +80,22 @@ class AdminController extends Controller
         $reservations = Reservation::whereNotNull('res_agent_id')->get();
         return view('reservations.index', compact('reservations'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function finance()
     {
@@ -860,6 +876,88 @@ public function deleteexcursion(Request $request)
     return redirect()->back();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+public function getexcurr(Request $request)
+{
+    $excurr=Excursion::where('id',$request->id)->get();
+    $opt="";
+    foreach ($excurr as $excur){
+        $opt.='<option  value="'.$excur->id.'">'.$excur->excursion.'</option>';
+    }
+    return $opt;
+}
+
+
+
+public function request_hotel (Request $request) {
+
+    $reservation = new Reservation();
+
+    $reservation->hotel_id = $request->hotel_id;
+    $reservation->triptype_id = $request->triptype_id;
+    $reservation->destination_id = $request->destination_id;
+    $reservation->view_id = $request->view_id;
+    $reservation->included_id = $request->included_id;
+    $reservation->sales_agent_id = $request->sales_agent_id;
+    $reservation->res_agent_id = $request->res_agent_id;
+    $reservation->clint_name = $request->clint_name;
+    $reservation->phone_number = $request->phone_number;
+    $reservation->adults = $request->adults; 
+    $reservation->kids = $request->kids; 
+    $reservation->kids_age = $request->kids_age;
+    $reservation->days_night = $request->days_night;
+    $reservation->month = $request->month;
+    $reservation->checkin = $request->checkin;
+    $reservation->checkout = $request->checkout;
+    $reservation->transportations = $request->transportations;
+    $reservation->excursion = $request->excursion;
+    $reservation->gateway = $request->gateway;
+    $reservation->salescomments = $request->salescomments;
+    $reservation->received_time = $request->received_time;
+    $reservation->response_time = \Carbon\Carbon::now();
+    $reservation->avaliability = $request->avaliability;
+    $reservation->confirmation = $request->confirmation;
+    $reservation->res_comment = $request->res_comment;
+    $reservation->chalet = $request->chalet;
+    $reservation->single = $request->single;
+    $reservation->double = $request->double;
+    $reservation->triple = $request->triple;
+    $reservation->kidscharge = $request->kidscharge;
+    $reservation->save();
+
+    $details = [
+        'title' => $request->subject,
+        'email' => $request->email,
+        'body' =>  $request->message
+    ];
+    
+    \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
+
+
+    if ($reservation)
+    {
+        $users = User::where('role', 1)->orWhere('role',2)->get();
+
+        foreach ($users as $user)
+        {
+            $data = [
+                'title' => 'New Request',
+                'message' => 'New Request from salas Agent',
+                'type' => 2,
+                'user_id' => $user->id
+            ];
+            Notification::send($user, new \App\Notifications\RequestNotification($data));
+        }
+
+        event(new \App\Events\NewRequest('hello world',$data));
+    }
+    
+    return redirect()->back();
+
+}
 
 
 

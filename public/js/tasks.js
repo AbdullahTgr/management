@@ -98,4 +98,22 @@ $( document ).ready(function() {
         
     });
 
+    $(document).on("change",".dist_select",function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var id=$(this).val();
+           $.ajax({
+           type:'GET',
+           url:'getexcurr', 
+           data:{id:id}, 
+           success:function(data){
+              $(".excursions_select").html(data);
+           }
+        });
+    }); 
+
 });

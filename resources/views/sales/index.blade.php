@@ -11,6 +11,7 @@
     Add Request
   </button>
   
+  
       <!-- Table -->
        <div class="row">
 
@@ -227,14 +228,16 @@
 </div>
 
  
-@include('sales.add_request')
 @forelse ($sales as $sale)
-@include('sales.delete')
 @include('sales.approve')
+@include('sales.delete')
  @empty
 @endforelse
   
-@endsection
+@include('sales.add_request')
+@endsection 
+
+
 
 
 @section('scripts')
