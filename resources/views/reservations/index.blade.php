@@ -60,7 +60,7 @@
                       @foreach ($reservations as $sale)
                       <tr>
                     <th scope="row">
-                        <a class="text-capitalize" href="{{route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
+                        <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                     </th> 
                     {{-- <th scope="row">
                       <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} <i class="bi bi-clock-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('g:i A')}}</span>
@@ -112,7 +112,7 @@
                     </th>
 
                         <th scope="row">
-                            <a class="text-capitalize" href="{{route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
+                            <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent_res->id)}}">{{$sale->agent_res->name}}</a>
                         </th>
                         <th scope="row">
                           <span style=" font-size: 12px; " class="badge bg-primary">  <i class="bi bi-calendar2-day-fill"></i> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y')}} </span>
@@ -192,9 +192,9 @@
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFinance{{$sale->id}}" href="#">Add to finance</a></li>
 
-                                @if (Auth::user()->role == 1)
+                                {{-- @if (Auth::user()->role == 1)
                                  <li class="d-none"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
-                                @endif
+                                @endif --}}
                              </ul>
                           </div>
  
@@ -250,12 +250,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js" integrity="sha512-h9kKZlwV1xrIcr2LwAPZhjlkx+x62mNwuQK5PAu9d3D+JXMNlGx8akZbqpXvp0vA54rz+DrqYVrzUGDMhwKmwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
 <script>
      
  
-      $('.dataTable').DataTable();
+      
+     $('.dataTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
       setInterval(function(){
         
         $('.previous a').html('<i class="bi bi-skip-backward"></i>');
@@ -335,7 +344,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_rooms')}}",
+    url:"{{isset($api) ? route('update_rooms_api') : route('update_rooms')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -383,7 +392,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_include')}}",
+    url:"{{isset($api) ? route('update_include_api') : route('update_include')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -427,7 +436,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_payment')}}",
+    url:"{{isset($api) ? route('update_payment_api') : route('update_payment')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -471,7 +480,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_cashin')}}",
+    url:"{{isset($api) ? route('update_cashin_api') : route('update_cashin')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -516,7 +525,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_cashout')}}",
+    url:"{{isset($api) ? route('update_cashout_api') : route('update_cashout')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -560,7 +569,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_bank')}}",
+    url:"{{isset($api) ? route('update_bank_api') : route('update_bank')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,
@@ -605,7 +614,7 @@
   e.preventDefault();
   form = $(this);
   $.ajax({
-    url:"{{route('update_comment')}}",
+    url:"{{isset($api) ? route('update_comment_api') : route('update_comment')}}",
    type: "POST",
    data:  new FormData(this),
    contentType: false,

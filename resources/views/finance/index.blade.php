@@ -13,7 +13,20 @@
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
               <h4 class="mb-0">Finance List</h4>
-  
+              @php
+                  if (isset($_GET['month']))
+                  {
+                    $selected_month = $_GET['month'];
+                  }else
+                  {
+                    $selected_month = Carbon\Carbon::now()->month;
+                  }
+                    $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
+
+              @endphp
+                @foreach ($finance[0]->months() as $key => $month)
+                    <a href="?month={{$key}}" class="btn btn-{{$key == $selected_month ? 'dark' : 'primary'}}"><i class="fas fa-calendar"></i> {{$key}}</a>
+                @endforeach
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
@@ -37,14 +50,14 @@
                     </thead>
                     <tbody>
                
-                      @foreach ($finance as $sale)
+                      @foreach ($current_finance as $sale)
                       
                       <tr>
                           <th>
                             <span class="badge bg-dark" >{{$sale->created_at}}</span>
                           </th>
                         <th scope="row">
-                            <a class="text-capitalize" href="{{route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
+                            <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
                         </th>
                         <th scope="row">
                           {{$sale->client_name}}
@@ -122,12 +135,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js" integrity="sha512-h9kKZlwV1xrIcr2LwAPZhjlkx+x62mNwuQK5PAu9d3D+JXMNlGx8akZbqpXvp0vA54rz+DrqYVrzUGDMhwKmwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
 <script>
      
  
-      $('.dataTable').DataTable();
+       
+     $('.dataTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
       setInterval(function(){
         
         $('.previous a').html('<i class="bi bi-skip-backward"></i>');

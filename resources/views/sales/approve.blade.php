@@ -1,7 +1,7 @@
 <div class="modal fade" id="approve{{$sale->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-           <form action="{{route('approve_reservation')}}" method="post">
+           <form action="{{isset($api) ? route( 'approve_reservation_api', $user) : route('approve_reservation') }}" method="post">
                @csrf
                <input type="hidden" name="sale_id" value="{{$sale->id}}">
             <div class="modal-header">

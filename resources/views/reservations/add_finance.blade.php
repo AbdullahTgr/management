@@ -1,7 +1,7 @@
 <div class="modal fade" id="addFinance{{$sale->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-           <form action="{{route('add_to_finance')}}" method="post">
+           <form action="{{isset($api) ? route('add_to_finance_api') : route('add_to_finance')}}" method="post">
                @csrf
                <input type="hidden" name="res_id" value="{{$sale->id}}">
             <div class="modal-header">

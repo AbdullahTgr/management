@@ -21,6 +21,20 @@ Route::get('/finance', [App\Http\Controllers\AdminController::class, 'finance'])
 Route::get('/management', [App\Http\Controllers\AdminController::class, 'management'])->name('management')->middleware('roles:1');
 
 
+Route::get('/sales/{user}', [App\Http\Controllers\WebViewController::class, 'sales']);
+Route::get('/reservations/{user}', [App\Http\Controllers\WebViewController::class, 'reservations'])->name('reservations_api');
+Route::get('/finance/{user}', [App\Http\Controllers\WebViewController::class, 'finance'])->name('finance_api');
+
+Route::post('/approve_reservation_api/{user}', [App\Http\Controllers\WebViewController::class, 'approve_reservation'])->name('approve_reservation_api');
+Route::post('/update_reservation_api', [App\Http\Controllers\WebViewController::class, 'update_reservation'])->name('update_reservation_api');
+Route::post('/update_rooms_api', [App\Http\Controllers\WebViewController::class, 'update_rooms'])->name('update_rooms_api');
+Route::post('/update_include_api', [App\Http\Controllers\WebViewController::class, 'update_include'])->name('update_include_api');
+Route::post('/update_payment_api', [App\Http\Controllers\WebViewController::class, 'update_payment'])->name('update_payment_api');
+Route::post('/update_cashin_api', [App\Http\Controllers\WebViewController::class, 'update_cashin'])->name('update_cashin_api');
+Route::post('/update_cashout_api', [App\Http\Controllers\WebViewController::class, 'update_cashout'])->name('update_cashout_api');
+Route::post('/update_bank_api', [App\Http\Controllers\WebViewController::class, 'update_bank'])->name('update_bank_api');
+Route::post('/update_comment_api', [App\Http\Controllers\WebViewController::class, 'update_comment'])->name('update_comment_api');
+Route::post('/add_to_finance_api', [App\Http\Controllers\WebViewController::class, 'add_to_finance'])->name('add_to_finance_api');
 
 
 
