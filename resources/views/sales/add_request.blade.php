@@ -4,7 +4,7 @@
        <form action="request_hotel" method="post">
                @csrf
                <input required type="hidden" name="sales_agent_id" value="{{Auth::user()->id}}">
-               <input required type="hidden" name="res_agent_id" value="{{Auth::user()->id }}">
+               
 
                
                
@@ -60,7 +60,13 @@
                           <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Days/Night</i></h6>
                              
                             <label>Days/Night</label>
-                            <input required type="text" class="form-control" name="days_night" value="">
+                            <select class="form-control" name="days_night">
+                              @for ($i=1; $i<=31;$i++)
+                                <option value="{{$i}} Days/{{$i-1}} Nights">{{$i}} Days/{{$i-1}} Nights</option>
+                              @endfor
+                              
+                            </select>
+                            
 
                             <label>Month</label>
                               <select class="form-control" name="month">
@@ -210,9 +216,9 @@
                               <label>Clint Email</label>
                               <input required type="email" class="form-control" name="email" value="">
                               <label>Message Title</label>
-                              <input required required type="text" class="form-control" name="title" value="">
+                              <input required required type="text" class="form-control" name="subject" value="">
                               <label>Message Content</label>
-                              <textarea required  class="form-control" name="body" ></textarea>
+                              <textarea required  class="form-control" name="message" ></textarea>
 
                               
                         </div>
