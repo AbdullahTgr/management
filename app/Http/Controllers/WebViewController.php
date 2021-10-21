@@ -69,6 +69,13 @@ class WebViewController extends Controller
         return view('reservations.index', compact('reservations','api'));
     }
 
+    public function finance()
+    {
+        $finance = Finance::get();
+        $api = true;
+        return view('finance.index', compact('finance','api'));
+    }
+
 
     public function update_reservation(Request $request) {
 

@@ -23,6 +23,7 @@ Route::get('/management', [App\Http\Controllers\AdminController::class, 'managem
 
 Route::get('/sales/{user}', [App\Http\Controllers\WebViewController::class, 'sales']);
 Route::get('/reservations/{user}', [App\Http\Controllers\WebViewController::class, 'reservations'])->name('reservations_api');
+Route::get('/finance/{user}', [App\Http\Controllers\WebViewController::class, 'finance'])->name('finance_api');
 
 Route::post('/approve_reservation_api/{user}', [App\Http\Controllers\WebViewController::class, 'approve_reservation'])->name('approve_reservation_api');
 Route::post('/update_reservation_api', [App\Http\Controllers\WebViewController::class, 'update_reservation'])->name('update_reservation_api');
