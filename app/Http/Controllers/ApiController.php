@@ -188,13 +188,25 @@ class ApiController extends Controller
     public function userlog(Request $request)
     {
 
-        $useraction = new UserAction();
-        $useraction->user_id = $request->user_id;
-        $useraction->action =$request->action;
-        $useraction->page =$request->page;
-        $useraction->save();
+        $check = UserAction::where('date_time',$request->date_time)->first();
+
+        if (!$check)
+        {
+            $useraction = new UserAction();
+            $useraction->user_id = $request->user_id;
+            $useraction->action =$request->action;
+            $useraction->date_time =$request->date_time;
+            $useraction->page =$request->page;
+            $useraction->save();
+
             return Response::json(array(
                 'actions' =>  $useraction,
+            ));
+        }
+
+
+            return Response::json(array(
+                'actions' =>  'action recorded',
             ));
     } 
 
