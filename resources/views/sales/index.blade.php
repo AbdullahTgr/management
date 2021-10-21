@@ -188,7 +188,8 @@
 
 
                         <td class="text-right">
-                          <div class="dropdown">
+                          {{$sale->res_agent_id ? 'Approved' : ''}}
+                          <div class="dropdown {{$sale->res_agent_id ? 'd-none' : ''}}">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Options
                             </button>
