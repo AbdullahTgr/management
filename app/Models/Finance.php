@@ -38,4 +38,9 @@ class Finance extends Model
     {
         return Cashout::where('res_id', $this->res_id)->get();
     }
+
+    public function months()
+    {
+        return $this::whereMonth('created_at', DB::row('between(1,12)'))->whereYear('created_at', \Carbon\Carbon::now()->year)->orderBy('id','DESC')->get();
+    }
 }

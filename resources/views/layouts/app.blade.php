@@ -29,28 +29,7 @@
 <link rel="stylesheet" href="{{asset('css/nucleo-icons.css')}}">
 <link rel="stylesheet" href="{{asset('css/nucleo-svg.css')}}">
 <link id="pagestyle" rel="stylesheet" href="{{asset('css/soft-ui-dashboard.min.css')}}?v=1.0.3">
-<style>
-    .async-hide {
-      opacity: 0 !important
-    }
-  </style>
-  <script>
-    (function(a, s, y, n, c, h, i, d, e) {
-      s.className += ' ' + y;
-      h.start = 1 * new Date;
-      h.end = i = function() {
-        s.className = s.className.replace(RegExp(' ?' + y), '')
-      };
-      (a[n] = a[n] || []).hide = h;
-      setTimeout(function() {
-        i();
-        h.end = null
-      }, c);
-      h.timeout = c;
-    })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
-      'GTM-K9BGS8K': true
-    });
-  </script>
+ 
 <link rel="stylesheet" href="{{asset('css/main.css')}}">
 <link rel="stylesheet" href="{{asset('css/tasks.css')}}">
 
