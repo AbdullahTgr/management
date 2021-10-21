@@ -235,25 +235,5 @@
   </div>
 </div>
 
-@section('scripts')
-@endsection
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js" integrity="sha512-h9kKZlwV1xrIcr2LwAPZhjlkx+x62mNwuQK5PAu9d3D+JXMNlGx8akZbqpXvp0vA54rz+DrqYVrzUGDMhwKmwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
-
-    <script type="text/javascript" src="{{asset('js/tasks.js')}}"></script>
-
-    <script>
-          $('.dataTable').DataTable();
-          setInterval(function(){
-            
-            $('.previous a').html('<i class="bi bi-skip-backward"></i>');
-          $('.next a').html('<i class="bi bi-skip-forward"></i>');
-          },500);
-        
-    </script>
 
   
