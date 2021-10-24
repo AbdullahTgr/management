@@ -914,7 +914,7 @@ public function request_hotel (Request $request) {
     $reservation->checkout = $request->checkout;
     $reservation->transportations = $request->transportations;
     $reservation->excursion = $request->excursion;
-    $reservation->gateway = $request->gateway;
+    $reservation->gateway = $request->gateway; 
     $reservation->salescomments = $request->salescomments;
     $reservation->received_time = $request->received_time;
     $reservation->response_time = \Carbon\Carbon::now();

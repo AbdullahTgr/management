@@ -163,7 +163,7 @@
                     </select>
                           
                     <label>Gateway</label>
-                    <select class="form-control" name="gateway_id">
+                    <select class="form-control" name="gateway">
                       @foreach ($gateway as $gateway)
                          <option value="{{$gateway->id}}">{{$gateway->gateway}}</option> 
                       @endforeach
@@ -206,7 +206,16 @@
                         </div>
                       </div>
                     </div> 
-                     
+
+                    <div class="col-sm-6 mb-3">
+                      <div class="card h-100">
+                        <div class="card-body ">
+                          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Received Time</i></h6>
+                          <input required type="date" class="form-control" name="received_time" value="">
+                        </div>
+                      </div>
+                    </div> 
+                    
 
                     <div class="col-sm-6 mb-3">
                       <div class="card h-100">
@@ -219,7 +228,6 @@
                               <input required required type="text" class="form-control" name="subject" value="">
                               <label>Message Content</label>
                               <textarea required  class="form-control" name="message" ></textarea>
-
                               
                         </div>
                       </div>
