@@ -227,7 +227,7 @@
 {{-- @include('reservations.delete') --}}
 @if ($sale->finance)
     
-@else
+@else 
 @include('reservations.edit')
 @include('reservations.rooms')
 @include('reservations.include')
@@ -237,13 +237,13 @@
 @include('reservations.bank')
 @include('reservations.comments')
 @include('reservations.add_finance')
-@endif
+@endif 
 
- @empty
+@empty
+
 @endforelse
   
 @endsection
-
 
 @section('scripts')
     <!-- JavaScript Bundle with Popper -->

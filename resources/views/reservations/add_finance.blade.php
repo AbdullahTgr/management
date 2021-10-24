@@ -12,7 +12,7 @@
                     <label for="notes">Notes</label>
                     <input type="hidden" name="agent_id" value="{{$sale->res_agent_id}}">
                     <input type="hidden" name="hotel_id" value="{{$sale->hotel_id}}">
-                    <input type="hidden" name="client_name" value="{{$sale->client_name}}">
+                    <input type="hidden" name="client_name" value="{{$sale->clint_name}}">
                     <input type="hidden" name="days_nights" value="{{$sale->days_night}}">
                     <input type="hidden" name="checkin" value="{{$sale->checkin}}">
                     <input type="hidden" name="transportation_id" value="{{$sale->transportations}}">

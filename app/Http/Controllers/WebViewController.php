@@ -91,6 +91,7 @@ class WebViewController extends Controller
         {
             return 'Unauthorized Access!';
         }
+        
         if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
         {
             return 'Unauthorized Access!';
@@ -148,10 +149,9 @@ class WebViewController extends Controller
         }else
         {
             $finance = new Finance();
-
             $finance->agent_id  = $request->agent_id;
             $finance->hotel_id  = $request->hotel_id;
-            $finance->client_name  = $request->client_name;
+            $finance->client_name  = $request->client_name; 
             $finance->days_nights  = $request->days_nights;
             $finance->checkin  = $request->checkin;
             $finance->transportation_id  = $request->transportation_id;
@@ -163,7 +163,6 @@ class WebViewController extends Controller
             $finance->commission  = $request->cashin -  $request->cashout;
             $finance->res_id  = $request->res_id;
             $finance->save();
-
             $res = Reservation::findOrFail($request->res_id);
             $res->finance  = 1;
             $res->save();

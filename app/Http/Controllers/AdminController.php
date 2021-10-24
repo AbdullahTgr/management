@@ -104,7 +104,7 @@ class AdminController extends Controller
         return view('finance.index', compact('finance'));
     }
 
-
+ 
     public function management()
     {
         return view('management.index');
@@ -916,7 +916,7 @@ public function request_hotel (Request $request) {
     $reservation->excursion = $request->excursion;
     $reservation->gateway = $request->gateway; 
     $reservation->salescomments = $request->salescomments;
-    $reservation->received_time = $request->received_time;
+    $reservation->received_time = $request->received_time; 
     $reservation->response_time = \Carbon\Carbon::now();
     $reservation->avaliability = $request->avaliability;
     $reservation->confirmation = $request->confirmation;

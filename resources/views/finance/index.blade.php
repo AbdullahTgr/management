@@ -60,7 +60,7 @@
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
                         </th>
                         <th scope="row">
-                          {{$sale->client_name}}
+                          {{$sale->client_name}} 
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}

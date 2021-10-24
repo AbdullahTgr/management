@@ -41,14 +41,10 @@
                         <th scope="col">Excursion</th> 
                         <th scope="col">Gateway</th> 
                         <th scope="col">Sales Comment</th> 
-
                         <th scope="col">RES.Agent</th>
                         <th scope="col">Date</th>
                         <th scope="col">Received Time</th>
                         <th scope="col">Response Time</th> 
-                        {{-- <th scope="col">Availbility</th> 
-                        <th scope="col">FROM</th> 
-                        <th scope="col">TO</th>  --}}
                         <th scope="col">Rooms</th> 
                         <th scope="col">Included</th> 
                         <th scope="col">Confirmation</th> 

@@ -59,7 +59,7 @@ Route::post('/update_cashout', [App\Http\Controllers\AdminController::class, 'up
 Route::post('/update_bank', [App\Http\Controllers\AdminController::class, 'update_bank'])->name('update_bank');
 Route::post('/update_comment', [App\Http\Controllers\AdminController::class, 'update_comment'])->name('update_comment');
 Route::post('/add_to_finance', [App\Http\Controllers\AdminController::class, 'add_to_finance'])->name('add_to_finance');
-Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale');
+Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale'); 
 
 
 Route::get('/add', [App\Http\Controllers\AdminController::class, 'add'])->name('add');
