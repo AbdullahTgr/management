@@ -582,7 +582,12 @@ class AdminController extends Controller
 
           return redirect()->back();
     }
-
+    public function delete_task(Request $request)
+    {
+        UserTask::where('id',$request->modaledel_id)->delete();
+          return redirect()->back();
+    }
+    
 
     public function deleteuserlog($uid)
     {

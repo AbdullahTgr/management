@@ -100,6 +100,7 @@
 
     </div>
 </div>
+@include('tasks.delete')
 @endsection
 
 

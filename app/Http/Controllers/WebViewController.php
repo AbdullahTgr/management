@@ -112,6 +112,7 @@ class WebViewController extends Controller
 
         return redirect()->back();
     }
+    
     public function update_rooms(Request $request) {
 
         $res = Reservation::findOrFail($request->sale_id);
@@ -146,7 +147,8 @@ class WebViewController extends Controller
         if ($check)
         {
 
-        }else
+        }
+        else
         {
             $finance = new Finance();
             $finance->agent_id  = $request->agent_id;

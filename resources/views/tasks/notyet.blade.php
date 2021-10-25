@@ -252,7 +252,18 @@
                     @endif
                                         </td>
                                         
-                    </tr>                        
+                    </tr> 
+                    
+                    <td>
+                      <div class="candidate-list-info">
+       <a class="dropdown-item del" style="@endphp
+       color: #ff0202;
+border: 1px solid #ddd;
+text-align: center;
+font-weight: bold;
+       "  data-bs-toggle="modal" data-bs-target="#delete" href="#"><input type="hidden" class="id" value="{{$user->task_id}}" >Delete</a>
+     </div>
+                   </td>
                                         @endif
                         @endif
                         
