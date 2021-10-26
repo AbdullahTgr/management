@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use App\Models\UserAttending;
 use App\Models\UserDiscount;
+use App\Models\Transfer;
 use App\Models\UserSalary;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -85,6 +86,23 @@ class WebViewController extends Controller
         return view('reservations.index', compact('reservations','api'));
     }
 
+    public function transfer()
+    {
+        if (!isset($_GET['key']))
+        {
+            return 'Unauthorized Access!';
+        }
+        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
+        {
+            return 'Unauthorized Access!';
+        }
+
+        $transfers = Transfer::get();
+        $api = true;
+
+        return view('transfers.index', compact('transfers','api'));
+    }
+
     public function finance()
     {
         if (!isset($_GET['key']))
@@ -102,6 +120,35 @@ class WebViewController extends Controller
         return view('finance.index', compact('finance','api'));
     }
 
+    public function add_to_transfer(Request $request) {
+        if (!isset($_GET['key']))
+        {
+            return 'Unauthorized Access!';
+        }
+        
+        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
+        {
+            return 'Unauthorized Access!';
+        }
+
+        // $check = Transfer::where('res_id', $request->res_id)->first();
+
+        // if ($check)
+        // {
+        //     $transfer = Transfer::findOrFail($check->id);
+        //     $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : $transfer->photo ;
+        //     $transfer->save();
+        // }else
+        // {
+            $transfer = new Transfer();
+            $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : null;
+            $transfer->res_id = $request->res_id;
+            $transfer->save();
+      //  }
+  
+
+        return redirect()->back();
+    }
 
     public function update_reservation(Request $request) {
 

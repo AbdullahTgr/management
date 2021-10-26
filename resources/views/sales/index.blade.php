@@ -25,8 +25,9 @@
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Agent</th>
-                        <th scope="col">Client Name</th>
+                      <th scope="col">#ReqNum</th>
+                      <th scope="col">Agent</th>
+                      <th scope="col">Client Name</th>
                         <th scope="col">Phone</th> 
                         <th scope="col">Persons</th> 
                         <th scope="col">Hotel</th> 
@@ -61,6 +62,9 @@
                       @foreach ($sales as $sale)
                       
                       <tr>
+                        <th style="text-align: center;" scope="row">
+                          {{$sale->id}}
+                        </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent_sales->id)}}">{{$sale->agent_sales->name}}</a>
                         </th>
