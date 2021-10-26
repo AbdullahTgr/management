@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use App\Models\UserAttending;
 use App\Models\UserDiscount;
+use App\Models\UserBouns;
 use App\Models\UserSalary;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -662,6 +663,43 @@ class AdminController extends Controller
             $user_dsicount->user_id = $request->user_id;
             $user_dsicount->salary_id = $salary->id;
             $user_dsicount->save();
+        }
+
+
+
+        return redirect()->back();
+    }
+
+    public function update_user_bouns(Request $request)
+    {
+        $check_salary = UserSalary::where('user_id',$request->user_id)->whereNull('status')->first();
+        $user = User::where('id',$request->user_id)->first();
+
+        if ($check_salary)
+        {
+            $salary = UserSalary::findOrFail($check_salary->id);
+            $salary->salary = $check_salary->salary + $request->bouns;
+            $salary->save();
+
+            $user_bouns = new UserBouns();
+            $user_bouns->amount = $request->bouns;
+            $user_bouns->comment = $request->comment;
+            $user_bouns->user_id = $request->user_id;
+            $user_bouns->salary_id = $check_salary->id;
+            $user_bouns->save();
+        }else
+        {
+            $salary = new UserSalary();
+            $salary->salary = $user->salary + $request->bouns;
+            $salary->user_id = $request->user_id;
+            $salary->save();
+
+            $user_bouns = new UserBouns();
+            $user_bouns->amount = $request->bouns;
+            $user_bouns->comment = $request->comment;
+            $user_bouns->user_id = $request->user_id;
+            $user_bouns->salary_id = $salary->id;
+            $user_bouns->save();
         }
 
 

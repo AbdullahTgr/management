@@ -91,6 +91,7 @@
                               <li><a class="dropdown-item" href="{{route('profile', $user->id)}}">Profile</a></li>
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#withdraw{{$user->id}}" href="#">Withdraw</a></li>
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#discount{{$user->id}}" href="#">Discount</a></li>
+                              {{-- <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#bouns{{$user->id}}" href="#">Bouns</a></li> --}}
                               @if (Auth::user()->role == 1)
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$user->id}}" href="#">Delete</a></li>
                               @endif
@@ -199,6 +200,7 @@
 @forelse ($users as $user)
 @include('users.delete')
 @include('users.discount')
+@include('users.bouns')
 @include('users.withdraw')
 @empty
 @endforelse
@@ -222,6 +224,10 @@
      
      $(document).on('keyup', '#discount', function(){
       $(this).parent().find('#after_salary').val(Number( $(this).parent().find('#current_salary').val()) - Number($(this).val()));
+     });
+
+     $(document).on('keyup', '#bouns', function(){
+      $(this).parent().find('#bouns_after_salary').val(Number( $(this).parent().find('#bouns_current_salary').val()) + Number($(this).val()));
      });
 
       $('.dataTable').DataTable();
