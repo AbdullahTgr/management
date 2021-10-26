@@ -60,7 +60,7 @@
                       
                       <tr>
                           <th>
-                            <span>{{$sale->id}} - {{$sale->res->clint_name}} </span>
+                            <span>{{$sale->id}} - {{$sale->res->clint_name ? $sale->res->clint_name : ''}} </span>
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
