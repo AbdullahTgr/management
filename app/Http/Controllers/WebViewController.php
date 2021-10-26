@@ -68,7 +68,7 @@ class WebViewController extends Controller
         $res->res_agent_id  = $user;
         $res->save();
 
-        return redirect()->route('reservations_api',$user);
+        return redirect()->route('reservations_api',$user . '?key=LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q');
     }
 
     public function reservations()
