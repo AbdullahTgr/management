@@ -126,13 +126,6 @@
           <span class="nav-link-text ms-1">Finance</span>
         </a>
       </li>
-<<<<<<< HEAD
-      @endif
-
-      @if(Auth::user()->role == "1")
-         <li class="nav-item">
-        <a class="nav-link {{in_array(Route::currentRouteName(), ['settings','setting']) ? 'active' : ''}}" href="{{route('settings')}}"> 
-=======
       <li class="nav-item">
         <a class="nav-link {{in_array(Route::currentRouteName(), ['transfer','transfers']) ? 'active' : ''}}" href="{{route('transfer')}}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -144,7 +137,6 @@
       </li>
       <li class="nav-item">
         <a class="nav-link {{in_array(Route::currentRouteName(), ['settings','setting']) ? 'active' : ''}}" href="{{route('settings')}}">
->>>>>>> 09029214d5f9fac93653852f0e66a194fa6af726
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>settings</title>
