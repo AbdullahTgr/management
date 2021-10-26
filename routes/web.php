@@ -18,12 +18,14 @@ Route::get('/settings', [App\Http\Controllers\AdminController::class, 'settings'
 Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1');
 Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations')->middleware('roles:1');
 Route::get('/finance', [App\Http\Controllers\AdminController::class, 'finance'])->name('finance')->middleware('roles:1');
+Route::get('/transfer', [App\Http\Controllers\AdminController::class, 'transfer'])->name('transfer')->middleware('roles:1');
 Route::get('/management', [App\Http\Controllers\AdminController::class, 'management'])->name('management')->middleware('roles:1');
 
 
 Route::get('/sales/{user}', [App\Http\Controllers\WebViewController::class, 'sales']);
 Route::get('/reservations/{user}', [App\Http\Controllers\WebViewController::class, 'reservations'])->name('reservations_api');
 Route::get('/finance/{user}', [App\Http\Controllers\WebViewController::class, 'finance'])->name('finance_api');
+Route::get('/transfer/{user}', [App\Http\Controllers\WebViewController::class, 'transfer'])->name('transfer_api');
 
 Route::post('/approve_reservation_api/{user}', [App\Http\Controllers\WebViewController::class, 'approve_reservation'])->name('approve_reservation_api');
 Route::post('/update_reservation_api', [App\Http\Controllers\WebViewController::class, 'update_reservation'])->name('update_reservation_api');
@@ -35,6 +37,7 @@ Route::post('/update_cashout_api', [App\Http\Controllers\WebViewController::clas
 Route::post('/update_bank_api', [App\Http\Controllers\WebViewController::class, 'update_bank'])->name('update_bank_api');
 Route::post('/update_comment_api', [App\Http\Controllers\WebViewController::class, 'update_comment'])->name('update_comment_api');
 Route::post('/add_to_finance_api', [App\Http\Controllers\WebViewController::class, 'add_to_finance'])->name('add_to_finance_api');
+Route::post('/add_to_transfer_api', [App\Http\Controllers\WebViewController::class, 'add_to_transfer'])->name('add_to_transfer_api');
 
 
 
@@ -60,6 +63,7 @@ Route::post('/update_cashout', [App\Http\Controllers\AdminController::class, 'up
 Route::post('/update_bank', [App\Http\Controllers\AdminController::class, 'update_bank'])->name('update_bank');
 Route::post('/update_comment', [App\Http\Controllers\AdminController::class, 'update_comment'])->name('update_comment');
 Route::post('/add_to_finance', [App\Http\Controllers\AdminController::class, 'add_to_finance'])->name('add_to_finance');
+Route::post('/add_to_transfer', [App\Http\Controllers\AdminController::class, 'add_to_transfer'])->name('add_to_transfer');
 Route::post('/delete_sale', [App\Http\Controllers\AdminController::class, 'delete_sale'])->name('delete_sale'); 
 Route::post('/delete_task', [App\Http\Controllers\AdminController::class, 'delete_task'])->name('delete_task'); 
 

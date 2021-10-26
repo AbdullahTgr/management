@@ -32,9 +32,8 @@
               <table class="table align-items-center table-flush dataTable">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Date</th>
+                      <th scope="col">#ReqNum</th>
                         <th scope="col">Agent</th>
-                        <th scope="col">Client Name</th>
                         <th scope="col">Hotel</th> 
                         <th scope="col">Days/Night</th> 
                         <th scope="col">Check In</th> 
@@ -45,6 +44,7 @@
                         <th scope="col">Bank</th> 
                         <th scope="col">Notes</th> 
                         <th scope="col">Commission</th> 
+                        <th scope="col"></th> 
  
                       </tr>
                     </thead>
@@ -54,14 +54,12 @@
                       
                       <tr>
                           <th>
-                            <span class="badge bg-dark" >{{$sale->created_at}}</span>
+                            <span>{{$sale->id}} - {{$sale->res->clint_name}} </span>
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
                         </th>
-                        <th scope="row">
-                          {{$sale->client_name}} 
-                        </th>
+ 
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}
                         </th>
@@ -92,10 +90,10 @@
                           <th scope="row" style=" text-align: center; ">
                             {{$sale->commission}}
                           </th>
+                          <th scope="row" style=" text-align: center; ">
+                             <div data-bs-toggle="modal" data-bs-target="#newTransfer{{$sale->res_id}}" class="btn btn-primary btn-sm">New transfer</div>
+                          </th>
 
-
-                        
- 
                       </tr>
                       @endforeach
        
@@ -125,6 +123,7 @@
 @include('reservations.cashout',['finance'=>1])
 @include('reservations.cashin',['finance'=>1])
 @include('reservations.bank',['finance'=>1])
+@include('finance.transfer',['finance'=>1])
  @empty
 @endforelse
   

@@ -26,6 +26,7 @@ use App\Models\Gateway;
 use App\Models\Cashout;
 use App\Models\Bank;
 use App\Models\Comment;
+use App\Models\Transfer;
 use App\Models\Included;
 use App\Models\Finance;
 use App\Notifications\MessageNotification;
@@ -104,6 +105,13 @@ class AdminController extends Controller
         $finance = Finance::get();
         
         return view('finance.index', compact('finance'));
+    }
+
+    public function transfer()
+    {
+        $transfers = Transfer::get();
+        
+        return view('transfers.index', compact('transfers'));
     }
 
  
@@ -444,6 +452,25 @@ class AdminController extends Controller
         
 
         return response()->json(['success'=>$all]);
+    }
+
+    public function add_to_transfer(Request $request) {
+        // $check = Transfer::where('res_id', $request->res_id)->first();
+
+        // if ($check)
+        // {
+        //     $transfer = Transfer::findOrFail($check->id);
+        //     $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : $transfer->photo ;
+        //     $transfer->save();
+        // }else
+        // {
+            $transfer = new Transfer();
+            $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : null;
+            $transfer->res_id = $request->res_id;
+            $transfer->save();
+      //  }
+
+        return redirect()->back();
     }
 
 

@@ -29,6 +29,11 @@ class Finance extends Model
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
     }
+
+    public function res() 
+    {
+        return $this->belongsTo(Reservation::class, 'res_id');
+    }
     
     public function banks()
     {
