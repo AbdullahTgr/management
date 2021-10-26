@@ -7,6 +7,7 @@
         @csrf
          <input type="hidden" name="id" value="{{$setting->id}}">
         <div class="col-md-6 border-right">
+            
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Task Rate Settings</h4>
@@ -26,10 +27,48 @@
                     </div>
                   --}}
                 </div>
+                
+            </div>
+            
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">The Commissions And Targets </h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Target 1</label>
+                        <input type="number" step="0.1" name="tr1" class="form-control"  value="{{$setting->target1}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Commission For Target 1</label>
+                        <input type="number" step="0.1" name="com1" class="form-control"  value="{{$setting->commission1}}">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Target 2</label>
+                        <input type="number" step="0.1" name="tr2" class="form-control"  value="{{$setting->target2}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Commission For Target 2</label>
+                        <input type="number" step="0.1" name="com2" class="form-control"  value="{{$setting->commission2}}">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Target 3</label>
+                        <input type="number" step="0.1" name="tr3" class="form-control"  value="{{$setting->target3}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Commission For Target 3</label>
+                        <input type="number" step="0.1" name="com3" class="form-control"  value="{{$setting->commission3}}">
+                    </div>
+                </div>
  
  
                 <div class="mt-5 text-center"><button class="btn btn-dark profile-button" type="submit">Save</button></div>
             </div>
+
         </div>
  
     </form>

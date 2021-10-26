@@ -229,7 +229,7 @@
      $(document).on('keyup', '#bouns', function(){
       $(this).parent().find('#bouns_after_salary').val(Number( $(this).parent().find('#bouns_current_salary').val()) + Number($(this).val()));
      });
-
+ 
       $('.dataTable').DataTable();
       setInterval(function(){
         
@@ -237,5 +237,5 @@
       $('.next a').html('<i class="bi bi-skip-forward"></i>');
       },500);
     
-</script>
+</script> 
 @endsection

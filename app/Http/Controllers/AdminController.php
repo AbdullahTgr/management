@@ -123,11 +123,20 @@ class AdminController extends Controller
 
 
     public function update_setting(Request $request) {
-
+ 
         $setting = Setting::findOrFail($request->id);
         $setting->complete_rate = $request->complete_rate;
         $setting->late_rate = $request->late_rate;
         $setting->reject_rate = $request->reject_rate;
+        
+        $setting->commission1 = $request->com1;
+        $setting->commission2 = $request->com2;
+        $setting->commission3 = $request->com3;
+        
+        $setting->target1 = $request->tr1;
+        $setting->target2 = $request->tr2;
+        $setting->target3 = $request->tr3;
+        
         $setting->save();
 
         return redirect()->back();

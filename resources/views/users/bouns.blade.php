@@ -9,6 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                
                 <div class="row">
                     <div class="col-md-6">
                         <label for="bouns_current_salary">Current salary</label>
@@ -19,6 +20,7 @@
                         <input disabled class="form-control" type="text" id="bouns_after_salary" value="{{$user->salary}}" >
                     </div>
                 </div>
+
                 <label for="bouns">Bouns</label>
                 <input class="form-control" type="number" step="0.1" name="bouns" id="bouns">
                 <div class="mb-3">

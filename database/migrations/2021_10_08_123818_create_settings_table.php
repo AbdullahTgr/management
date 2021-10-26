@@ -20,7 +20,7 @@ class CreateSettingsTable extends Migration
             $table->float('reject_rate')->nullable();
             $table->float('late_rate')->nullable();
             $table->date('rate_type')->nullable();
-        });
+        }); 
     }
 
     /**
