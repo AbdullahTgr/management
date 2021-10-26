@@ -56,7 +56,6 @@
                     <tbody>
                
                       @foreach ($current_finance as $sale)
-                      
                       <tr>
                           <th>
                             <span>{{$sale->res_id}}  </span>
