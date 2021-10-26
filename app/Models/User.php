@@ -98,6 +98,13 @@ class User extends Authenticatable
        return $discount ? $discount : null;
     }
 
+    public function bouns()
+    {
+       $bouns =  UserBouns::where('user_id',$this->id)->orderBy('id','DESC')->get();
+
+       return $bouns ? $bouns : null;
+    }
+
     public function month_discounts()
     {
        $discount =  UserDiscount::where('user_id',$this->id)->whereMonth('created_at', \Carbon\Carbon::now()->month)->whereYear('created_at', \Carbon\Carbon::now()->year)->orderBy('id','DESC')->get();

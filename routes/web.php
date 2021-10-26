@@ -47,6 +47,7 @@ Route::post('/update_user', [App\Http\Controllers\AdminController::class, 'updat
 Route::post('/delete_user', [App\Http\Controllers\AdminController::class, 'delete_user'])->name('delete_user')->middleware('roles:1');
 Route::post('/update_user_time', [App\Http\Controllers\AdminController::class, 'update_user_time'])->name('update_user_time');
 Route::post('/update_user_discount', [App\Http\Controllers\AdminController::class, 'update_user_discount'])->name('update_user_discount');
+Route::post('/update_user_bouns', [App\Http\Controllers\AdminController::class, 'update_user_bouns'])->name('update_user_bouns');
 Route::post('/withdraw_salary', [App\Http\Controllers\AdminController::class, 'withdraw_salary'])->name('withdraw_salary');
 Route::post('/attend_user', [App\Http\Controllers\AdminController::class, 'attend_user'])->name('attend_user');
 Route::post('/approve_reservation', [App\Http\Controllers\AdminController::class, 'approve_reservation'])->name('approve_reservation');

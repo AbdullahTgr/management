@@ -10,17 +10,17 @@
               </div>
               <div class="modal-body">
                   <label for="cashin">Cash In</label>
-                  <input class="form-control" value="{{$sale->cashin}}" type="number" step="0.1" name="cashin" id="cashin">
+                  <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$sale->cashin}}" type="number" step="0.1" name="cashin" id="cashin">
                   <label for="cashin_photo">Photo</label>
                   <img src="{{asset('storage/'. $sale->cashin_photo)}}" id="cashin_photo" class="img-fluid" alt="" srcset="">
-                  <input class="form-control" accept="image/png, image/gif, image/jpeg" type="file"  oninput="cashin_photo.src=window.URL.createObjectURL(this.files[0])" name="cashin_photo" id="cashin_photo">
+                  <input {{isset($finance) ? 'disabled' : ''}} class="form-control" accept="image/png, image/gif, image/jpeg" type="file"  oninput="cashin_photo.src=window.URL.createObjectURL(this.files[0])" name="cashin_photo" id="cashin_photo">
                  <br>
                
  
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{isset($finance) ? 'Close' : 'No'}}</button>
+                <button  type="submit" class="btn btn-primary {{isset($finance) ? 'd-none' : ''}}">Save</button>
               </div>
            </form>
       </div>

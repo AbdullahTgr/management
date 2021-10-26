@@ -78,8 +78,8 @@
                           {{$sale->excursion_id ? $sale->exc->excursion : 'no excursion'}}
                         </th>
                         <th scope="row">
-                            {{$sale->cashin}}
-                          </th>
+                          <a href="#" data-bs-toggle="modal" class="cashins{{$sale->id}}" data-bs-target="#cashin{{$sale->id}}"> {{$sale->cashin ?  $sale->cashin  : 'N/A'}}</a>
+                        </th>
                           <th scope="row">
                             <a href="#" data-bs-toggle="modal" class="cashouts{{$sale->id}}" data-bs-target="#cashout{{$sale->id}}"> {{$sale->cashout ?  $sale->cashout  : 'N/A'}}</a>
                         </th>
@@ -123,6 +123,7 @@
 @forelse ($finance as $sale)
 {{-- @include('reservations.delete') --}}
 @include('reservations.cashout',['finance'=>1])
+@include('reservations.cashin',['finance'=>1])
 @include('reservations.bank',['finance'=>1])
  @empty
 @endforelse

@@ -70,6 +70,40 @@
                 </table>
         </div>
         {{-- End User Discount History --}}
+
+
+
+                    {{-- Start User Bouns History --}}
+                    <h3 class="mb-1">Bouns History</h3>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush dataTable2">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Bouns</th>
+                                <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                @foreach ($user->bouns() as $bouns)
+                                <tr>
+                                <th scope="row">
+                                    <span style=" font-size: 12px; " class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($bouns->created_at)->format('d/m/Y')}}</span>
+                                </th>
+                                <td>
+                                    <span style=" font-size: 12px; " class="badge bg-success">+${{$bouns->amount}}</span>
+                                </td>
+                                <td>
+                                    <div class="avatar-group">
+                                       <p>{{$bouns->comment ? $bouns->comment : 'No Comment'}}</p>
+                                    </div>
+                                </td>
+                                </tr>
+                                @endforeach
+                        </tbody>
+                        </table>
+                </div>
+                {{-- End User Bouns History --}}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
