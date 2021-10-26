@@ -243,12 +243,14 @@ class WebViewController extends Controller
                 $cash = Cashout::findOrFail( $request['cash_id_'.$count]);
                 $cash->price = $request['cashout_'.$count];
                 $cash->name = $request['name_'.$count];
+                $cash->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('cahsout_photo') : $cash->photo;
                 $cash->save();
             }else
             {
                 $cash = new Cashout();
                 $cash->price = $request['cashout_'.$count];
                 $cash->name = $request['name_'.$count];
+                $cash->photo = $request['photo_'.$count] ? $request['photo_'.$count]->store('cahsout_photo') : null;
                 $cash->res_id = $res->id;
                 $cash->save();
             }
