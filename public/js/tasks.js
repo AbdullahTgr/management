@@ -116,4 +116,17 @@ $( document ).ready(function() {
         });
     }); 
 
+
+    
+    $(document).on("click",".click_sendemail",function(){
+        var sendemail=$('.sendemail').val();
+        if(sendemail==0){
+            $('.sendemail').val(1)
+        }else{
+            $('.sendemail').val(0)
+        }
+        
+    });
+    
+
 });
