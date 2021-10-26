@@ -13,6 +13,9 @@
                   <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$sale->cashin}}" type="number" step="0.1" name="cashin" id="cashin">
                   <label for="cashin_photo">Photo</label>
                   <img src="{{asset('storage/'. $sale->cashin_photo)}}" id="cashin_photo" class="img-fluid" alt="" srcset="">
+                    @if ($sale->cashin_photo)
+                   <a download="{{$sale->id . '_' . $sale->cashin}}" href="{{asset('storage/'. $sale->photo)}}">Download</a>
+                    @endif
                   <input {{isset($finance) ? 'disabled' : ''}} class="form-control" accept="image/png, image/gif, image/jpeg" type="file"  oninput="cashin_photo.src=window.URL.createObjectURL(this.files[0])" name="cashin_photo" id="cashin_photo">
                  <br>
                

@@ -12,11 +12,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="come">Current salary</label>
-                        <input disabled class="form-control" type="text" id="current_salary" value="{{$user->salary}}" >
+                        <input disabled class="form-control" type="text" id="current_salary" value="{{$user->salary()}}" >
                     </div>
                     <div class="col-md-6">
                         <label for="222">After Discount</label>
-                        <input disabled class="form-control" type="text" id="after_salary" value="{{$user->salary}}" >
+                        <input disabled class="form-control" type="text" id="after_salary" value="{{$user->salary()}}" >
                     </div>
                 </div>
                 <label for="discount">Discount</label>

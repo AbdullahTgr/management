@@ -275,11 +275,15 @@
 
       $(document).on('click', '#add_cash' , function() {
       var count = Number($(this).parent().parent().find('#count').val())+1;
-      $(this).parent().parent().find('#cashList').append('<div class="col-md-6"><label for="cashout">Price</label>'
+      $(this).parent().parent().find('#cashList').append('<div class="col-md-4"><label for="cashout">Price</label>'
           + '<input class="form-control" type="number" step="0.1" name="cashout_' + count + '" id="cashout_' + count + '">'
           + '</div>'
-          + '<div class="col-md-6"><label for="name">Name</label>'
+          + '<div class="col-md-4"><label for="name">Name</label>'
           + '<input class="form-control" type="text" name="name_' + count + '" id="name_' + count + '">'
+          + '</div>'
+          + '<div class="col-md-4">'
+          + ' <label for="photo_'+ count +'">Photo</label>'
+          + '<input accept="image/png, image/gif, image/jpeg" type="file" class="form-control"  type="file"  name="photo_' + count + '" id="photo_' + count + '">'
           + '</div>'
           );
           $(this).parent().parent().find('#count').val(count); 
