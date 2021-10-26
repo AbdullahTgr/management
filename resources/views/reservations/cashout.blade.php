@@ -21,24 +21,36 @@
                           <input type="hidden" id="count" value="{{count($sale->cashouts()) >0  ? count($sale->cashouts()) : 1}}" name="count">
                           <div id="cashList" class="row">
                            @forelse ($sale->cashouts() as $key => $cash)
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <input type="hidden" value="{{$cash->id}}" name="cash_id_{{$key+1}}">
                               <label for="cashout_1">Price</label>
                               <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$cash->price}}" type="number" step="0.1" name="cashout_{{$key+1}}" id="cashout_{{$key+1}}">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="name_1">Name</label>
                               <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$cash->name}}" type="text"  name="name_{{$key+1}}" id="name_{{$key+1}}">
                             </div>
+                            <div class="col-md-4">
+                              <img src="{{asset('storage/'. $cash->photo)}}" id="cash_photo" class="img-fluid" alt="" srcset="">
+                               @if ($cash->photo)
+                                   <a download="{{$cash->id . '_' . $cash->name}}" href="{{asset('storage/'. $cash->photo)}}">Download</a>
+                               @endif
+                              <label for="photo_1">Photo</label>
+                              <input {{isset($finance) ? 'disabled' : ''}} accept="image/png, image/gif, image/jpeg" type="file" class="form-control"  type="file"  name="photo_{{$key+1}}" id="photo_{{$key+1}}">
+                             </div>
                             @empty
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="cashout_1">Price</label>
                               <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="" type="number" step="0.1" name="cashout_1" id="cashout_1">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="name_1">Name</label>
                               <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="" type="text"  name="name_1" id="name_1">
                             </div>
+                            <div class="col-md-4">
+                               <label for="photo_1">Photo</label>
+                              <input {{isset($finance) ? 'disabled' : ''}} accept="image/png, image/gif, image/jpeg" type="file" class="form-control"  type="file"  name="photo_1" id="photo_1">
+                             </div>
                             @endforelse
                              
 

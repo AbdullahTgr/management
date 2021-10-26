@@ -13,11 +13,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="bouns_current_salary">Current salary</label>
-                        <input disabled class="form-control" type="text" id="bouns_current_salary" value="{{$user->salary}}" >
+                        <input disabled class="form-control" type="text" id="bouns_current_salary" value="{{$user->salary()}}" >
                     </div>
                     <div class="col-md-6">
                         <label for="bouns_after_salary">After Bouns</label>
-                        <input disabled class="form-control" type="text" id="bouns_after_salary" value="{{$user->salary}}" >
+                        <input disabled class="form-control" type="text" id="bouns_after_salary" value="{{$user->salary()}}" >
                     </div>
                 </div>
 

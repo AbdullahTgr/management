@@ -22,6 +22,9 @@
                                 <input type="hidden" value="{{$bank->id}}" name="bank_id_{{$key+1}}">
                                 <label for="photo_{{$key+1}}">Photo</label>
                                 <img src="{{asset('storage/' . $bank->photo)}}" class="img-fluid" alt="" srcset="">
+                                @if ($bank->photo)
+                                <a download="{{$bank->id . '_' . $bank->name}}" href="{{asset('storage/'. $bank->photo)}}">Download</a>
+                                 @endif
                                 <input {{isset($finance) ? 'disabled' : ''}} class="form-control"  type="file" name="photo_{{$key+1}}" id="photo_{{$key+1}}">
                             </div>
                             <div class="col-md-4">

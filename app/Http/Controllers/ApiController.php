@@ -542,29 +542,6 @@ class ApiController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function request_hotel (Request $request) {
 
         $reservation = new Reservation();
