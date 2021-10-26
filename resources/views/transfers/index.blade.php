@@ -1,3 +1,9 @@
+@php
+    if (isset($api))
+    {
+        $nav = false;
+    }
+@endphp
 @extends('layouts.app')
 
 @section('content')
