@@ -127,6 +127,11 @@ $( document ).ready(function() {
         }
         
     });
+    $(document).on("click",".getmail_modat",function(){
+        var mail=$(this).children(".u_mail").val();
+        $(".mailmodal").val(mail);
+     
+    });
     
 
 });

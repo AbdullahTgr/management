@@ -217,38 +217,7 @@
                     </div> 
                     
 
-                    <div class="col-sm-6 mb-3">
-
-                      <article class="list-group-item">
-                        <header class="filter-header">
-                          <a href="" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" class="collapsed">
-                            <i class="icon-action fa fa-chevron-down click_sendemail"></i>
-                            <h6 class="title click_sendemail">Send Email ?</h6>
-                            <input type="hidden" class="sendemail" name="send_email" value="0">
-                          </a>
-                        </header>
-                        <div class="filter-content collapse " id="collapse1" style="">			
-                        
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Send Email For Customer</i></h6>
-
-                              <label>Clint Email</label>
-                              <input  type="email" class="form-control" name="email" value="">
-                              <label>Message Title</label>
-                              <input  type="text" class="form-control" name="subject" value="">
-                              <label>Message Content</label>
-                              <textarea   class="form-control" name="message" ></textarea>
-                              
-                        </div>
-                      </div>
-                          
-                        </div> <!-- collapse -filter-content  .// -->
-                      </article>
-
-
-
-                    </div>
+     
 
               </div>
               <div class="modal-footer">

@@ -578,14 +578,7 @@ class ApiController extends Controller
         $reservation->kidscharge = $request->kidscharge;
         $reservation->save();
 
-        $details = [
-            'title' => $request->subject,
-            'email' => $request->email,
-            'body' =>  $request->message
-        ];
-        
-        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
-
+   
 
         if ($reservation)
         {

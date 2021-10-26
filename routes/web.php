@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
  
-Route::get('/employees', [App\Http\Controllers\AdminController::class, 'users'])->name('users');
+Route::get('/employees', [App\Http\Controllers\AdminController::class, 'users'])->name('users')->middleware('roles:1,2');
 Route::get('/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('settings')->middleware('roles:1');
-Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1');
-Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations')->middleware('roles:1');
+Route::get('/sales', [App\Http\Controllers\AdminController::class, 'sales'])->name('sales')->middleware('roles:1,2,3');
+Route::get('/reservations', [App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations')->middleware('roles:1,2,3');
 Route::get('/finance', [App\Http\Controllers\AdminController::class, 'finance'])->name('finance')->middleware('roles:1');
 Route::get('/transfer', [App\Http\Controllers\AdminController::class, 'transfer'])->name('transfer')->middleware('roles:1');
 Route::get('/management', [App\Http\Controllers\AdminController::class, 'management'])->name('management')->middleware('roles:1');
@@ -73,6 +73,9 @@ Route::get('/tasks', [App\Http\Controllers\AdminController::class, 'tasks'])->na
 Route::post('/add_task', [App\Http\Controllers\AdminController::class, 'add_task'])->name('add_task');
 Route::post('/accept_task', [App\Http\Controllers\AdminController::class, 'accept_task'])->name('accept_task');
 Route::get('/useractions', [App\Http\Controllers\AdminController::class, 'useractions'])->name('useractions');
+Route::post('/send_email', [App\Http\Controllers\AdminController::class, 'send_email'])->name('send_email');
+
+
 
 Route::get('/msg/{user_id}', function($user_id){
     $user = \App\Models\User::where('id', $user_id)->first();

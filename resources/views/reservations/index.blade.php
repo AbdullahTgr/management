@@ -59,6 +59,7 @@
                       <th scope="col">Cash Out</th> 
                       <th scope="col">Bank</th> 
                       <th scope="col">Comment</th> 
+                      <th scope="col">Send Mail</th>
                       <th scope="col"></th>
                       </tr>
                     </thead>
@@ -191,7 +192,10 @@
                           </a>
                         </th>
  
- 
+<td class="text-right">
+  <a  data-bs-toggle="modal" data-bs-target="#sendemail" class="btn btn-primary getmail_modat" href="#"><input type="hidden" value="{{$sale->agent_sales->email}}" class="u_mail"> Email</a>
+</td>
+
                         <td class="text-right">
                           {{$sale->finance ? 'Added to finance' : ''}}
                           <div class="dropdown {{$sale->finance ? 'd-none' : ''}}">
@@ -201,14 +205,16 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$sale->id}}" href="#">Confirm</a></li>
                               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFinance{{$sale->id}}" href="#">Add to finance</a></li>
+                              
 
                                 {{-- @if (Auth::user()->role == 1)
                                  <li class="d-none"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete{{$sale->id}}" href="#">Delete</a></li>
                                 @endif --}}
                              </ul>
                           </div>
- 
                         </td>
+
+
                       </tr>
                       @endforeach
        
@@ -232,6 +238,7 @@
     </div>
 </div>
 
+@include('reservations.sendemail')
  
 @forelse ($reservations as $sale)
 {{-- @include('reservations.delete') --}}
@@ -247,6 +254,13 @@
 @include('reservations.bank')
 @include('reservations.comments')
 @include('reservations.add_finance')
+
+
+
+
+
+
+
 @endif 
 
 @empty
@@ -264,7 +278,7 @@
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-
+<script type="text/javascript" src="{{asset('js/tasks.js')}}"></script>
 <script>
      
  
