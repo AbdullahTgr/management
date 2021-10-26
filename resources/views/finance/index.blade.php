@@ -27,7 +27,7 @@
                   {
                     $selected_month = Carbon\Carbon::now()->month;
                   }
-                    $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
+                 return   $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
 
               @endphp
                 @foreach ($finance[0]->months() as $key => $month)
@@ -60,7 +60,7 @@
                       
                       <tr>
                           <th>
-                            <span>{{$sale->id}} - {{$sale->res->id}} </span>
+                            <span>{{$sale->res_id}} - {{$sale->res->clint_name}} </span>
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
