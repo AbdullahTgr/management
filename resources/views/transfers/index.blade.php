@@ -19,8 +19,6 @@
           <div style=" padding: 10px; " class="card shadow">
             <div class="card-header border-0">
               <h4 class="mb-0">Transfers List</h4>
- 
-           
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
