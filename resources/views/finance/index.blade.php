@@ -27,7 +27,7 @@
                   {
                     $selected_month = Carbon\Carbon::now()->month;
                   }
-                 return   $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
+                     $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
               @endphp
                 @foreach ($finance[0]->months() as $key => $month)
                     <a href="?month={{$key}}" class="btn btn-{{$key == $selected_month ? 'dark' : 'primary'}}"><i class="fas fa-calendar"></i> {{$key}}</a>
@@ -59,7 +59,7 @@
                       
                       <tr>
                           <th>
-                            <span>{{$sale->res_id}} - {{$sale->res->clint_name}} </span>
+                            <span>{{$sale->res_id}}  </span>
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
