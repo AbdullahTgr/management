@@ -105,6 +105,18 @@ class User extends Authenticatable
        return $bouns ? $bouns : null;
     }
 
+    public function finance()
+    {
+       $finance =  Finance::where('agent_id',$this->id)->where('withdraw',NULL)->orderBy('id','DESC')->get();
+       return $finance ;
+    }
+
+    public function settings()
+    {
+        $setting = Setting::first();
+        return $setting ;
+    }
+
     public function month_discounts()
     {
        $discount =  UserDiscount::where('user_id',$this->id)->whereMonth('created_at', \Carbon\Carbon::now()->month)->whereYear('created_at', \Carbon\Carbon::now()->year)->orderBy('id','DESC')->get();

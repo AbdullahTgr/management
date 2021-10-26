@@ -198,10 +198,10 @@
 @include('users.send',['all'=>1])
 
 @forelse ($users as $user)
-@include('users.delete')
-@include('users.discount')
-@include('users.bouns')
-@include('users.withdraw')
+  @include('users.delete')
+  @include('users.discount')
+  @include('users.bouns')
+  @include('users.withdraw')
 @empty
 @endforelse
 @forelse ($user_attendings as $user)

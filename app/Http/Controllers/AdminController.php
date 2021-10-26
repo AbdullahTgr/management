@@ -52,6 +52,7 @@ class AdminController extends Controller
         return view('users.index', compact('users','user_attendings'));
     }
 
+     
 
 
  
@@ -619,28 +620,55 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
+
+
+
+
     public function withdraw_salary(Request $request)
     {
         $check_salary = UserSalary::where('user_id',$request->user_id)->whereNull('status')->first();
         $user = User::where('id',$request->user_id)->first();
 
+        
         if ($check_salary)
         {
             $salary = UserSalary::findOrFail($check_salary->id);
             $salary->status = 1;
+            $salary->salary = $salary->salary+$request->commission;
+
             $salary->date = Carbon::now()->today();
             $salary->save();
         }else
         {
             $salary = new UserSalary();
-            $salary->salary = $user->salary;
             $salary->user_id = $request->user_id;
             $salary->status = 1;
+            $salary->salary = $user->salary+$request->commission;
             $salary->date = Carbon::now()->today();
             $salary->save();
         }
+        
+        $arr_ids=explode(",",$request->commission_ids);
+        //return $arr_ids;
+        
+        foreach($arr_ids as $arr_id){
+            if($arr_id!=""){
+                $finance = Finance::findOrFail($arr_id);
+                $finance->withdraw=1;
+                $finance->save();
+                
+            }
+        }
         return redirect()->back();
     }
+
+
+
+
+
+
+
 
     public function update_user_discount(Request $request)
     {

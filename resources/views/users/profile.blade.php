@@ -25,7 +25,66 @@
                <span class="font-weight-bold">{{$user->name}}</span>
                <span class="text-black-50">{{$user->job_title}}</span>
                <a href="#"  data-bs-toggle="modal" data-bs-target="#salaryHistory" class="text-success fw-bold">${{$user->salary()}}</a>
-               <p>${{$user->hourly_rate()}}/Hour</p>
+           
+
+               {{-- Get User Commissions --}}
+
+               @php
+               $allincome=0;
+           $commission=0;
+           @endphp
+                       @forelse ($user->finance() as $finance)
+           
+           @php
+           $allincome+=$finance->commission;
+           @endphp
+                       @empty
+                            {{'No Income Yet.'}}
+                       @endforelse 
+           
+                        <div class="d-flex justify-content-between align-items-center mt-3 text-warning fw-bold"><span>Total User Income</span> </div>
+           
+           
+                        <span class="badge bg-warning btn btn-primary"><h6 class="mb-1 mt-1 fw-bold"><h6 class="mb-1 mt-1 fw-bold">{{$allincome}}</h6></h6></span><br>
+           
+                        @if ( $allincome >= $user->settings()->target1 && $allincome<$user->settings()->target2 )
+                           First Target  The Additional Commission Is : 
+                            <h6 style="color:green">{{ $commission=$allincome*$user->settings()->commission1/100 }}</h6>
+                        @else
+           
+                           @if ( $allincome >= $user->settings()->target2 && $allincome<$user->settings()->target3 )
+                               Second Target  The Additional Commission Is : 
+                               <h6 style="color:green">{{ $commission=$allincome*$user->settings()->commission2/100 }}</h6>
+                           @else
+                           
+                               @if ( $allincome >= $user->settings()->target3  )
+                                   Third Target The Additional Commission Is : 
+                                   <h6 style="color:green">{{ $commission=$allincome*$user->settings()->commission3/100 }}</h6>
+                               @else
+                               
+                               @endif
+                           @endif
+                        @endif
+                        
+
+
+{{-- End Of Get User Commissions --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               <p>${{$user->hourly_rate()}}/Hour </p>
                <hr>
                <div class="row">
                    <div class="col-md-12" style=" padding: 0; ">
@@ -133,6 +192,7 @@
                     </div>
                 </div>
              </div>
+             @include('users.user_completed_requests')
         </div>
         
         {{-- Start Profile Info --}}
@@ -206,6 +266,8 @@
 
 @include('users.send')
 @include('users.salary_history')
+
+
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast hide bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">

@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody> 
-                        @foreach ($user->discounts() as $discount)
+                        @foreach ($user->discounts() as $discount) 
                         <tr>
                         <th scope="row">
                             <span style=" font-size: 12px; " class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> {{\Carbon\Carbon::parse($discount->created_at)->format('d/m/Y')}}</span>
