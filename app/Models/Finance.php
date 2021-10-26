@@ -32,7 +32,7 @@ class Finance extends Model
 
     public function res() 
     {
-        return $this->belongsTo(Reservation::class, $this->res_id);
+         return Reservation::where('id', $this->res_id)->first();
     }
     
     public function banks()

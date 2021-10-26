@@ -56,9 +56,10 @@
                     <tbody>
                
                       @foreach ($current_finance as $sale)
+                      
                       <tr>
                           <th>
-                            <span>{{$sale->res_id}}  </span>
+                            <span>{{$sale->res_id}} - {{$sale->res->clint_name}} </span>
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
