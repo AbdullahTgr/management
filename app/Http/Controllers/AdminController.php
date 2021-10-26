@@ -1010,17 +1010,6 @@ public function request_hotel (Request $request) {
     $reservation->kidscharge = $request->kidscharge;
     $reservation->save();
 
-    if($request->send_email!=0){
-
-        $details = [
-            'title' => $request->subject,
-            'email' => $request->email,
-            'body' =>  $request->message
-        ];
-        
-        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
-
-    }
 
 
 
@@ -1049,6 +1038,17 @@ public function request_hotel (Request $request) {
 
 
 
+public function send_email(Request $request) {
+
+
+        $details = [
+            'title' => $request->subject,
+            'email' => $request->email,
+            'body' =>  $request->message
+        ];
+        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
+    return redirect()->back();
+}
 
 
 

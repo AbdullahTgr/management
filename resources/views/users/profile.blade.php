@@ -221,11 +221,9 @@
                     <div class="col-md-12">
                         <label class="labels">Role</label>
                         <select class="form-control" name="role" id="role">
-                            <option {{$user->role == 4 ? 'selected' : ''}} value="4">Employer</option>
-                            <option {{$user->role == 3 ? 'selected' : ''}} value="3">Editor</option>
-                            <option {{$user->role == 2 ? 'selected' : ''}} value="2">Admin</option>
+                            <option {{$user->role == 3 ? 'selected' : ''}} value="3">Seller</option>
+                            <option {{$user->role == 2 ? 'selected' : ''}} value="2">Accounter</option>
                             <option {{$user->role == 1 ? 'selected' : ''}} value="1">Super Admin</option>
-
                         </select>
                     </div>
                     <div class="col-md-12">
