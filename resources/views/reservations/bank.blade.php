@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="account_{{$key+1}}">Account Num</label>
-                                <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$bank->name}}" type="text"  name="account_{{$key+1}}" id="account_{{$key+1}}">
+                                <input {{isset($finance) ? 'disabled' : ''}} class="form-control" value="{{$bank->account}}" type="text"  name="account_{{$key+1}}" id="account_{{$key+1}}">
                             </div>
                             @empty
                             <div class="col-md-4 {{isset($finance) ? 'd-none' : ''}}">
