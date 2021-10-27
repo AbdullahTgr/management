@@ -59,11 +59,7 @@
                       
                       <tr>
                           <th>
-<<<<<<< HEAD
-                            <span>{{$sale->id}} - {{$sale->res->clint_name}} </span> 
-=======
                             <span>{{$sale->res_id}} - {{$sale->res()}} </span>
->>>>>>> 7a64702a05b9c99dafa686218e46523e150e019e
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>
