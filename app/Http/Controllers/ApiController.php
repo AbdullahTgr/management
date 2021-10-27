@@ -14,6 +14,7 @@ use App\Models\Hotel;
 use App\Models\Triptype;
 use App\Models\Destination;
 use App\Models\Excursion;
+use App\Models\Gateway;
 use App\Models\View;
 use App\Models\Included;
 use App\Models\Reservation;
@@ -135,6 +136,7 @@ class ApiController extends Controller
         $destination = Destination::get();
         $excursion = Excursion::get(); 
         $transportation = Transportation::get(); 
+        $gateway = Gateway::get(); 
 
 
         return Response::json(array(
@@ -145,6 +147,7 @@ class ApiController extends Controller
             "included" => $included,
             "excursion" => $excursion , 
             "transportation" => $transportation,
+            "gateway" => $gateway,
         ));
 
     }
