@@ -121,30 +121,12 @@ class WebViewController extends Controller
     }
 
     public function add_to_transfer(Request $request) {
-        if (!isset($_GET['key']))
-        {
-            return 'Unauthorized Access!';
-        }
-        
-        if (isset($_GET['key']) && $_GET['key'] != 'LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q')
-        {
-            return 'Unauthorized Access!';
-        }
-
-        // $check = Transfer::where('res_id', $request->res_id)->first();
-
-        // if ($check)
-        // {
-        //     $transfer = Transfer::findOrFail($check->id);
-        //     $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : $transfer->photo ;
-        //     $transfer->save();
-        // }else
-        // {
+ 
             $transfer = new Transfer();
             $transfer->photo = $request->photo ? $request->photo->store('transfer_photo') : null;
             $transfer->res_id = $request->res_id;
             $transfer->save();
-      //  }
+ 
   
 
         return redirect()->back();
