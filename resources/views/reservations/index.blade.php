@@ -83,7 +83,9 @@
                       {{$sale->phone_number}}
                     </th>
                     <th scope="row" style=" text-align: center; ">
-                      {{$sale->adults}}
+                      <span class="badge bg-dark">{{$sale->adults ? $sale->adults . ' Adults' : '0 Adults'}}</span>
+                      <span class="badge bg-dark">{{$sale->kids ? $sale->kids . ' Kids' : '0 Kids'}}</span>
+                      <span class="badge bg-dark">{{$sale->kids_age ? $sale->kids_age . ' Age' : '0 Age'}}</span>
                     </th>
                     <th scope="row" style=" text-align: center; ">
                       {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}
@@ -163,7 +165,7 @@
                       </th>
                       <th scope="row" style=" text-align: center; ">
                         <a href="#" data-bs-toggle="modal" class="cashins{{$sale->id}}" data-bs-target="#cashin{{$sale->id}}"> {{$sale->cashin ?  $sale->cashin  : 'N/A'}}</a>
-                    </th>
+                       </th>
                     <th scope="row" style=" text-align: center; ">
                       <a href="#" data-bs-toggle="modal" class="cashouts{{$sale->id}}" data-bs-target="#cashout{{$sale->id}}"> {{$sale->cashout ?  $sale->cashout  : 'N/A'}}</a>
                     </th>
@@ -192,9 +194,9 @@
                           </a>
                         </th>
  
-<td class="text-right">
-  <a  data-bs-toggle="modal" data-bs-target="#sendemail" class="btn btn-primary getmail_modat" href="#"><input type="hidden" value="{{$sale->agent_sales->email}}" class="u_mail"> Email</a>
-</td>
+                          <td class="text-right">
+                            <a  data-bs-toggle="modal" data-bs-target="#sendemail" class="btn btn-primary getmail_modat" href="#"><input type="hidden" value="{{$sale->agent_sales->email}}" class="u_mail"> Email</a>
+                          </td>
 
                         <td class="text-right">
                           {{$sale->finance ? 'Added to finance' : ''}}
@@ -380,8 +382,9 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
@@ -391,17 +394,8 @@
         $('.double'+form[0].sale_id.value).text(form[0].double.value + ' Double');
         $('.triple'+form[0].sale_id.value).text(form[0].triple.value + ' Triple');
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -428,25 +422,17 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
         $('.includes'+ form[0].sale_id.value).text(form[0].included_id.options[form[0].included_id.selectedIndex].text);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -472,25 +458,17 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
         $('.payments'+ form[0].sale_id.value).text(form[0].payment_option_date.value);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -516,25 +494,18 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
         $('.cashins'+ form[0].sale_id.value).text(form[0].cashin.value);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
+ 
       },
      error: function(e) 
       {
@@ -561,25 +532,17 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
         $('.cashouts'+ form[0].sale_id.value).text(form[0].cashout.value);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -605,25 +568,17 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
        // $('.cashouts'+ form[0].sale_id.value).text(form[0].cashout.value);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -650,25 +605,17 @@
    processData:false,
    beforeSend : function()
    {
-      $('#update_user').text('Saving..');
-      $('#update_user').attr('disabled' , true);
+       var load = '{{asset("imgs/load.gif")}}';
+       form.find('#update_user').html('<span>Saving... </span> <img style=" width: 15px; transform: scale(1.5); " src="' + load + '">');
+       form.find('#update_user').attr('disabled' , true);
    },
    success: function(data)
       {
         console.log(form[0].sale_id.value);
         $('.comments'+ form[0].sale_id.value).text(data.success);
         $('.modal').modal('hide');
-    if(data.success)
-    {
-        $('#update_user').text('Save Profile');
-        $('#update_user').attr('disabled' , false);
-        $('#liveToast').show();
-    }
-    else
-    {
-        $('#ErrliveToast').show();
-
-    }
+        form.find('#update_user').text('Save');
+        form.find('#update_user').attr('disabled' , false);
       },
      error: function(e) 
       {
@@ -676,6 +623,24 @@
       }          
     });
  }));
+
+
+ $(document).on('click', '#confirm_sale', function(){
+  var c_in = $('.cashins'+$(this).attr('sale')).text();
+  var c_out = $('.cashouts'+$(this).attr('sale')).text();
+  console.log(c_in);
+   
+  if (c_in == ' N/A N/A')
+  {
+    alert('you cannot left cash in empty');
+    return false;
+  }
+  if (c_out == ' N/A N/A')
+  {
+    alert('you cannot left cash out empty');
+    return false;
+  }
+ });
 
 });
 
