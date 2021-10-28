@@ -69,7 +69,7 @@
                         </th>
  
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}
+                          {{$sale->hotel_name() ? $sale->hotel_name() : 'no hotel'}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           <div class="badge bg-info">{{$sale->days_nights}}</div>

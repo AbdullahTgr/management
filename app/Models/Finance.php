@@ -37,6 +37,12 @@ class Finance extends Model
           return $res->clint_name;
     }
     
+    public function hotel_name() 
+    {
+        $res = Reservation::where('id', $this->res_id)->first();
+
+        return $res->hotel_name;
+    }
     public function banks()
     {
         return Bank::where('res_id', $this->res_id)->get();
