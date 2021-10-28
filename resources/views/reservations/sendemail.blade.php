@@ -10,8 +10,10 @@
                   <div class="card-body">
                     <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Send Email For Customer</i></h6>
 
-                        <label>Clint Email</label>
-                        <input  type="email" class="form-control mailmodal" name="email" value="">
+                    <label>Clint Email</label>
+                    <input  type="email" class="form-control mailmodal" name="email" value="">
+                    <label>CC</label>
+                    <input  type="email" class="form-control " name="cc" value="">
                         <label>Message Title</label>
                         <input  type="text" class="form-control" name="subject" value="">
                         <label>Message Content</label>

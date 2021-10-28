@@ -992,7 +992,7 @@ public function deleteexcursion(Request $request)
 public function getexcurr(Request $request)
 {
     $excurr=Excursion::where('id',$request->id)->get();
-    $opt="";
+    $opt='<option  value="">NO EXCURSIONS</option>';
     foreach ($excurr as $excur){
         $opt.='<option  value="'.$excur->id.'">'.$excur->excursion.'</option>';
     }
@@ -1005,7 +1005,7 @@ public function request_hotel (Request $request) {
 
     $reservation = new Reservation();
 
-    $reservation->hotel_id = $request->hotel_id;
+    $reservation->hotel_name = $request->hotel_name;
     $reservation->triptype_id = $request->triptype_id;
     $reservation->destination_id = $request->destination_id;
     $reservation->view_id = $request->view_id;
@@ -1022,6 +1022,7 @@ public function request_hotel (Request $request) {
     $reservation->checkin = $request->checkin;
     $reservation->checkout = $request->checkout;
     $reservation->transportations = $request->transportations;
+
     $reservation->excursion = $request->excursion;
     $reservation->gateway = $request->gateway; 
     $reservation->salescomments = $request->salescomments;
@@ -1073,8 +1074,10 @@ public function send_email(Request $request) {
             'email' => $request->email,
             'body' =>  $request->message
         ];
-        \Mail::to($request->email)->send(new \App\Mail\ContactForm($details));
+        \Mail::to($request->email)->cc($request->cc)->send(new \App\Mail\ContactForm($details));
+
     return redirect()->back();
+
 }
 
 

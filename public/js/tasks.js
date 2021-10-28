@@ -107,7 +107,7 @@ $( document ).ready(function() {
 
         var id=$(this).val();
            $.ajax({
-           type:'GET',
+           type:'GET', 
            url:'getexcurr', 
            data:{id:id}, 
            success:function(data){

@@ -140,7 +140,6 @@ class ApiController extends Controller
 
 
         return Response::json(array(
-            "hotels" => $hotel,
             "triptype" => $triptype,
             "destinations" => $destination,
             "views" => $view ,
@@ -549,7 +548,7 @@ class ApiController extends Controller
 
         $reservation = new Reservation();
 
-        $reservation->hotel_id = $request->hotel_id;
+        $reservation->hotel_name = $request->hotel_name;
         $reservation->triptype_id = $request->triptype_id;
         $reservation->destination_id = $request->destination_id;
         $reservation->view_id = $request->view_id;
@@ -566,6 +565,7 @@ class ApiController extends Controller
         $reservation->checkin = $request->checkin;
         $reservation->checkout = $request->checkout;
         $reservation->transportations = $request->transportations;
+        
         $reservation->excursion = $request->excursion;
         $reservation->gateway = $request->gateway;
         $reservation->salescomments = $request->salescomments;

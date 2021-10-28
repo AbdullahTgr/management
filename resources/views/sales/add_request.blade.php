@@ -42,13 +42,13 @@
                           <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Persons</i></h6>
                              
                               <label>Adults</label>
-                              <input required type="text" class="form-control" name="adults" value="">
+                              <input type="text" class="form-control" name="adults" value="">
                               
                               <label>Kids</label>
-                              <input required type="text" class="form-control" name="kids" value="">
+                              <input type="text" class="form-control" name="kids" value="">
                               
                               <label>Kids_age</label>
-                              <input required type="text" class="form-control" name="kids_age" value="">
+                              <input type="text" class="form-control" name="kids_age" value="">
                         </div>
                       </div>
                     </div>
@@ -115,11 +115,10 @@
                           <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Hotel</i></h6>
                              
                     <label>Hotel Name</label>
-                    <select class="form-control" name="hotel_id">
-                      @foreach ($hotel as $hotel)
-                         <option value="{{$hotel->id}}">{{$hotel->type}}</option>
-                      @endforeach
-                    </select>
+
+                    <input type="text" class="form-control" name="hotel_name">
+                    
+
                     <label>Trip Type</label>
                     <select class="form-control" name="triptype_id">
                       @foreach ($triptype as $triptype)
@@ -129,6 +128,14 @@
                         </div>
                       </div>
                     </div>
+
+
+
+
+       
+                    
+
+
                     <div class="col-sm-6 mb-3">
                       <div class="card h-100">
                         <div class="card-body">
@@ -157,6 +164,7 @@
                         
                     <label>Transportation</label>
                     <select class="form-control" name="transportations">
+                      <option value="">NO TRANSPORTATION</option>
                       @foreach ($transportation as $transportation)
                          <option value="{{$transportation->id}}">{{$transportation->transportation}}</option>
                       @endforeach
