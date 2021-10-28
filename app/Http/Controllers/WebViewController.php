@@ -320,4 +320,22 @@ class WebViewController extends Controller
         return response()->json(['success'=>$all]);
     }
 
+
+
+
+
+    public function send_email(Request $request) {
+
+
+        $details = [
+            'title' => $request->subject,
+            'email' => $request->email,
+            'body' =>  $request->message
+        ];
+        \Mail::to($request->email)->cc($request->cc)->send(new \App\Mail\ContactForm($details));
+
+    return redirect()->back();
+
+     }
+
 }

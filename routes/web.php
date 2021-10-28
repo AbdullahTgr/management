@@ -74,6 +74,7 @@ Route::post('/add_task', [App\Http\Controllers\AdminController::class, 'add_task
 Route::post('/accept_task', [App\Http\Controllers\AdminController::class, 'accept_task'])->name('accept_task');
 Route::get('/useractions', [App\Http\Controllers\AdminController::class, 'useractions'])->name('useractions');
 Route::post('/send_email', [App\Http\Controllers\AdminController::class, 'send_email'])->name('send_email');
+Route::post('/send_email_api', [App\Http\Controllers\WebViewController::class, 'send_email'])->name('send_email_api');
 
 
 

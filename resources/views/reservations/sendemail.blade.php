@@ -1,7 +1,7 @@
 <div class="modal fade" id="sendemail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-           <form action="{{route('send_email')}}" method="post">
+           <form action="{{isset($api) ? route('send_email_api') : route('send_email')}}" method="post">
                @csrf
 
                <div class="col-sm-12 ">
