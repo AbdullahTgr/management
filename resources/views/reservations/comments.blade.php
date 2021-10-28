@@ -52,7 +52,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button  id="update_user" type="submit" class="btn btn-primary">Save</button>
               </div>
            </form>
       </div>

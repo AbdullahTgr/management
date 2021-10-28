@@ -84,7 +84,9 @@
                           {{$sale->phone_number}}
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                          {{$sale->adults}}
+                          <span class="badge bg-dark">{{$sale->adults ? $sale->adults . ' Adults' : '0 Adults'}}</span>
+                          <span class="badge bg-dark">{{$sale->kids ? $sale->kids . ' Kids' : '0 Kids'}}</span>
+                          <span class="badge bg-dark">{{$sale->kids_age ? $sale->kids_age . ' Age' : '0 Age'}}</span>
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           {{$sale->hotel_id ? $sale->hotel->type : 'no hotel'}}

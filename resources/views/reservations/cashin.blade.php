@@ -23,7 +23,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{isset($finance) ? 'Close' : 'No'}}</button>
-                <button  type="submit" class="btn btn-primary {{isset($finance) ? 'd-none' : ''}}">Save</button>
+                <button  type="submit" id="update_user" name="update_user" class="btn btn-primary {{isset($finance) ? 'd-none' : ''}}">Save</button>
               </div>
            </form>
       </div>

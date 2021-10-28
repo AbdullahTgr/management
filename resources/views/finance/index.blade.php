@@ -29,9 +29,12 @@
                   }
                      $current_finance = \App\Models\Finance::whereMonth('created_at', $selected_month)->whereYear('created_at', \Carbon\Carbon::now()->year)->get();
               @endphp
+              @if (count($finance) > 0)
                 @foreach ($finance[0]->months() as $key => $month)
-                    <a href="?month={{$key}}{{isset($api) ? '&key=LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q' : ''}}" class="btn btn-{{$key == $selected_month ? 'dark' : 'primary'}}"><i class="fas fa-calendar"></i> {{$key}}</a>
+                 <a href="?month={{$key}}{{isset($api) ? '&key=LIZefNAEYFEsrr6w7fmVF34qJnP841qqLz5YE9qWMwbhutlEr2nq0CrsdC75ao7Q' : ''}}" class="btn btn-{{$key == $selected_month ? 'dark' : 'primary'}}"><i class="fas fa-calendar"></i> {{$key}}</a>
                 @endforeach
+              @endif
+
             </div>
             <div class="table-responsive" style=" min-height: 400px; ">
               <table class="table align-items-center table-flush dataTable">
@@ -59,11 +62,7 @@
                       
                       <tr>
                           <th>
-<<<<<<< HEAD
-                            <span>{{$sale->id}} - {{$sale->res->clint_name}} </span> 
-=======
                             <span>{{$sale->res_id}} - {{$sale->res()}} </span>
->>>>>>> 7a64702a05b9c99dafa686218e46523e150e019e
                           </th>
                         <th scope="row">
                             <a class="text-capitalize" href="{{isset($api) ? '#' : route('profile',$sale->agent->id)}}">{{$sale->agent->name}}</a>

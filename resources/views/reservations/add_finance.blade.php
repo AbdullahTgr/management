@@ -26,7 +26,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" id="confirm_sale" sale='{{$sale->id}}' class="btn btn-primary">Add</button>
               </div>
            </form>
       </div>
