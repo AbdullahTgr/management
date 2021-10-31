@@ -650,7 +650,7 @@
    
   if (confirm == 'Not Confirmed')
   {
-    alert('you cannot add to finnance before confirming');
+    alert('you cannot add to finnance before confirming.');
     return false;
   }
   
