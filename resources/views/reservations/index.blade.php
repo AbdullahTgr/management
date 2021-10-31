@@ -158,7 +158,7 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#include{{$sale->id}}" class="includes{{$sale->id}}">{{$sale->included_id ? $sale->included->include : 'No thing included.'}}</a>
                         </th>
                         <th scope="row" style=" text-align: center; ">
-                            <div class="badge bg-{{$sale->confirmation == 1 ? 'success' : 'danger'}}">{{$sale->confirmation == 1 ? 'Confirmed' : 'Not Confirmed'}}</div>
+                            <div class="badge bg-{{$sale->confirmation == 1 ? 'success' : 'danger'}} confirm{{$sale->id}}">{{$sale->confirmation == 1 ? 'Confirmed' : 'Not Confirmed'}}</div>
                         </th>
                         <th scope="row" style=" text-align: center; ">
                           <a href="#" data-bs-toggle="modal" data-bs-target="#payment{{$sale->id}}" class="badge bg-dark"><i class="bi bi-calendar2-day-fill"></i> <span class="payments{{$sale->id}}">{{$sale->payment_option_date ? \Carbon\Carbon::parse($sale->payment_option_date)->format('Y-m-d') : 'N/A'}}</span></a>
@@ -628,6 +628,7 @@
  $(document).on('click', '#confirm_sale', function(){
   var c_in = $('.cashins'+$(this).attr('sale')).text();
   var c_out = $('.cashouts'+$(this).attr('sale')).text();
+  
   console.log(c_in);
    
   if (c_in == ' N/A N/A')
@@ -641,6 +642,21 @@
     return false;
   }
  });
+
+ $(document).on('click', '.add_finance', function(){
+  var confirm = $('.confirm'+$(this).attr('sale')).text();
+   
+  console.log(confirm);
+   
+  if (confirm == 'Not Confirmed')
+  {
+    alert('you cannot add to finnance before confirming');
+    return false;
+  }
+  
+ });
+
+ 
 
 });
 
